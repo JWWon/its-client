@@ -8,7 +8,7 @@ import styled from 'theme';
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.desktop.container}rem;
-  padding: 10rem 0;
+  padding: 9rem 0;
   display: flex;
   justify-content: space-between;
 `;
@@ -23,6 +23,7 @@ export const Right = styled.div`
 
 export const RowDir = styled.div`
   display: flex;
+  margin-bottom: 2rem;
 `;
 
 export const RowTextWrapper = styled.div`
@@ -82,19 +83,25 @@ export const Instagram = styled.img.attrs({ src: instagram })``;
 export const Twitter = styled.img.attrs({ src: twitter })``;
 
 export const Button = styled(_Link)`
-  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20rem;
-  height: 4rem;
+  height: 3.8rem;
   border-radius: 2rem;
   box-sizing: border-box;
-
   background: ${({ theme }) => theme.color.blueDark};
   p {
     font-size: ${({ theme }) => theme.font.size.s}rem;
     font-weight: ${({ theme }) => theme.font.weight.demiLight};
     color: ${({ theme }) => theme.color.white};
   }
+  &:hover {
+    background: transparent;
+    border: 0.2rem solid ${({ theme }) => theme.color.blueDark};
+    p {
+      color: ${({ theme }) => theme.color.blueDark};
+    }
+  }
+  transition: all 0.2s ease-out;
 `;
