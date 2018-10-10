@@ -22,6 +22,7 @@ export const Body = styled.div`
 
 export const Footer = styled.footer`
   width: 100%;
+  background: ${({ theme }) => theme.color.whiteDark};
   display: flex;
   justify-content: center;
 `;

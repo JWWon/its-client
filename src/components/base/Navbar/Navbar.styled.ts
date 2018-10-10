@@ -1,6 +1,6 @@
 import { Link as _Link } from 'react-router-dom';
 
-import logo from 'assets/icons/logo_its_kyojeong.svg';
+import logo from 'assets/logos/logo_its_kyojeong.svg';
 import styled from 'theme';
 
 export const Container = styled.div`
