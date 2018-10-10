@@ -1,15 +1,21 @@
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
-import theme from 'theme';
+import 'App.styled';
+import Footer from 'components/base/Footer';
+import Navbar from 'components/base/Navbar';
+import Template from 'components/base/Template';
+import { theme, ThemeProvider } from 'theme';
 
 class App extends React.Component {
   public render() {
     return (
       <ThemeProvider theme={theme}>
-        <div>
-          <h1>HELLO</h1>
-        </div>
+        <BrowserRouter>
+          <Template navbar={<Navbar />} footer={<Footer />}>
+            <h1>HELLO</h1>
+          </Template>
+        </BrowserRouter>
       </ThemeProvider>
     );
   }
