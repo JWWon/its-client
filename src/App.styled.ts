@@ -27,6 +27,10 @@ export default injectGlobal`
     margin: 0;
   }
 
+  h1 {
+    font-size: 2.6rem;
+  }
+
   a {
     text-decoration: none;
   }
