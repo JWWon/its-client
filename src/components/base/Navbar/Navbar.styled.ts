@@ -6,7 +6,6 @@ import styled from 'theme';
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.desktop.container}rem;
   height: ${({ theme }) => theme.size.desktop.navbar}rem;
-  background: ${({ theme }) => theme.color.white};
   display: flex;
   justify-content: space-between;
   align-items: center;

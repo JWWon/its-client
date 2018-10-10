@@ -13,6 +13,7 @@ export const Navbar = styled.nav`
   right: 0;
   display: flex;
   justify-content: center;
+  background: ${({ theme }) => theme.color.white};
 `;
 
 export const Body = styled.div`

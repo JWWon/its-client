@@ -9,8 +9,8 @@ interface Props {
 
 const Template: React.SFC<Props> = ({ navbar, children, footer }) => (
   <S.Container>
-    <S.Navbar>{navbar}</S.Navbar>
     <S.Body>{children}</S.Body>
+    <S.Navbar>{navbar}</S.Navbar>
     <S.Footer>{footer}</S.Footer>
   </S.Container>
 );
