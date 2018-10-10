@@ -1,11 +1,16 @@
 import * as React from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import theme from 'theme';
 
 class App extends React.Component {
   public render() {
     return (
-      <div>
-        <h1>HELLO</h1>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <h1>HELLO</h1>
+        </div>
+      </ThemeProvider>
     );
   }
 }
