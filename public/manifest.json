@@ -1,0 +1,13 @@
+{
+  "short_name": "잇츠 교정",
+  "name": "잇츠 교정, 교정 선택의 객관적 기준",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone"
+}
