@@ -41,3 +41,10 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.color.blueDark};
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
+
+export const SubTitle = styled.h3`
+  color: ${({ theme }) => theme.color.gray};
+  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-weight: ${({ theme }) => theme.font.weight.regular};
+  margin-left: 3rem;
+`;
