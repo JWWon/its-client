@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ClinicInterface } from 'api/clinic';
-import { cities as _cities } from 'assets/constant/address';
+import { provinces as _provinces } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
 import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
@@ -23,11 +23,11 @@ interface State {
     param: string;
     list: ClinicInterface[];
   } | null;
-  cities: {
+  provinces: {
     pointer: number;
     list: District[];
   };
-  provinces: {
+  cities: {
     pointer: number;
     list: District[];
   } | null;
@@ -37,7 +37,7 @@ class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const list = _cities.map((data, index) => ({
+    const list = _provinces.map((data, index) => ({
       ...data,
       index,
       checked: false,
@@ -45,9 +45,9 @@ class Search extends Component<Props, State> {
     list[0].checked = true;
 
     this.state = {
+      provinces: { list, pointer: 0 },
       search: null,
-      cities: { list, pointer: 0 },
-      provinces: null,
+      cities: null,
     };
   }
 
@@ -59,7 +59,7 @@ class Search extends Component<Props, State> {
   }
 
   public render() {
-    const { search, cities } = this.state;
+    const { search, provinces } = this.state;
     return (
       <>
         <Section
@@ -69,15 +69,15 @@ class Search extends Component<Props, State> {
             <ShadowBox>
               <CheckDistrict
                 title="도 / 특별시"
-                list={cities.list}
-                handleClick={this.handleClickCity}
+                list={provinces.list}
+                handleClick={this.handleClickProvince}
               />
             </ShadowBox>
             <ShadowBox>
               <CheckDistrict
                 title="시 / 군 / 구"
                 list={[]}
-                handleClick={this.handleClickProvince}
+                handleClick={this.handleClickCity}
               />
             </ShadowBox>
           </s.BoxWrapper>
@@ -87,23 +87,7 @@ class Search extends Component<Props, State> {
   }
 
   // private getProvincesFromAPI = () => {
-
   // }
-
-  private handleClickCity = (
-    e: React.FormEvent<HTMLDivElement>,
-    index: number
-  ) => {
-    e.preventDefault();
-    this.setState(state =>
-      produce(state, (draft: State) => {
-        const { pointer } = draft.cities;
-        draft.cities.list[pointer].checked = false;
-        draft.cities.list[index].checked = true;
-        draft.cities.pointer = index;
-      })
-    );
-  };
 
   private handleClickProvince = (
     e: React.FormEvent<HTMLDivElement>,
@@ -112,10 +96,25 @@ class Search extends Component<Props, State> {
     e.preventDefault();
     this.setState(state =>
       produce(state, (draft: State) => {
-        if (draft.provinces) {
-          const { pointer } = draft.provinces;
-          draft.provinces.list[pointer].checked = false;
-          draft.provinces.list[index].checked = true;
+        const { pointer } = draft.provinces;
+        draft.provinces.list[pointer].checked = false;
+        draft.provinces.list[index].checked = true;
+        draft.provinces.pointer = index;
+      })
+    );
+  };
+
+  private handleClickCity = (
+    e: React.FormEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    e.preventDefault();
+    this.setState(state =>
+      produce(state, (draft: State) => {
+        if (draft.cities) {
+          const { pointer } = draft.cities;
+          draft.cities.list[pointer].checked = false;
+          draft.cities.list[index].checked = true;
           draft.cities.pointer = index;
         }
       })

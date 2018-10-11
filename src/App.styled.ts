@@ -2,6 +2,8 @@ import { injectGlobal } from 'theme';
 
 export default injectGlobal`
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+  @import '~slick-carousel/slick/slick-theme.css';
+  @import '~slick-carousel/slick/slick.css';
 
   html {
     font-size: 62.5%;

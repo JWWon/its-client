@@ -1,4 +1,4 @@
-export const cities = [
+export const provinces = [
   { name: '서울' },
   { name: '부산' },
   { name: '강원' },

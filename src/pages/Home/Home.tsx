@@ -1,10 +1,20 @@
-import { Section } from 'components/common';
 import React, { Component } from 'react';
+import Slider from 'react-slick';
+
+import { Section } from 'components/common';
 
 class Home extends Component {
   public render() {
     return (
       <>
+        <Slider>
+          <div>
+            <p>hello1</p>
+          </div>
+          <div>
+            <p>hello2</p>
+          </div>
+        </Slider>
         <Section title="'잇츠 교정'이란?">
           <div>
             <p>this is home</p>

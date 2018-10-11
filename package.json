@@ -15,9 +15,11 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "3.1.0",
+    "react-slick": "^0.23.1",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^3.4.10"
   },
   "scripts": {
@@ -34,6 +36,7 @@
     "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.9",
     "@types/react-router-dom": "^4.3.1",
+    "@types/react-slick": "^0.23.2",
     "@types/redux-actions": "^2.3.1",
     "@types/styled-components": "^4.0.0",
     "typescript": "^3.1.2"
