@@ -4,6 +4,7 @@ export interface ColorInterface {
   white: string;
   whiteDim: string;
   whiteDark: string;
+  grayDark: string;
   gray: string;
   grayLight: string;
 }
@@ -17,7 +18,8 @@ const color: ColorInterface = {
   whiteDim: '#F8F8F8',
   whiteDark: '#F5F5F5',
   // gray
-  gray: '#707070',
+  grayDark: '#707070',
+  gray: '#898989',
   grayLight: '#E3E3E3',
 };
 

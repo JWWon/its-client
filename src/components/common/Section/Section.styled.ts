@@ -43,7 +43,7 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h3`
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.s}rem;
   font-weight: ${({ theme }) => theme.font.weight.regular};
   margin-left: 3rem;

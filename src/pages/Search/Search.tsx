@@ -2,49 +2,62 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ClinicInterface } from 'api/clinic';
-import { cities } from 'assets/constant/address';
+import { cities as _cities } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
-import CheckAddress from './CheckAddress';
+import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
+
+export interface District {
+  index: number;
+  name: string;
+  checked: boolean;
+  count?: number;
+}
 
 interface Props extends RouteComponentProps<any> {}
 
 interface State {
-  searched: boolean;
-  query: string | null;
-  address: {
-    city: string;
-    province: string;
+  search: {
+    type: 'keyword' | 'address';
+    param: string;
+    list: ClinicInterface[];
   } | null;
-  result: ClinicInterface[] | null;
+  cities: District[];
 }
 
 class Search extends Component<Props, State> {
-  public state: State = {
-    searched: false,
-    query: null,
-    address: null,
-    result: null,
-  };
+  constructor(props: Props) {
+    super(props);
+    const cities = _cities.map((data, index) => ({
+      ...data,
+      index,
+      checked: false,
+    }));
+    cities[0].checked = true;
+
+    this.state = { search: null, cities };
+  }
 
   public componentDidMount() {
     const { location } = this.props;
-    this.setState({ searched: location.search.length > 0 });
+    if (location.search) {
+      console.log('has query');
+    }
   }
 
   public render() {
-    const { searched } = this.state;
+    const { search, cities } = this.state;
     return (
       <>
         <Section
-          title={searched ? '지역 목록' : '지역으로 검색하기'}
-          subtitle={searched ? null : '찾으시는 지역을 선택하세요.'}>
+          title={search ? '지역 목록' : '지역으로 검색하기'}
+          subtitle={search ? null : '찾으시는 지역을 선택하세요.'}>
           <s.BoxWrapper>
             <ShadowBox>
-              <CheckAddress title="도 / 특별시" list={cities} />
+              <CheckDistrict title="도 / 특별시" list={cities} />
             </ShadowBox>
             <ShadowBox>
-              <CheckAddress title="시 / 군 / 구" list={[]} />
+              <CheckDistrict title="시 / 군 / 구" list={[]} />
             </ShadowBox>
           </s.BoxWrapper>
         </Section>

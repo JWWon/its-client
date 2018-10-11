@@ -18,28 +18,44 @@ export const TitleWrapper = styled.div`
 export const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.grayDark};
 `;
 
-export const ListWrapper = styled.div`
-  flex: 1;
+export const NoCountListWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  flex-wrap: wrap;
-  margin: -1rem -1%;
+  flex-flow: row wrap;
+  margin: -1.2rem -1%;
 `;
 
 const dataHeight = 3.6;
 
-export const NoCountData = styled.div`
+interface Props {
+  checked: boolean;
+}
+
+export const NoCountData = styled<Props, any>('div')`
   flex-basis: 23%;
-  margin: 1rem 1%;
+  margin: 1.2rem 1%;
   height: ${dataHeight}rem;
   border-radius: ${dataHeight / 2}rem;
-  background-color: ${({ theme }) => theme.color.grayLight};
   display: flex;
   justify-content: center;
   align-items: center;
+  p {
+    color: ${({ theme }) => theme.color.gray};
+    font-size: ${({ theme }) => theme.font.size.s}rem;
+    font-weight: ${({ theme }) => theme.font.weight.regular};
+  }
+  ${({ checked, theme }) =>
+    checked
+      ? `background-color: ${theme.color.blueDark};
+        p {
+          color: ${theme.color.white};
+        }`
+      : `&:hover {
+          background-color: ${theme.color.grayLight};
+        }`};
   &:hover {
     cursor: pointer;
   }

@@ -58,7 +58,7 @@ export const Copyright = styled.div`
 export const InfoText = styled.p`
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.regular};
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.grayDark};
 `;
 
 export const Link = styled.a`

@@ -27,7 +27,7 @@ export const LinkWrapper = styled.div`
 export const Link = styled(_Link)`
   margin-left: 7.2rem;
   p {
-    color: ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.grayDark};
     font-size: ${({ theme }) => theme.font.size.s}rem;
     font-weight: ${({ theme }) => theme.font.weight.regular};
   }
