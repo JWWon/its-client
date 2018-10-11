@@ -3,18 +3,12 @@ import styled from 'theme';
 
 import logo from 'assets/logos/logo_its_kyojeong.svg';
 
-interface Props {
-  isTop: boolean;
-}
-
-export const Container = styled<Props, any>('div')`
+export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.desktop.container}rem;
   height: ${({ theme }) => theme.size.desktop.navbar}rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: ${({ isTop, theme }) =>
-    isTop ? 'none' : `2px solid ${theme.color.grayLight}`};
 `;
 
 export const Logo = styled.img.attrs({

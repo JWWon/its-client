@@ -1,12 +1,16 @@
 import styled from 'theme';
 
+interface Props {
+  isTop: boolean;
+}
+
 export const Container = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
 `;
 
-export const Navbar = styled.nav`
+export const Navbar = styled<Props, any>('nav')`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +18,8 @@ export const Navbar = styled.nav`
   display: flex;
   justify-content: center;
   background: ${({ theme }) => theme.color.white};
+  border-bottom: ${({ isTop, theme }) =>
+    isTop ? 'none' : `1px solid ${theme.color.grayLight}`};
 `;
 
 export const Body = styled.div`
