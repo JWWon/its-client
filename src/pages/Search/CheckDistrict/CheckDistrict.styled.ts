@@ -21,18 +21,18 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.color.grayDark};
 `;
 
+const dataHeight = 3.6;
+
+interface Props {
+  checked: boolean;
+}
+
 export const NoCountListWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
   margin: -1.2rem -1%;
 `;
-
-const dataHeight = 3.6;
-
-interface Props {
-  checked: boolean;
-}
 
 export const NoCountData = styled<Props, any>('div')`
   flex-basis: 23%;

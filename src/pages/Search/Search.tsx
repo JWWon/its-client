@@ -1,3 +1,4 @@
+import produce from 'immer';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -22,20 +23,32 @@ interface State {
     param: string;
     list: ClinicInterface[];
   } | null;
-  cities: District[];
+  cities: {
+    pointer: number;
+    list: District[];
+  };
+  provinces: {
+    pointer: number;
+    list: District[];
+  } | null;
 }
 
 class Search extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    const cities = _cities.map((data, index) => ({
+
+    const list = _cities.map((data, index) => ({
       ...data,
       index,
       checked: false,
     }));
-    cities[0].checked = true;
+    list[0].checked = true;
 
-    this.state = { search: null, cities };
+    this.state = {
+      search: null,
+      cities: { list, pointer: 0 },
+      provinces: null,
+    };
   }
 
   public componentDidMount() {
@@ -54,16 +67,60 @@ class Search extends Component<Props, State> {
           subtitle={search ? null : '찾으시는 지역을 선택하세요.'}>
           <s.BoxWrapper>
             <ShadowBox>
-              <CheckDistrict title="도 / 특별시" list={cities} />
+              <CheckDistrict
+                title="도 / 특별시"
+                list={cities.list}
+                handleClick={this.handleClickCity}
+              />
             </ShadowBox>
             <ShadowBox>
-              <CheckDistrict title="시 / 군 / 구" list={[]} />
+              <CheckDistrict
+                title="시 / 군 / 구"
+                list={[]}
+                handleClick={this.handleClickProvince}
+              />
             </ShadowBox>
           </s.BoxWrapper>
         </Section>
       </>
     );
   }
+
+  // private getProvincesFromAPI = () => {
+
+  // }
+
+  private handleClickCity = (
+    e: React.FormEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    e.preventDefault();
+    this.setState(state =>
+      produce(state, (draft: State) => {
+        const { pointer } = draft.cities;
+        draft.cities.list[pointer].checked = false;
+        draft.cities.list[index].checked = true;
+        draft.cities.pointer = index;
+      })
+    );
+  };
+
+  private handleClickProvince = (
+    e: React.FormEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    e.preventDefault();
+    this.setState(state =>
+      produce(state, (draft: State) => {
+        if (draft.provinces) {
+          const { pointer } = draft.provinces;
+          draft.provinces.list[pointer].checked = false;
+          draft.provinces.list[index].checked = true;
+          draft.cities.pointer = index;
+        }
+      })
+    );
+  };
 }
 
 export default Search;
