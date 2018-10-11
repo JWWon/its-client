@@ -3,7 +3,7 @@ import * as s from './Section.styled';
 
 interface Props {
   title: string;
-  subtitle?: string;
+  subtitle?: string | null;
   children: ReactNode;
 }
 

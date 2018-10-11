@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.5.4",
+    "axios": "^0.18.0",
     "draft-js": "^0.10.5",
     "immer": "^1.7.2",
     "jest": "^23.6.0",
