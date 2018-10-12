@@ -1,5 +1,5 @@
 import styled from 'theme';
-import { height } from '../Home.styled';
+import { slideHeight } from '../Home.styled';
 
 interface Props {
   url: string;
@@ -7,7 +7,7 @@ interface Props {
 
 export const Slide = styled<Props, any>('div')`
   width: 100%;
-  height: ${height}vh;
+  height: ${slideHeight}vh;
   background-image: url(${({ url }) => url});
   background-size: cover;
   background-position: center;
