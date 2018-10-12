@@ -39,12 +39,18 @@ export const DotsWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   flex-basis: ${({ theme }) => getLeft(theme.size.desktop.container)};
-  padding-right: 8rem;
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 1.6rem;
+    padding-left: ${({ theme }) => theme.space.desktop.s}rem;
+    padding-right: 8rem;
+  }
+  @media screen and (max-width: 1480px) {
+    div {
+      padding-right: 4rem;
+    }
   }
   ul {
     margin: 0;
@@ -112,5 +118,6 @@ export const ArrayGray = styled.img.attrs({
   src: arrowGray,
 })`
   width: 100%;
-  height: auto;
+  height: 2.2rem;
+  object-fit: contain;
 `;
