@@ -2,9 +2,9 @@
 import React, { Component, ReactNodeArray } from 'react';
 
 import { Section } from 'components/common';
+import About from './About';
 import * as s from './Home.styled';
 import Notice from './Notice';
-import Pictogram from './Pictogram';
 import Slide from './Slide';
 
 const urls = [
@@ -58,37 +58,7 @@ class Home extends Component {
           ))}
         </s.Slider>
         <Section title="'잇츠 교정'이란?">
-          <s.AboutWrapper>
-            <div>
-              <s.SubTitle>
-                치아교정병원을 선택하는 가장 객관적인 기준
-              </s.SubTitle>
-              <s.Context>
-                잇츠교정은 치과교정과전문의에 의해 설립된 병원만을 선별하여,
-                <br />
-                치아교정치료중 발생되는 많은 문제를 해결하기 위해
-                만들어졌습니다.
-              </s.Context>
-              <s.MoreButton>
-                <p>더보기</p>
-                <s.ArrowBlue />
-              </s.MoreButton>
-            </div>
-            <s.SectionWrapper>
-              <Pictogram
-                src={require('assets/icons/ic_access.svg')}
-                title="접근성"
-              />
-              <Pictogram
-                src={require('assets/icons/ic_rely.svg')}
-                title="신뢰성"
-              />
-              <Pictogram
-                src={require('assets/icons/ic_profession.svg')}
-                title="전문성"
-              />
-            </s.SectionWrapper>
-          </s.AboutWrapper>
+          <About />
         </Section>
         <Section title="왜 '잇츠 교정'인가?">
           <Notice list={noticeList} />
