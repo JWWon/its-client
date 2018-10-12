@@ -9,7 +9,7 @@ import arrowGray from 'assets/icons/ic_arrow_gray.svg';
 const getLeft = (containerWidth: number) =>
   `calc((100% - ${containerWidth}rem) / 2)`;
 
-export const slideHeight: number = 64;
+export const slideHeight: number = 58;
 export const Slider = styled(_Slider).attrs({
   dots: true,
   fade: true,

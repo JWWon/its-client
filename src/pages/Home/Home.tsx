@@ -17,14 +17,14 @@ const noticeList = [
   {
     src:
       'http://post.phinf.naver.net/MjAxODEwMDVfMjQg/MDAxNTM4NzQ2MjE2OTIx.m0yrQuJzpFatCD3NpB8d09dkjZcyzprTn0hdQUh0COog.MeFjpsYcdihxs9xl2zvfiEso1Jqu-8j2lOK2ulX3Lawg.JPEG/I9kEIxEyIto2VI7ZMFmUO4WfnisE.jpg',
-    title: '왜 잇츠교정인가?',
+    title: '왜 전문의어야 하는가?',
     content: '너무 졸립다. 집가고싶다. 정말로.',
     url: '/hello',
   },
   {
     src:
       'http://post.phinf.naver.net/MjAxODEwMDVfMjQg/MDAxNTM4NzQ2MjE2OTIx.m0yrQuJzpFatCD3NpB8d09dkjZcyzprTn0hdQUh0COog.MeFjpsYcdihxs9xl2zvfiEso1Jqu-8j2lOK2ulX3Lawg.JPEG/I9kEIxEyIto2VI7ZMFmUO4WfnisE.jpg',
-    title: '왜 잇츠교정인가?',
+    title: '왜 병원장이 전문의어야 하는가?',
     content: '너무 졸립다. 집가고싶다. 정말로.',
     url: '/hello',
   },

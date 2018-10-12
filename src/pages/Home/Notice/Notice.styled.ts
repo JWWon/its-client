@@ -1,12 +1,16 @@
+import { Link } from 'react-router-dom';
 import styled from 'theme';
 
+const space = 2;
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 -${space}rem;
 `;
 
-export const Item = styled.div`
+export const Item = styled(Link)`
   flex-basis: 36rem;
+  margin: 0 ${space}rem;
 `;
 
 export const Image = styled.img`
@@ -35,4 +39,10 @@ export const Title = styled.h3`
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.l}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+export const Content = styled.p`
+  color: ${({ theme }) => theme.color.grayDark};
+  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-weight: ${({ theme }) => theme.font.weight.light};
 `;

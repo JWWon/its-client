@@ -15,13 +15,13 @@ interface Props {
 const Notice: React.SFC<Props> = ({ list }) => (
   <s.Container>
     {list.map(item => (
-      <s.Item key={item.title}>
+      <s.Item to={item.url} key={item.title}>
         <s.Image src={item.src} />
         <s.TitleWrapper>
           <s.HrBar />
           <s.Title>{item.title}</s.Title>
         </s.TitleWrapper>
-        <p>{item.content}</p>
+        <s.Content>{item.content}</s.Content>
       </s.Item>
     ))}
   </s.Container>
