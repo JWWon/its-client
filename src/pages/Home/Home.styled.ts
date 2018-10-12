@@ -1,6 +1,8 @@
 import _Slider from 'react-slick';
 import styled from 'theme';
 
+export const height: number = 64;
+
 const getLeft = (containerWidth: number) =>
   `calc((100% - ${containerWidth}rem) / 2)`;
 
@@ -19,6 +21,10 @@ export const Slider = styled(_Slider).attrs({
   .slick-list {
     flex-basis: ${({ theme }) =>
       `calc(100% - ${getLeft(theme.size.desktop.container)})`};
+    box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
+    height: ${height}vh !important;
+    border-top-left-radius: ${height / 2}vh;
+    border-bottom-left-radius: ${height / 2}vh;
   }
 `;
 
