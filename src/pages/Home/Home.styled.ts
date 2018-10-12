@@ -1,9 +1,11 @@
+import { Link as _Link } from 'react-router-dom';
 import _Slider from 'react-slick';
 import styled from 'theme';
 
 import arrowBlue from 'assets/icons/ic_arrow_blue.svg';
 import arrowGray from 'assets/icons/ic_arrow_gray.svg';
 
+/* Slider Style */
 const getLeft = (containerWidth: number) =>
   `calc((100% - ${containerWidth}rem) / 2)`;
 
@@ -66,9 +68,22 @@ export const HideArrow = styled.div`
   display: none;
 `;
 
+export const ArrayGray = styled.img.attrs({
+  src: arrowGray,
+})`
+  width: 100%;
+  height: 2.2rem;
+  object-fit: contain;
+`;
+
+/* Section Style */
 export const SectionWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const AboutWrapper = styled(SectionWrapper)`
+  justify-content: space-between;
 `;
 
 export const SubTitle = styled.h3`
@@ -86,7 +101,9 @@ export const Context = styled.p`
 `;
 
 const moreHeight = 5;
-export const MoreButton = styled.div`
+export const MoreButton = styled(_Link).attrs({
+  to: '/about',
+})`
   display: flex;
   width: 16rem;
   height: ${moreHeight}rem;
@@ -102,9 +119,6 @@ export const MoreButton = styled.div`
     font-size: ${({ theme }) => theme.font.size.s}rem;
     font-weight: ${({ theme }) => theme.font.weight.medium};
   }
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const ArrowBlue = styled.img.attrs({
@@ -112,12 +126,4 @@ export const ArrowBlue = styled.img.attrs({
 })`
   width: auto;
   height: 1.6rem;
-`;
-
-export const ArrayGray = styled.img.attrs({
-  src: arrowGray,
-})`
-  width: 100%;
-  height: 2.2rem;
-  object-fit: contain;
 `;

@@ -3,6 +3,7 @@ import React, { Component, ReactNodeArray } from 'react';
 
 import { Section } from 'components/common';
 import * as s from './Home.styled';
+import Pictogram from './Pictogram';
 import Slide from './Slide';
 
 class Home extends Component {
@@ -31,7 +32,7 @@ class Home extends Component {
           ))}
         </s.Slider>
         <Section title="'잇츠 교정'이란?">
-          <s.SectionWrapper>
+          <s.AboutWrapper>
             <div>
               <s.SubTitle>
                 치아교정병원을 선택하는 가장 객관적인 기준
@@ -47,7 +48,21 @@ class Home extends Component {
                 <s.ArrowBlue />
               </s.MoreButton>
             </div>
-          </s.SectionWrapper>
+            <s.SectionWrapper>
+              <Pictogram
+                src={require('assets/icons/ic_access.svg')}
+                title="접근성"
+              />
+              <Pictogram
+                src={require('assets/icons/ic_rely.svg')}
+                title="신뢰성"
+              />
+              <Pictogram
+                src={require('assets/icons/ic_profession.svg')}
+                title="전문성"
+              />
+            </s.SectionWrapper>
+          </s.AboutWrapper>
         </Section>
         <Section title="왜 '잇츠 교정'인가?">
           <div>
