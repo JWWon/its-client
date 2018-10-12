@@ -2,7 +2,7 @@ import produce from 'immer';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { ClinicInterface } from 'api/clinic';
+import { ClinicInterface, getCityInfo } from 'api/clinic';
 import { provinces as _provinces } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
 import CheckDistrict from './CheckDistrict';
@@ -56,6 +56,7 @@ class Search extends Component<Props, State> {
     if (location.search) {
       console.log('has query');
     }
+    this.getCitiesFromAPI();
   }
 
   public render() {
@@ -86,15 +87,17 @@ class Search extends Component<Props, State> {
     );
   }
 
-  // private getProvincesFromAPI = () => {
-  // }
+  private getCitiesFromAPI = () => {
+    const { pointer, list } = this.state.provinces;
+    getCityInfo(list[pointer].name);
+  };
 
-  private handleClickProvince = (
+  private handleClickProvince = async (
     e: React.FormEvent<HTMLDivElement>,
     index: number
   ) => {
     e.preventDefault();
-    this.setState(state =>
+    await this.setState(state =>
       produce(state, (draft: State) => {
         const { pointer } = draft.provinces;
         draft.provinces.list[pointer].checked = false;
@@ -102,6 +105,7 @@ class Search extends Component<Props, State> {
         draft.provinces.pointer = index;
       })
     );
+    this.getCitiesFromAPI();
   };
 
   private handleClickCity = (

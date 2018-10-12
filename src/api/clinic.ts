@@ -53,3 +53,12 @@ export const searchByKeyword = async (params: Keyword) => {
     console.log(e);
   }
 };
+
+export const getCityInfo = async (province: string) => {
+  try {
+    const response = await axios.get('/clinics', { params: { province } });
+    console.log(response.data);
+  } catch (e) {
+    console.log(e);
+  }
+};
