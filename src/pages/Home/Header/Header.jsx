@@ -14,6 +14,14 @@ const Header = () => (
       </div>
       의 치과
     </s.CountUpWrapper>
+    <s.BarPosition>
+      <s.BarBackground>
+        <s.SearchIcon />
+        <s.ArrowCircle>
+          <s.Arrow />
+        </s.ArrowCircle>
+      </s.BarBackground>
+    </s.BarPosition>
   </s.Background>
 );
 
