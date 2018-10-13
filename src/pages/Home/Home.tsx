@@ -3,6 +3,7 @@ import React, { Component, ReactNodeArray } from 'react';
 
 import { Section } from 'components/common';
 import About from './About';
+import Header from './Header';
 import * as s from './Home.styled';
 import Notice from './Notice';
 import Slide from './Slide';
@@ -57,6 +58,7 @@ class Home extends Component {
             <Slide key={index} url={url} />
           ))}
         </s.Slider>
+        <Header />
         <Section title="'잇츠 교정'이란?">
           <About />
         </Section>

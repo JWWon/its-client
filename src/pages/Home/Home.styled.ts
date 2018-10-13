@@ -63,7 +63,7 @@ export const DotsWrapper = styled.div`
 `;
 
 export const HideArrow = styled.div`
-  display: none;
+  display: none !important;
 `;
 
 export const ArrayGray = styled.img.attrs({
