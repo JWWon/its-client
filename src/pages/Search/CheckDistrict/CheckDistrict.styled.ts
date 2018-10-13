@@ -24,7 +24,7 @@ export const Title = styled.h2`
 const dataHeight = 3.6;
 
 interface Props {
-  checked: boolean;
+  selected: boolean;
 }
 
 export const NoCountListWrapper = styled.div`
@@ -47,8 +47,8 @@ export const NoCountData = styled<Props, any>('div')`
     font-size: ${({ theme }) => theme.font.size.s}rem;
     font-weight: ${({ theme }) => theme.font.weight.regular};
   }
-  ${({ checked, theme }) =>
-    checked
+  ${({ selected, theme }) =>
+    selected
       ? `background-color: ${theme.color.blueDark};
         p {
           color: ${theme.color.white};

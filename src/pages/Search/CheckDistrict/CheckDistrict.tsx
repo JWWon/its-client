@@ -8,12 +8,12 @@ interface Props {
   title: string;
   list: District[];
   handleClick: (e: React.FormEvent<HTMLDivElement>, index: number) => void;
-  hasCount?: boolean;
+  isCity?: boolean;
 }
 
 const CheckDistrict: React.SFC<Props> = ({
   title,
-  hasCount,
+  isCity,
   list,
   handleClick,
 }) => (
@@ -21,12 +21,12 @@ const CheckDistrict: React.SFC<Props> = ({
     <s.TitleWrapper>
       <s.Title>{title}</s.Title>
     </s.TitleWrapper>
-    {hasCount ? null : (
+    {isCity ? null : (
       <s.NoCountListWrapper>
         {list.map(data => (
           <s.NoCountData
             key={data.name}
-            checked={data.checked}
+            selected={data.selected}
             onClick={(e: React.FormEvent<HTMLDivElement>) =>
               handleClick(e, data.index)
             }>
@@ -39,7 +39,7 @@ const CheckDistrict: React.SFC<Props> = ({
 );
 
 CheckDistrict.defaultProps = {
-  hasCount: false,
+  isCity: false,
 };
 
 export default CheckDistrict;

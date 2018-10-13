@@ -57,7 +57,7 @@ export const searchByKeyword = async (params: Keyword) => {
 export const getCityInfo = async (province: string) => {
   try {
     const response = await axios.get('/clinics', { params: { province } });
-    console.log(response.data);
+    return response.data;
   } catch (e) {
     console.log(e);
   }

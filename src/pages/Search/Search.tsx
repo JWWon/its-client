@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ClinicInterface, getCityInfo } from 'api/clinic';
-import { provinces as _provinces } from 'assets/constant/address';
+import { provinceCity, provinces as _provinces } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
 import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
@@ -11,7 +11,7 @@ import * as s from './Search.styled';
 export interface District {
   index: number;
   name: string;
-  checked: boolean;
+  selected: boolean;
   count?: number;
 }
 
@@ -40,9 +40,9 @@ class Search extends Component<Props, State> {
     const list = _provinces.map((data, index) => ({
       ...data,
       index,
-      checked: false,
+      selected: false,
     }));
-    list[0].checked = true;
+    list[0].selected = true;
 
     this.state = {
       provinces: { list, pointer: 0 },
@@ -76,6 +76,7 @@ class Search extends Component<Props, State> {
             </ShadowBox>
             <ShadowBox>
               <CheckDistrict
+                isCity
                 title="시 / 군 / 구"
                 list={[]}
                 handleClick={this.handleClickCity}
@@ -87,9 +88,13 @@ class Search extends Component<Props, State> {
     );
   }
 
-  private getCitiesFromAPI = () => {
+  private getCitiesFromAPI = async () => {
     const { pointer, list } = this.state.provinces;
-    getCityInfo(list[pointer].name);
+    const { name } = list[pointer];
+
+    const updateCity = await getCityInfo(name);
+    const cities = { ...provinceCity[name], ...updateCity };
+    console.log(cities);
   };
 
   private handleClickProvince = async (
@@ -100,8 +105,8 @@ class Search extends Component<Props, State> {
     await this.setState(state =>
       produce(state, (draft: State) => {
         const { pointer } = draft.provinces;
-        draft.provinces.list[pointer].checked = false;
-        draft.provinces.list[index].checked = true;
+        draft.provinces.list[pointer].selected = false;
+        draft.provinces.list[index].selected = true;
         draft.provinces.pointer = index;
       })
     );
@@ -117,8 +122,8 @@ class Search extends Component<Props, State> {
       produce(state, (draft: State) => {
         if (draft.cities) {
           const { pointer } = draft.cities;
-          draft.cities.list[pointer].checked = false;
-          draft.cities.list[index].checked = true;
+          draft.cities.list[pointer].selected = false;
+          draft.cities.list[index].selected = true;
           draft.cities.pointer = index;
         }
       })
