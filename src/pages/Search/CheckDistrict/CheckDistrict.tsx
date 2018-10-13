@@ -21,20 +21,26 @@ const CheckDistrict: React.SFC<Props> = ({
     <s.TitleWrapper>
       <s.Title>{title}</s.Title>
     </s.TitleWrapper>
-    {isCity ? null : (
-      <s.NoCountListWrapper>
-        {list.map(data => (
-          <s.NoCountData
-            key={data.name}
-            selected={data.selected}
-            onClick={(e: React.FormEvent<HTMLDivElement>) =>
-              handleClick(e, data.index)
-            }>
-            <p>{data.name}</p>
-          </s.NoCountData>
-        ))}
-      </s.NoCountListWrapper>
-    )}
+    <s.ListWrapper>
+      {list.map(data => (
+        <s.Data
+          isCity={isCity}
+          key={data.name}
+          selected={data.selected}
+          onClick={(e: React.FormEvent<HTMLDivElement>) =>
+            handleClick(e, data.index)
+          }>
+          {isCity ? (
+            <s.TextWrapper count={data.count}>
+              <s.Name>{data.name}</s.Name>
+              <s.Count>{data.count}</s.Count>
+            </s.TextWrapper>
+          ) : (
+            <s.Name>{data.name}</s.Name>
+          )}
+        </s.Data>
+      ))}
+    </s.ListWrapper>
   </s.Container>
 );
 

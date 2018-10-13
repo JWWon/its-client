@@ -13,7 +13,7 @@ export const Container = styled<Props, any>('div')`
     size
       ? `width: ${size.width}rem; height: ${size.height}rem;`
       : `flex: 1; min-height: 16.6rem;`}
-  margin-left: ${({ dimmer }) => (dimmer ? '3.5rem' : '10rem')};
+  margin-left: ${({ dimmer }) => (dimmer ? 3.5 : 10)}rem;
   padding: ${({ theme }) => theme.space.desktop.m}rem;
   box-shadow: ${({ dimmer }) =>
     dimmer ? '-0.2rem 0.4rem 1.5rem ' : '-0.4rem 0.8rem 2rem '}

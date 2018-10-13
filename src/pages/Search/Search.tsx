@@ -60,7 +60,7 @@ class Search extends Component<Props, State> {
   }
 
   public render() {
-    const { search, provinces } = this.state;
+    const { search, provinces, cities } = this.state;
     return (
       <>
         <Section
@@ -78,7 +78,7 @@ class Search extends Component<Props, State> {
               <CheckDistrict
                 isCity
                 title="시 / 군 / 구"
-                list={[]}
+                list={cities ? cities.list : []}
                 handleClick={this.handleClickCity}
               />
             </ShadowBox>
@@ -89,12 +89,22 @@ class Search extends Component<Props, State> {
   }
 
   private getCitiesFromAPI = async () => {
-    const { pointer, list } = this.state.provinces;
-    const { name } = list[pointer];
+    const { provinces } = this.state;
+    const { name } = provinces.list[provinces.pointer];
 
     const updateCity = await getCityInfo(name);
-    const cities = { ...provinceCity[name], ...updateCity };
-    console.log(cities);
+    const citiesObj = { ...provinceCity[name], ...updateCity };
+
+    const list: District[] = [];
+    let index: number = 0;
+    for (const key in citiesObj) {
+      if (citiesObj.hasOwnProperty(key)) {
+        list.push({ index, name: key, selected: false, count: citiesObj[key] });
+        index += 1;
+      }
+    }
+    list[0].selected = true;
+    this.setState({ cities: { pointer: 0, list } });
   };
 
   private handleClickProvince = async (
