@@ -7,6 +7,7 @@ import { provinceCity, provinces as _provinces } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
 import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
+import SearchBar from './SearchBar';
 
 export interface District {
   index: number;
@@ -63,6 +64,7 @@ class Search extends Component<Props, State> {
     const { search, provinces, cities } = this.state;
     return (
       <>
+        <SearchBar handleDismiss={this.handleDismiss} />
         <Section
           title={search ? '지역 목록' : '지역으로 검색하기'}
           subtitle={search ? null : '찾으시는 지역을 선택하세요.'}>
@@ -103,7 +105,6 @@ class Search extends Component<Props, State> {
         index += 1;
       }
     }
-    list[0].selected = true;
     this.setState({ cities: { pointer: 0, list } });
   };
 
@@ -138,6 +139,11 @@ class Search extends Component<Props, State> {
         }
       })
     );
+  };
+
+  private handleDismiss = () => {
+    const { location, history } = this.props;
+    history.push(`/${location.search ? 'search' : ''}`);
   };
 }
 

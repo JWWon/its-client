@@ -6,7 +6,7 @@ export const Background = styled.div`
   margin-top: 16rem;
   position: relative;
   height: 24rem;
-  background-color: ${({ theme }) => theme.color.grayLight};
+  background-color: ${({ theme }) => theme.color.whiteDark};
   display: flex;
   justify-content: center;
   align-items: center;
