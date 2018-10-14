@@ -1,18 +1,20 @@
-import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import theme from 'theme';
+import 'App.styled';
+import { Footer, Navbar, Template } from 'components/base';
+import { Home, Search } from 'pages';
+import { theme, ThemeProvider } from 'theme';
 
-class App extends React.Component {
-  public render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <h1>HELLO</h1>
-        </div>
-      </ThemeProvider>
-    );
-  }
-}
+const App: React.SFC<{}> = () => (
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <Template navbar={<Navbar />} footer={<Footer />}>
+        <Route exact path="/" component={Home} />
+        <Route path="/search" component={Search} />
+      </Template>
+    </BrowserRouter>
+  </ThemeProvider>
+);
 
 export default App;

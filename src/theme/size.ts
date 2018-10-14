@@ -1,7 +1,15 @@
-export default {
+export interface SizeInterface {
   desktop: {
-    container: '156.4rem',
-    bisection: '66rem',
-    trisection: '45rem',
+    container: number;
+    navbar: number;
+  };
+}
+
+const size: SizeInterface = {
+  desktop: {
+    container: 120,
+    navbar: 8,
   },
 };
+
+export default size;
