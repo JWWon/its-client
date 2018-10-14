@@ -12,7 +12,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-const countUpHeight: number = 4.8;
+const countUpHeight: number = 4.4;
 const barHeight = 11;
 
 export const CountUpWrapper = styled.div`
@@ -20,7 +20,7 @@ export const CountUpWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: ${barHeight / 3}rem;
-  font-size: 2.6rem;
+  font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ theme }) => theme.color.blueDark};
   div {
@@ -88,9 +88,9 @@ export const Context = styled.p`
 
 export const SearchText = styled.p`
   margin-left: auto;
+  margin-right: 3.2rem;
   font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  margin-right: 3.2rem;
 `;
 
 export const ArrowCircle = styled(Link).attrs({

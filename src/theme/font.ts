@@ -19,8 +19,8 @@ export interface FontInterface {
 
 const font: FontInterface = {
   size: {
-    xxl: 2.8,
-    xl: 2.4,
+    xxl: 2.6,
+    xl: 2.2,
     l: 2,
     m: 1.8,
     s: 1.6,
