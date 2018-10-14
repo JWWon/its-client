@@ -12,7 +12,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-const countUpHeight: number = 4.8;
+const countUpHeight: number = 4.4;
 const barHeight = 11;
 
 export const CountUpWrapper = styled.div`
@@ -20,7 +20,7 @@ export const CountUpWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: ${barHeight / 3}rem;
-  font-size: 2.6rem;
+  font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ theme }) => theme.color.blueDark};
   div {
@@ -43,6 +43,7 @@ export const CountUp = styled(countUp).attrs({
   suffix: ' 개',
 })`
   color: ${({ theme }) => theme.color.white};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
 export const BarPosition = styled.div`
@@ -68,6 +69,7 @@ export const BarBackground = styled.div`
   display: flex;
   align-items: center;
   padding-left: ${barHeight / 2}rem;
+  color: ${({ theme }) => theme.color.white};
 `;
 
 export const SearchIcon = styled.img.attrs({
@@ -76,6 +78,19 @@ export const SearchIcon = styled.img.attrs({
   width: auto;
   height: 40%;
   object-fit: contain;
+  margin-right: 3.2rem;
+`;
+
+export const Context = styled.p`
+  font-size: ${({ theme }) => theme.font.size.xxl}rem;
+  font-weight: ${({ theme }) => theme.font.weight.black};
+`;
+
+export const SearchText = styled.p`
+  margin-left: auto;
+  margin-right: 3.2rem;
+  font-size: ${({ theme }) => theme.font.size.xl}rem;
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 export const ArrowCircle = styled(Link).attrs({
@@ -83,7 +98,6 @@ export const ArrowCircle = styled(Link).attrs({
 })`
   width: ${barHeight * 0.64}rem;
   height: ${barHeight * 0.64}rem;
-  margin-left: auto;
   margin-right: ${barHeight * 0.18}rem;
   border-radius: ${barHeight * 0.32}rem;
   background: ${({ theme }) => theme.color.white};
