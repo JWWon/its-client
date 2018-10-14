@@ -1,5 +1,7 @@
 export interface FontInterface {
   size: {
+    xxl: number;
+    xl: number;
     l: number;
     m: number;
     s: number;
@@ -17,6 +19,8 @@ export interface FontInterface {
 
 const font: FontInterface = {
   size: {
+    xxl: 2.8,
+    xl: 2.4,
     l: 2,
     m: 1.8,
     s: 1.6,
