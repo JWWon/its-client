@@ -8,7 +8,6 @@ export const Container = styled.div`
   width: 100%;
   height: ${barHeight}rem;
   background: ${({ theme }) => theme.color.whiteDark};
-  margin-bottom: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
