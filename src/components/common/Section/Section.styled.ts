@@ -1,19 +1,13 @@
 import styled from 'theme';
 
-interface Props {
-  single: boolean;
-}
-
-export const Section = styled<Props, any>('section')`
+export const Section = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 10rem 0;
-  ${({ single }) =>
-    !single &&
-    `&:last-of-type {
-      margin-top: 0;
-    }`};
+  margin-top: 10rem;
+  &:last-of-type {
+    margin-bottom: 10rem;
+  }
 `;
 
 export const Container = styled.div`

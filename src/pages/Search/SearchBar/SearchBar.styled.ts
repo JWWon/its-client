@@ -45,7 +45,7 @@ export const InputSearch = styled.input.attrs({
   name: 'keyword',
   placeholder: '강남역, 롯데월드 타워 등',
 })`
-  width: 86%;
+  flex: 1;
   height: 100%;
   padding: 0 ${barHeight * 0.25}rem;
   background: transparent;
@@ -56,7 +56,7 @@ export const InputSearch = styled.input.attrs({
 `;
 
 export const Dismiss = styled.div`
-  margin-left: auto;
+  margin-left: 6rem;
   width: ${barHeight * 0.2}rem;
   height: ${barHeight * 0.2}rem;
   background: no-repeat center url(${icDelete});

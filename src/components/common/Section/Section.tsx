@@ -4,12 +4,11 @@ import * as s from './Section.styled';
 interface Props {
   title: string;
   subtitle?: string | null;
-  single?: boolean;
   children: ReactNode;
 }
 
-const Section: React.SFC<Props> = ({ title, subtitle, single, children }) => (
-  <s.Section single={single}>
+const Section: React.SFC<Props> = ({ title, subtitle, children }) => (
+  <s.Section>
     <s.Container>
       <s.Header>
         <s.HalfRound />
@@ -23,7 +22,6 @@ const Section: React.SFC<Props> = ({ title, subtitle, single, children }) => (
 
 Section.defaultProps = {
   subtitle: null,
-  single: false,
 };
 
 export default Section;

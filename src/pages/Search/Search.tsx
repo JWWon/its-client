@@ -66,7 +66,6 @@ class Search extends Component<Props, State> {
       <>
         <SearchBar handleDismiss={this.handleDismiss} />
         <Section
-          single
           title={search ? '지역 목록' : '지역으로 검색하기'}
           subtitle={search ? null : '찾으시는 지역을 선택하세요.'}>
           <s.BoxWrapper>
