@@ -3,9 +3,9 @@ import React, { Component, ReactNodeArray } from 'react';
 
 import { Section } from 'components/common';
 import About from './About';
+import Announcement from './Announcement';
 import Header from './Header';
 import * as s from './Home.styled';
-import Notice from './Notice';
 import Slide from './Slide';
 
 const urls = [
@@ -14,7 +14,7 @@ const urls = [
   'http://imgnews.naver.net/image/433/2017/05/29/0000030740_001_20170529102633500.jpg',
 ];
 
-const noticeList = [
+const announceList = [
   {
     src:
       'https://media.vanityfair.com/photos/56e6ca9c4cac3c8266605125/master/w_768,c_limit/charlie-puth-feud.jpg',
@@ -63,7 +63,7 @@ class Home extends Component {
           <About />
         </Section>
         <Section title="왜 '잇츠 교정'인가?">
-          <Notice list={noticeList} />
+          <Announcement list={announceList} />
         </Section>
       </>
     );

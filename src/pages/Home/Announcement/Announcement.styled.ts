@@ -20,27 +20,6 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const TitleWrapper = styled.div`
-  margin: 5.2rem 0 8rem;
-  display: flex;
-  align-items: center;
-`;
-
-const height = 0.8;
-export const HrBar = styled.div`
-  width: 6rem;
-  height: ${height}rem;
-  border-radius: ${height / 2}rem;
-  background-color: ${({ theme }) => theme.color.blueDark};
-  margin-right: 2rem;
-`;
-
-export const Title = styled.h3`
-  color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.l}rem;
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-`;
-
 export const Content = styled.p`
   color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.s}rem;
