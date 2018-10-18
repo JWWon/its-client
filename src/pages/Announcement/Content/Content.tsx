@@ -13,17 +13,15 @@ export interface ContentInterface {
 }
 
 interface Props extends ContentInterface {
-  readonly index: number;
   readonly handleClick: (
     e: React.MouseEvent<HTMLDivElement>,
-    index: number
+    title: string
   ) => void;
 }
 
 const muteChange = (e: EditorState) => null;
 
 const Content: React.SFC<Props> = ({
-  index,
   title,
   editorState,
   selected,
@@ -35,7 +33,7 @@ const Content: React.SFC<Props> = ({
       <s.Date>{moment().format('YYYY-MM-DD')}</s.Date>
       <s.Toggle
         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleClick(e, index)
+          handleClick(e, title)
         }>
         <s.Arrow selected={selected} />
       </s.Toggle>
