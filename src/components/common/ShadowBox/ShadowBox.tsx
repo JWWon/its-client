@@ -2,16 +2,25 @@ import React, { ReactNode } from 'react';
 import * as s from './ShadowBox.styled';
 
 interface Props {
+  children: ReactNode;
   size?: {
     width: number;
     height: number;
   } | null;
   dimmer?: boolean;
-  children: ReactNode;
+  rmVerticalPadding?: boolean;
 }
 
-const ShadowBox: React.SFC<Props> = ({ children, size, dimmer }) => (
-  <s.Container size={size} dimmer={dimmer}>
+const ShadowBox: React.SFC<Props> = ({
+  children,
+  size,
+  dimmer,
+  rmVerticalPadding,
+}) => (
+  <s.Container
+    size={size}
+    dimmer={dimmer}
+    rmVerticalPadding={rmVerticalPadding}>
     {children}
   </s.Container>
 );
@@ -19,6 +28,7 @@ const ShadowBox: React.SFC<Props> = ({ children, size, dimmer }) => (
 ShadowBox.defaultProps = {
   size: null,
   dimmer: false,
+  rmVerticalPadding: false,
 };
 
 export default ShadowBox;

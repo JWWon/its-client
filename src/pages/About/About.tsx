@@ -23,9 +23,9 @@ class About extends Component<{}, State> {
               margin="0.8rem 0 4rem"
             />
             <Editor
-              readOnly={true}
+              readOnly
               editorState={this.state.editorState}
-              onChange={this.handleChange}
+              onChange={this.muteChange}
             />
           </ShadowBox>
         </s.Container>
@@ -34,9 +34,7 @@ class About extends Component<{}, State> {
     );
   }
 
-  private handleChange = (editorState: EditorState) => {
-    console.log(editorState);
-  };
+  private muteChange = (editorState: EditorState) => null;
 }
 
 export default About;

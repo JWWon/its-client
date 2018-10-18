@@ -24,10 +24,10 @@ export const Link = styled(_Link).attrs({
   align-items: center;
   color: ${({ theme }) => theme.color.white};
   font-size: ${({ theme }) => theme.font.size.m}rem;
+  transition: all 0.2s ease-out;
   &:hover {
     background: ${({ theme }) => theme.color.white};
     border: 2px solid ${({ theme }) => theme.color.blueDark};
     color: ${({ theme }) => theme.color.blueDark};
-    transition: all 0.2s ease-out;
   }
 `;

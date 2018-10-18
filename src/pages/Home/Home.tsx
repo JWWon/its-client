@@ -48,9 +48,9 @@ class Home extends Component {
           appendDots={(dots: ReactNodeArray) => (
             <s.DotsWrapper>
               <div>
-                <s.ArrayGray />
+                <s.ArrayGray style={{ transform: 'rotate(-90deg)' }} />
                 <ul>{dots}</ul>
-                <s.ArrayGray style={{ transform: 'rotate(180deg)' }} />
+                <s.ArrayGray style={{ transform: 'rotate(90deg)' }} />
               </div>
             </s.DotsWrapper>
           )}>

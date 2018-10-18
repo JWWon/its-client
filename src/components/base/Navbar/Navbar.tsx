@@ -14,7 +14,7 @@ const Navbar: React.SFC<{}> = () => (
       <S.Link to="/search">
         <p>전국 지역 검색</p>
       </S.Link>
-      <S.Link to="/why">
+      <S.Link to="/announcement">
         <p>왜 잇츠교정인가</p>
       </S.Link>
     </S.LinkWrapper>
