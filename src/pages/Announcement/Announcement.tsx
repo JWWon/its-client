@@ -8,7 +8,7 @@ import * as s from './Announcement.styled';
 import Content, { ContentInterface } from './Content';
 
 interface ContentObj {
-  [title: string]: ContentInterface;
+  [id: string]: ContentInterface;
 }
 
 interface Props extends RouteComponentProps<any> {}
@@ -20,16 +20,19 @@ interface State {
 
 const list: ContentInterface[] = [
   {
+    id: 'number1',
     title: '안녕하세요',
     editorState: EditorState.createEmpty(),
-    selected: true,
+    selected: false,
   },
   {
+    id: 'number2',
     title: '일이에오',
     editorState: EditorState.createEmpty(),
     selected: false,
   },
   {
+    id: 'number3',
     title: '이에오',
     editorState: EditorState.createEmpty(),
     selected: false,
@@ -39,15 +42,18 @@ const list: ContentInterface[] = [
 class Announcement extends Component<Props, State> {
   public constructor(props: Props) {
     super(props);
-
+    const { hash } = props.location;
     let contentObj: ContentObj = {};
-    list.forEach((content: ContentInterface) => {
-      contentObj = { ...contentObj, [content.title]: content };
-    });
-    const selected = list[0].title;
-    contentObj[selected].selected = true;
 
-    this.state = { selected, contentObj };
+    list.forEach((content: ContentInterface) => {
+      contentObj = { ...contentObj, [content.id]: content };
+    });
+
+    const key: string = hash ? hash.replace(/^#/g, '') : list[0].id;
+    contentObj[key].selected = true;
+
+    this.state = { selected: key, contentObj };
+    this.props.history.replace(`/announcement#${key}`);
   }
 
   public render() {
@@ -60,10 +66,8 @@ class Announcement extends Component<Props, State> {
               const content = contentObj[title];
               return (
                 <Content
-                  key={content.title}
-                  title={content.title}
-                  editorState={content.editorState}
-                  selected={content.selected}
+                  key={content.id}
+                  content={content}
                   handleClick={this.handleClick}
                 />
               );
@@ -74,18 +78,16 @@ class Announcement extends Component<Props, State> {
     );
   }
 
-  private handleClick = (
-    e: React.MouseEvent<HTMLDivElement>,
-    title: string
-  ) => {
+  private handleClick = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
     e.preventDefault();
     this.setState(prevState =>
       produce(prevState, (draft: State) => {
         draft.contentObj[draft.selected].selected = false;
-        draft.contentObj[title].selected = true;
-        draft.selected = title;
+        draft.contentObj[id].selected = true;
+        draft.selected = id;
       })
     );
+    this.props.history.replace(`/announcement#${id}`);
   };
 }
 

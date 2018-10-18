@@ -7,39 +7,40 @@ import { TitleWithBar } from 'components/common';
 import * as s from './Content.styled';
 
 export interface ContentInterface {
+  readonly id: string;
   readonly title: string;
   readonly editorState: EditorState;
   selected: boolean;
 }
 
-interface Props extends ContentInterface {
+interface Props {
+  content: ContentInterface;
   readonly handleClick: (
     e: React.MouseEvent<HTMLDivElement>,
-    title: string
+    id: string
   ) => void;
 }
 
 const muteChange = (e: EditorState) => null;
 
-const Content: React.SFC<Props> = ({
-  title,
-  editorState,
-  selected,
-  handleClick,
-}) => (
+const Content: React.SFC<Props> = ({ content, handleClick }) => (
   <s.Content>
     <s.TitleWrapper>
-      <TitleWithBar title={title} margin="0" />
+      <TitleWithBar title={content.title} margin="0" />
       <s.Date>{moment().format('YYYY-MM-DD')}</s.Date>
       <s.Toggle
         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleClick(e, title)
+          handleClick(e, content.id)
         }>
-        <s.Arrow selected={selected} />
+        <s.Arrow selected={content.selected} />
       </s.Toggle>
     </s.TitleWrapper>
-    <s.ContentWrapper selected={selected}>
-      <Editor readOnly editorState={editorState} onChange={muteChange} />
+    <s.ContentWrapper selected={content.selected}>
+      <Editor
+        readOnly
+        editorState={content.editorState}
+        onChange={muteChange}
+      />
     </s.ContentWrapper>
   </s.Content>
 );

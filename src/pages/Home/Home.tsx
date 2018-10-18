@@ -20,21 +20,21 @@ const announceList = [
       'https://media.vanityfair.com/photos/56e6ca9c4cac3c8266605125/master/w_768,c_limit/charlie-puth-feud.jpg',
     title: '왜 전문의어야 하는가?',
     content: '너무 졸립다. 집가고싶다. 정말로.',
-    url: '/hello',
+    url: '/announcement#number1',
   },
   {
     src:
       'http://blogfiles.naver.net/MjAxNzA1MDJfMjQ2/MDAxNDkzNjgxMDY4NzE3.gFzTACUE3cIOelWyOO60tjgocwREMWP41_sjnpGN3C8g.ZqUhAaljgf0TZNoHRCrb1BqnLKq2PfZenY5LmWG7zpEg.JPEG.fstdevil/05.jpg',
     title: '왜 병원장이 전문의어야 하는가?',
     content: '너무 졸립다. 집가고싶다. 정말로.',
-    url: '/hello',
+    url: '/announcement#number2',
   },
   {
     src:
       'http://post.phinf.naver.net/MjAxODA5MDZfNDgg/MDAxNTM2MjEyNDI0NjQ4.1iDQIU9DzxPqDGr-62CaE54CIiuXvn_Bfggm_5DRPm8g.F35HFnXMcSgWIGw3Krb3d2xqgXz-F8vwMBnP5Riy0l8g.JPEG/IvEnu9ym-r5HyTb04lG1ChoBGClM.jpg',
     title: '왜 잇츠교정인가?',
     content: '너무 졸립다. 집가고싶다. 정말로.',
-    url: '/hello',
+    url: '/announcement#number3',
   },
 ];
 
