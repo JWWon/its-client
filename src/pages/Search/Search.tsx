@@ -2,7 +2,12 @@ import produce from 'immer';
 import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { ClinicInterface, getCityInfo, searchByAddress } from 'api/clinic';
+import {
+  ClinicInterface,
+  getCityInfo,
+  searchByAddress,
+  searchByKeyword,
+} from 'api/clinic';
 import { Section, ShadowBox } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
 import { splitQueryFromURL } from 'lib/functions/api';
@@ -67,7 +72,10 @@ class Search extends PureComponent<Props, State> {
     return (
       <>
         {(!search || search.type === 'keyword') && (
-          <SearchBar handleDismiss={this.handleDismiss} />
+          <SearchBar
+            handleSumbitKeyword={this.handleSumbitKeyword}
+            handleDismiss={this.handleDismiss}
+          />
         )}
         {(!search || search.type === 'address') && (
           <Section
@@ -115,10 +123,24 @@ class Search extends PureComponent<Props, State> {
     this.setState({ cities: { list, pointer: null } });
   };
 
-  private getClinicsFromAPI = async (province: string, city: string) => {
-    const list = await searchByAddress({ province, city });
+  private getClinicsFromAPI = async (query: any) => {
+    const { type } = query;
+    let list;
+    let param;
+    switch (type) {
+      case 'keyword':
+        const keyword = query.q;
+        list = await searchByKeyword({ keyword });
+        param = keyword;
+        break;
+      case 'address':
+        const { province, city } = query;
+        list = await searchByAddress({ province, city });
+        param = `${province} ${city}`;
+        break;
+    }
     await this.setState({
-      search: { type: 'address', param: `${province} ${city}`, list },
+      search: { type, param, list },
     });
   };
 
@@ -126,26 +148,18 @@ class Search extends PureComponent<Props, State> {
   private handleSearchByURL = async (location: any) => {
     if (location.search) {
       const query = splitQueryFromURL(location);
-      switch (query.type) {
-        case 'keyword':
-          break;
-        case 'address':
-          if (!this.state.provinces.pointer) {
-            // Handle componentDidMount
-            await this.getCitiesFromAPI(query.province);
-            await this.setState(state =>
-              produce(state, draft => {
-                const { provinces, cities } = draft;
-                provinces.pointer = query.province;
-                if (cities) cities.pointer = query.city;
-              })
-            );
-          }
-          this.getClinicsFromAPI(query.province, query.city);
-          break;
-        default:
-          break;
+      if (query.type === 'address' && !this.state.provinces.pointer) {
+        // Handle componentDidMount
+        await this.getCitiesFromAPI(query.province);
+        await this.setState(state =>
+          produce(state, draft => {
+            const { provinces, cities } = draft;
+            provinces.pointer = query.province;
+            if (cities) cities.pointer = query.city;
+          })
+        );
       }
+      this.getClinicsFromAPI(query);
     } else {
       await this.setState(state =>
         produce(state, draft => {
@@ -161,6 +175,15 @@ class Search extends PureComponent<Props, State> {
         })
       );
     }
+  };
+
+  private handleSumbitKeyword = async (
+    e: React.FormEvent<HTMLFormElement>,
+    keyword: string
+  ) => {
+    e.preventDefault();
+    // UPDATE URL
+    this.props.history.push(`/search?type=keyword&q=${keyword}`);
   };
 
   private handleClickProvince = async (

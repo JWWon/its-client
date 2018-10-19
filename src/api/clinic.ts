@@ -33,8 +33,7 @@ interface Address {
 }
 
 interface Keyword {
-  name?: string;
-  landmark?: string;
+  keyword: string;
 }
 
 export const searchByAddress = async (params: Address) => {

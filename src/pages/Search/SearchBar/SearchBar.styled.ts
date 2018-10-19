@@ -12,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const BarWrapper = styled.div`
+export const FormBar = styled.form`
   flex-basis: ${({ theme }) =>
     theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
   height: ${barHeight * 0.5}rem;
