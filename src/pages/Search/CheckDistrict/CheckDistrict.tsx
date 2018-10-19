@@ -6,8 +6,8 @@ import * as s from './CheckDistrict.styled';
 
 interface Props {
   title: string;
-  list: District[];
-  handleClick: (e: React.FormEvent<HTMLDivElement>, index: number) => void;
+  list: { [name: string]: District } | null;
+  handleClick: (e: React.FormEvent<HTMLDivElement>, name: string) => void;
   isCity?: boolean;
 }
 
@@ -22,24 +22,25 @@ const CheckDistrict: React.SFC<Props> = ({
       <s.Title>{title}</s.Title>
     </s.TitleWrapper>
     <s.ListWrapper>
-      {list.map(data => (
-        <s.Data
-          isCity={isCity}
-          key={data.name}
-          selected={data.selected}
-          onClick={(e: React.FormEvent<HTMLDivElement>) =>
-            handleClick(e, data.index)
-          }>
-          {isCity ? (
-            <s.TextWrapper count={data.count}>
-              <s.Name>{data.name}</s.Name>
-              <s.Count>{data.count}</s.Count>
-            </s.TextWrapper>
-          ) : (
-            <s.Name>{data.name}</s.Name>
-          )}
-        </s.Data>
-      ))}
+      {list &&
+        Object.keys(list).map(name => (
+          <s.Data
+            isCity={isCity}
+            key={name}
+            selected={list[name].selected}
+            onClick={(e: React.FormEvent<HTMLDivElement>) =>
+              handleClick(e, name)
+            }>
+            {isCity ? (
+              <s.TextWrapper count={list[name].count}>
+                <s.Name>{name}</s.Name>
+                <s.Count>{list[name].count}</s.Count>
+              </s.TextWrapper>
+            ) : (
+              <s.Name>{name}</s.Name>
+            )}
+          </s.Data>
+        ))}
     </s.ListWrapper>
   </s.Container>
 );
