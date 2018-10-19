@@ -1,7 +1,7 @@
 import _Slider from 'react-slick';
 import styled from 'theme';
 
-import arrowGray from 'assets/icons/ic_arrow_gray.svg';
+import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 
 /* Slider Style */
 const getLeft = (containerWidth: number) =>

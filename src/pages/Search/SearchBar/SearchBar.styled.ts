@@ -1,5 +1,5 @@
-import icDelete from 'assets/icons/ic_delete.svg';
-import icSearch from 'assets/icons/ic_search.svg';
+import icDelete from 'lib/icons/ic_delete.svg';
+import icSearch from 'lib/icons/ic_search.svg';
 import styled from 'theme';
 
 const barHeight: number = 13;

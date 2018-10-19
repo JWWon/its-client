@@ -1,7 +1,7 @@
 import { Link as _Link } from 'react-router-dom';
 import styled from 'theme';
 
-import logo from 'assets/logos/logo_its_kyojeong.svg';
+import logo from 'lib/logos/logo_its_kyojeong.svg';
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.desktop.container}rem;

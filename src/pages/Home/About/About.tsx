@@ -18,12 +18,9 @@ const About = () => (
       </s.MoreButton>
     </div>
     <s.PictogramWrapper>
-      <Pictogram src={require('assets/icons/ic_access.svg')} title="접근성" />
-      <Pictogram src={require('assets/icons/ic_rely.svg')} title="신뢰성" />
-      <Pictogram
-        src={require('assets/icons/ic_profession.svg')}
-        title="전문성"
-      />
+      <Pictogram src={require('lib/icons/ic_access.svg')} title="접근성" />
+      <Pictogram src={require('lib/icons/ic_rely.svg')} title="신뢰성" />
+      <Pictogram src={require('lib/icons/ic_profession.svg')} title="전문성" />
     </s.PictogramWrapper>
   </s.Container>
 );

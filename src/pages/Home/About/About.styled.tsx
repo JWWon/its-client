@@ -1,7 +1,7 @@
 import { Link as _Link } from 'react-router-dom';
 import styled from 'theme';
 
-import arrowBlue from 'assets/icons/ic_arrow_blue.svg';
+import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 
 export const PictogramWrapper = styled.div`
   display: flex;

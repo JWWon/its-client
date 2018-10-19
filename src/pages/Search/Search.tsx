@@ -3,8 +3,9 @@ import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ClinicInterface, getCityInfo, searchByAddress } from 'api/clinic';
-import { provinceCity } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
+import { provinceCity } from 'lib/constant/address';
+import { splitQueryFromURL } from 'lib/functions/api';
 import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
 import SearchBar from './SearchBar';
@@ -33,6 +34,8 @@ interface State {
 }
 
 class Search extends PureComponent<Props, State> {
+  private unlisten: (location?: Location) => void;
+
   constructor(props: Props) {
     super(props);
     let list: { [province: string]: District } = {};
@@ -52,23 +55,14 @@ class Search extends PureComponent<Props, State> {
   }
 
   public componentDidMount() {
-    const { location } = this.props;
-    if (location.search) {
-      console.log('has query');
-    }
+    const { history, location } = this.props;
     this.getCitiesFromAPI();
+    this.handleSearchByURL(location);
+    this.unlisten = history.listen(this.handleSearchByURL);
   }
 
-  public getSnapshotBeforeUpdate(prevProps: Props, prevState: State) {
-    if (this.state.search !== prevState.search) {
-      if (this.state.search) {
-        const { type, param } = this.state.search;
-        this.props.history.push(`/search?&${type}=${param}`);
-      } else {
-        this.props.history.push('/search');
-      }
-    }
-    return null;
+  public componentWillUnmount() {
+    this.unlisten();
   }
 
   public render() {
@@ -97,15 +91,20 @@ class Search extends PureComponent<Props, State> {
             </ShadowBox>
           </s.BoxWrapper>
         </Section>
+        {search && (
+          <Section title={`'${search.param}' 검색 결과`}>
+            <div>결과값</div>
+          </Section>
+        )}
       </>
     );
   }
 
+  // *** NETWORK
   private getCitiesFromAPI = async () => {
     const { provinces } = this.state;
     const updateCity = await getCityInfo(provinces.pointer);
     const citiesObj = { ...provinceCity[provinces.pointer], ...updateCity };
-
     let list: { [city: string]: District } = {};
 
     for (const key in citiesObj) {
@@ -117,14 +116,26 @@ class Search extends PureComponent<Props, State> {
     this.setState({ cities: { pointer, list } });
   };
 
-  private getClinicsFromAPI = async () => {
-    if (this.state.cities) {
-      const province = this.state.provinces.pointer;
-      const city = this.state.cities.pointer;
-      const list = await searchByAddress({ province, city });
-      await this.setState({
-        search: { type: 'address', param: `${province}+${city}`, list },
-      });
+  private getClinicsFromAPI = async (province: string, city: string) => {
+    const list = await searchByAddress({ province, city });
+    await this.setState({
+      search: { type: 'address', param: `${province} ${city}`, list },
+    });
+  };
+
+  // *** HANDLE EVENT
+  private handleSearchByURL = (location: any) => {
+    if (location.search) {
+      const query = splitQueryFromURL(location);
+      switch (query.type) {
+        case 'keyword':
+          break;
+        case 'address':
+          this.getClinicsFromAPI(query.province, query.city);
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -133,15 +144,21 @@ class Search extends PureComponent<Props, State> {
     name: string
   ) => {
     e.preventDefault();
-    await this.setState(state =>
-      produce(state, (draft: State) => {
-        const { list, pointer } = draft.provinces;
-        list[pointer].selected = false;
-        list[name].selected = true;
-        draft.provinces.pointer = name;
-      })
-    );
-    this.getCitiesFromAPI();
+    if (this.state.provinces.pointer !== name) {
+      await this.setState(state =>
+        produce(state, (draft: State) => {
+          draft.search = null;
+          const { list, pointer } = draft.provinces;
+          // UPDATE PROVINCES STATE
+          list[pointer].selected = false;
+          list[name].selected = true;
+          draft.provinces.pointer = name;
+          // UPDATE URL
+          this.props.history.push('/search');
+        })
+      );
+      this.getCitiesFromAPI();
+    }
   };
 
   private handleClickCity = async (
@@ -153,13 +170,19 @@ class Search extends PureComponent<Props, State> {
       produce(state, (draft: State) => {
         if (draft.cities) {
           const { list, pointer } = draft.cities;
+          // UPDATE CITIES STATE
           list[pointer].selected = false;
           list[name].selected = true;
           draft.cities.pointer = name;
+          // UPDATE URL
+          this.props.history.push(
+            `/search?type=address&province=${
+              draft.provinces.pointer
+            }&city=${pointer}`
+          );
         }
       })
     );
-    this.getClinicsFromAPI();
   };
 
   private handleDismiss = () => {

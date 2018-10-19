@@ -1,9 +1,9 @@
 import { Link as _Link } from 'react-router-dom';
 
-import facebook from 'assets/logos/logo_facebook.svg';
-import instagram from 'assets/logos/logo_instagram.svg';
-import logo from 'assets/logos/logo_its_kyojeong.svg';
-import twitter from 'assets/logos/logo_twitter.svg';
+import facebook from 'lib/logos/logo_facebook.svg';
+import instagram from 'lib/logos/logo_instagram.svg';
+import logo from 'lib/logos/logo_its_kyojeong.svg';
+import twitter from 'lib/logos/logo_twitter.svg';
 import styled from 'theme';
 
 export const Container = styled.div`

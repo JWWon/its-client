@@ -1,5 +1,5 @@
-import arrowBlue from 'assets/icons/ic_arrow_blue.svg';
-import arrowGray from 'assets/icons/ic_arrow_gray.svg';
+import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
+import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 import styled from 'theme';
 
 interface ContentProps {

@@ -73,7 +73,7 @@ export const BarBackground = styled.div`
 `;
 
 export const SearchIcon = styled.img.attrs({
-  src: require('assets/icons/ic_search.svg'),
+  src: require('lib/icons/ic_search.svg'),
 })`
   width: auto;
   height: 40%;
@@ -111,7 +111,7 @@ export const ArrowCircle = styled(Link).attrs({
 `;
 
 export const Arrow = styled.img.attrs({
-  src: require('assets/icons/ic_arrow_blue.svg'),
+  src: require('lib/icons/ic_arrow_blue.svg'),
 })`
   margin-left: 6%;
   width: 32%;
