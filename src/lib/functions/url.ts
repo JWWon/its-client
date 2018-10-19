@@ -2,7 +2,7 @@ interface Result {
   [x: string]: string;
 }
 
-export const splitQueryFromURL = (location: any) => {
+export const getSearchFromURL = (location: any) => {
   let result: Result = {};
   let query = location.search.replace(/^\?/g, '');
   query = decodeURI(query);
@@ -11,6 +11,10 @@ export const splitQueryFromURL = (location: any) => {
     const split = data.split('=');
     result = { ...result, [split[0]]: split[1] };
   });
-
   return result;
+};
+
+export const getHashFromURL = (location: any) => {
+  const hash = location.hash.replace(/^#/g, '');
+  return decodeURI(hash);
 };

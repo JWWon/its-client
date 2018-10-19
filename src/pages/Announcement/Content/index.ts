@@ -1,1 +1,1 @@
-export { default, ContentInterface } from './Content';
+export { default } from './Content';

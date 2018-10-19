@@ -1,63 +1,40 @@
 import { Section, ShadowBox } from 'components/common';
-import { EditorState } from 'draft-js';
 import produce from 'immer';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import { AnnouncementInterface, getAnnouncement } from 'api/announcement';
+import { getHashFromURL } from 'src/lib/functions/url';
 import * as s from './Announcement.styled';
-import Content, { ContentInterface } from './Content';
+import Content from './Content';
 
 interface ContentObj {
-  [id: string]: ContentInterface;
+  [id: string]: AnnouncementInterface;
 }
 
 interface Props extends RouteComponentProps<any> {}
-
 interface State {
-  selected: string;
+  pointer: string | null;
   contentObj: ContentObj;
 }
 
-const list: ContentInterface[] = [
-  {
-    id: 'number1',
-    title: '안녕하세요',
-    editorState: EditorState.createEmpty(),
-    selected: false,
-  },
-  {
-    id: 'number2',
-    title: '일이에오',
-    editorState: EditorState.createEmpty(),
-    selected: false,
-  },
-  {
-    id: 'number3',
-    title: '이에오',
-    editorState: EditorState.createEmpty(),
-    selected: false,
-  },
-];
-
 class Announcement extends Component<Props, State> {
-  public constructor(props: Props) {
-    super(props);
-    const { hash } = props.location;
-    let contentObj: ContentObj = {};
+  public state: State = { pointer: null, contentObj: {} };
+  private unlisten: (location?: Location) => void;
 
-    list.forEach((content: ContentInterface) => {
-      contentObj = { ...contentObj, [content.id]: content };
-    });
+  public async componentDidMount() {
+    const { history, location } = this.props;
+    await this.getAnnouncementFromAPI();
+    await this.handleToggleByURL(location);
+    this.unlisten = history.listen(this.handleToggleByURL);
+  }
 
-    const key: string = hash ? hash.replace(/^#/g, '') : list[0].id;
-    contentObj[key].selected = true;
-
-    this.state = { selected: key, contentObj };
-    this.props.history.replace(`/announcement#${key}`);
+  public componentWillUnmount() {
+    this.unlisten();
   }
 
   public render() {
-    const { contentObj } = this.state;
+    const { contentObj, pointer } = this.state;
     return (
       <Section title="왜 잇츠 교정인가?">
         <s.Container>
@@ -67,6 +44,7 @@ class Announcement extends Component<Props, State> {
               return (
                 <Content
                   key={content.id}
+                  pointer={pointer}
                   content={content}
                   handleClick={this.handleClick}
                 />
@@ -78,13 +56,30 @@ class Announcement extends Component<Props, State> {
     );
   }
 
+  private getAnnouncementFromAPI = async () => {
+    let contentObj: ContentObj = {};
+    const list = await getAnnouncement();
+    list.forEach((announcement: AnnouncementInterface) => {
+      contentObj = {
+        ...contentObj,
+        [announcement.id]: announcement,
+      };
+    });
+    this.setState({ contentObj });
+  };
+
+  // *** HANDLE EVENT
+  private handleToggleByURL = (location: any) => {
+    const { contentObj } = this.state;
+    const pointer = getHashFromURL(location) || Object.keys(contentObj)[0];
+    this.setState({ pointer });
+  };
+
   private handleClick = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
     e.preventDefault();
     this.setState(prevState =>
       produce(prevState, (draft: State) => {
-        draft.contentObj[draft.selected].selected = false;
-        draft.contentObj[id].selected = true;
-        draft.selected = id;
+        draft.pointer = id;
       })
     );
     this.props.history.replace(`/announcement#${id}`);

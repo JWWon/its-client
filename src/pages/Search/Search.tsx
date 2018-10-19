@@ -10,7 +10,7 @@ import {
 } from 'api/clinic';
 import { Section, ShadowBox } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
-import { splitQueryFromURL } from 'lib/functions/api';
+import { getSearchFromURL } from 'src/lib/functions/url';
 import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
 import SearchBar from './SearchBar';
@@ -147,7 +147,7 @@ class Search extends PureComponent<Props, State> {
   // *** HANDLE EVENT
   private handleSearchByURL = async (location: any) => {
     if (location.search) {
-      const query = splitQueryFromURL(location);
+      const query = getSearchFromURL(location);
       if (query.type === 'address' && !this.state.provinces.pointer) {
         // Handle componentDidMount
         await this.getCitiesFromAPI(query.province);
