@@ -59,30 +59,40 @@ class Search extends PureComponent<Props, State> {
 
   public render() {
     const { search, provinces, cities } = this.state;
+    let option = {};
+    if (search && search.type === 'address') {
+      option = { ...option, handleDismiss: this.handleDismiss };
+    }
+
     return (
       <>
-        <SearchBar handleDismiss={this.handleDismiss} />
-        <Section
-          title={search ? '지역 목록' : '지역으로 검색하기'}
-          subtitle={search ? null : '찾으시는 지역을 선택하세요.'}>
-          <s.BoxWrapper>
-            <ShadowBox>
-              <CheckDistrict
-                title="도 / 특별시"
-                district={provinces}
-                handleClick={this.handleClickProvince}
-              />
-            </ShadowBox>
-            <ShadowBox>
-              <CheckDistrict
-                isCity
-                title="시 / 군 / 구"
-                district={cities && cities}
-                handleClick={this.handleClickCity}
-              />
-            </ShadowBox>
-          </s.BoxWrapper>
-        </Section>
+        {(!search || search.type === 'keyword') && (
+          <SearchBar handleDismiss={this.handleDismiss} />
+        )}
+        {(!search || search.type === 'address') && (
+          <Section
+            title={search ? '지역 목록' : '지역으로 검색하기'}
+            subtitle={search ? null : '찾으시는 지역을 선택하세요.'}
+            {...option}>
+            <s.BoxWrapper>
+              <ShadowBox>
+                <CheckDistrict
+                  title="도 / 특별시"
+                  district={provinces}
+                  handleClick={this.handleClickProvince}
+                />
+              </ShadowBox>
+              <ShadowBox>
+                <CheckDistrict
+                  isCity
+                  title="시 / 군 / 구"
+                  district={cities && cities}
+                  handleClick={this.handleClickCity}
+                />
+              </ShadowBox>
+            </s.BoxWrapper>
+          </Section>
+        )}
         {search && (
           <Section title={`'${search.param}' 검색 결과`}>
             <div>결과값</div>
@@ -120,20 +130,18 @@ class Search extends PureComponent<Props, State> {
         case 'keyword':
           break;
         case 'address':
-          {
-            if (!this.state.provinces.pointer) {
-              // Handle componentDidMount
-              await this.getCitiesFromAPI(query.province);
-              await this.setState(state =>
-                produce(state, draft => {
-                  const { provinces, cities } = draft;
-                  provinces.pointer = query.province;
-                  if (cities) cities.pointer = query.city;
-                })
-              );
-            }
-            this.getClinicsFromAPI(query.province, query.city);
+          if (!this.state.provinces.pointer) {
+            // Handle componentDidMount
+            await this.getCitiesFromAPI(query.province);
+            await this.setState(state =>
+              produce(state, draft => {
+                const { provinces, cities } = draft;
+                provinces.pointer = query.province;
+                if (cities) cities.pointer = query.city;
+              })
+            );
           }
+          this.getClinicsFromAPI(query.province, query.city);
           break;
         default:
           break;

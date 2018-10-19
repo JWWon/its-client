@@ -1,3 +1,4 @@
+import { Dismiss } from 'components/common';
 import React, { Component } from 'react';
 import * as s from './SearchBar.styled';
 
@@ -20,7 +21,7 @@ class SearchBar extends Component<Props, State> {
             <s.IconSearch />
           </s.IconCircle>
           <s.InputSearch onChange={this.handleChange} />
-          <s.Dismiss onClick={this.props.handleDismiss} />
+          <Dismiss handleDismiss={this.props.handleDismiss} />
         </s.BarWrapper>
       </s.Container>
     );

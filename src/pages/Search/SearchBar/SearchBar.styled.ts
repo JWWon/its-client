@@ -1,4 +1,3 @@
-import icDelete from 'lib/icons/ic_delete.svg';
 import icSearch from 'lib/icons/ic_search.svg';
 import styled from 'theme';
 
@@ -47,20 +46,11 @@ export const InputSearch = styled.input.attrs({
 })`
   flex: 1;
   height: 100%;
+  margin-right: 6rem;
   padding: 0 ${barHeight * 0.25}rem;
   background: transparent;
   box-sizing: border-box;
   border-radius: ${barHeight * 0.25}rem;
   border: 0.25rem solid ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.xl}rem;
-`;
-
-export const Dismiss = styled.div`
-  margin-left: 6rem;
-  width: ${barHeight * 0.2}rem;
-  height: ${barHeight * 0.2}rem;
-  background: no-repeat center url(${icDelete});
-  &:hover {
-    cursor: pointer;
-  }
 `;
