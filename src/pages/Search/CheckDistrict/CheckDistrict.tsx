@@ -6,7 +6,7 @@ import * as s from './CheckDistrict.styled';
 
 interface Props {
   title: string;
-  list: { [name: string]: District } | null;
+  district: District | null;
   handleClick: (e: React.FormEvent<HTMLDivElement>, name: string) => void;
   isCity?: boolean;
 }
@@ -14,7 +14,7 @@ interface Props {
 const CheckDistrict: React.SFC<Props> = ({
   title,
   isCity,
-  list,
+  district,
   handleClick,
 }) => (
   <s.Container>
@@ -22,19 +22,19 @@ const CheckDistrict: React.SFC<Props> = ({
       <s.Title>{title}</s.Title>
     </s.TitleWrapper>
     <s.ListWrapper>
-      {list &&
-        Object.keys(list).map(name => (
+      {district &&
+        Object.keys(district.list).map(name => (
           <s.Data
             isCity={isCity}
             key={name}
-            selected={list[name].selected}
+            selected={name === district.pointer}
             onClick={(e: React.FormEvent<HTMLDivElement>) =>
               handleClick(e, name)
             }>
             {isCity ? (
-              <s.TextWrapper count={list[name].count}>
+              <s.TextWrapper count={district.list[name].count}>
                 <s.Name>{name}</s.Name>
-                <s.Count>{list[name].count}</s.Count>
+                <s.Count>{district.list[name].count}</s.Count>
               </s.TextWrapper>
             ) : (
               <s.Name>{name}</s.Name>

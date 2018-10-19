@@ -10,9 +10,13 @@ import CheckDistrict from './CheckDistrict';
 import * as s from './Search.styled';
 import SearchBar from './SearchBar';
 
+interface List {
+  [name: string]: { count?: number };
+}
+
 export interface District {
-  selected: boolean;
-  count?: number;
+  pointer: string | null; // DISTRICT NAME
+  list: List;
 }
 
 interface Props extends RouteComponentProps<any> {}
@@ -23,14 +27,8 @@ interface State {
     param: string;
     list: ClinicInterface[];
   } | null;
-  provinces: {
-    pointer: string; // Province Name
-    list: { [province: string]: District };
-  };
-  cities: {
-    pointer: string; // City Name
-    list: { [city: string]: District };
-  } | null;
+  provinces: District;
+  cities: District | null;
 }
 
 class Search extends PureComponent<Props, State> {
@@ -38,17 +36,12 @@ class Search extends PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    let list: { [province: string]: District } = {};
+    let list: List = {};
     for (const key in provinceCity) {
-      if (key) {
-        list = { ...list, [key]: { selected: false } };
-      }
+      if (key) list = { ...list, [key]: {} };
     }
-    const pointer: string = Object.keys(list)[0];
-    list[pointer].selected = true;
-
     this.state = {
-      provinces: { list, pointer },
+      provinces: { list, pointer: null },
       search: null,
       cities: null,
     };
@@ -56,7 +49,6 @@ class Search extends PureComponent<Props, State> {
 
   public componentDidMount() {
     const { history, location } = this.props;
-    this.getCitiesFromAPI();
     this.handleSearchByURL(location);
     this.unlisten = history.listen(this.handleSearchByURL);
   }
@@ -77,7 +69,7 @@ class Search extends PureComponent<Props, State> {
             <ShadowBox>
               <CheckDistrict
                 title="도 / 특별시"
-                list={provinces.list}
+                district={provinces}
                 handleClick={this.handleClickProvince}
               />
             </ShadowBox>
@@ -85,7 +77,7 @@ class Search extends PureComponent<Props, State> {
               <CheckDistrict
                 isCity
                 title="시 / 군 / 구"
-                list={cities && cities.list}
+                district={cities && cities}
                 handleClick={this.handleClickCity}
               />
             </ShadowBox>
@@ -101,19 +93,16 @@ class Search extends PureComponent<Props, State> {
   }
 
   // *** NETWORK
-  private getCitiesFromAPI = async () => {
-    const { provinces } = this.state;
-    const updateCity = await getCityInfo(provinces.pointer);
-    const citiesObj = { ...provinceCity[provinces.pointer], ...updateCity };
-    let list: { [city: string]: District } = {};
+  private getCitiesFromAPI = async (province: string) => {
+    const updateCity = await getCityInfo(province);
+    const citiesObj = { ...provinceCity[province], ...updateCity };
+    let list: List = {};
 
     for (const key in citiesObj) {
-      if (key) {
-        list = { ...list, [key]: { selected: false, count: citiesObj[key] } };
-      }
+      if (key) list = { ...list, [key]: { count: citiesObj[key] } };
     }
-    const pointer: string = Object.keys(list)[0];
-    this.setState({ cities: { pointer, list } });
+
+    this.setState({ cities: { list, pointer: null } });
   };
 
   private getClinicsFromAPI = async (province: string, city: string) => {
@@ -124,18 +113,45 @@ class Search extends PureComponent<Props, State> {
   };
 
   // *** HANDLE EVENT
-  private handleSearchByURL = (location: any) => {
+  private handleSearchByURL = async (location: any) => {
     if (location.search) {
       const query = splitQueryFromURL(location);
       switch (query.type) {
         case 'keyword':
           break;
         case 'address':
-          this.getClinicsFromAPI(query.province, query.city);
+          {
+            if (!this.state.provinces.pointer) {
+              // Handle componentDidMount
+              await this.getCitiesFromAPI(query.province);
+              await this.setState(state =>
+                produce(state, draft => {
+                  const { provinces, cities } = draft;
+                  provinces.pointer = query.province;
+                  if (cities) cities.pointer = query.city;
+                })
+              );
+            }
+            this.getClinicsFromAPI(query.province, query.city);
+          }
           break;
         default:
           break;
       }
+    } else {
+      await this.setState(state =>
+        produce(state, draft => {
+          const { provinces, cities } = draft;
+          draft.search = null;
+          if (!provinces.pointer) {
+            // Handle componentDidMount
+            provinces.pointer = Object.keys(provinces.list)[0];
+            this.getCitiesFromAPI(provinces.pointer);
+          } else if (cities) {
+            cities.pointer = null;
+          }
+        })
+      );
     }
   };
 
@@ -148,16 +164,13 @@ class Search extends PureComponent<Props, State> {
       await this.setState(state =>
         produce(state, (draft: State) => {
           draft.search = null;
-          const { list, pointer } = draft.provinces;
           // UPDATE PROVINCES STATE
-          list[pointer].selected = false;
-          list[name].selected = true;
           draft.provinces.pointer = name;
-          // UPDATE URL
-          this.props.history.push('/search');
         })
       );
-      this.getCitiesFromAPI();
+      // UPDATE URL
+      this.props.history.push('/search');
+      this.getCitiesFromAPI(name);
     }
   };
 
@@ -168,39 +181,20 @@ class Search extends PureComponent<Props, State> {
     e.preventDefault();
     await this.setState(state =>
       produce(state, (draft: State) => {
-        if (draft.cities) {
-          const { list, pointer } = draft.cities;
-          // UPDATE CITIES STATE
-          list[pointer].selected = false;
-          list[name].selected = true;
-          draft.cities.pointer = name;
-          // UPDATE URL
-          this.props.history.push(
-            `/search?type=address&province=${
-              draft.provinces.pointer
-            }&city=${pointer}`
-          );
-        }
+        // UPDATE CITIES STATE
+        if (draft.cities) draft.cities.pointer = name;
       })
+    );
+    // UPDATE URL
+    const { provinces } = this.state;
+    this.props.history.push(
+      `/search?type=address&province=${provinces.pointer}&city=${name}`
     );
   };
 
   private handleDismiss = () => {
     const { location, history } = this.props;
-    if (location.search) {
-      this.setState(state =>
-        produce(state, draft => {
-          draft.search = null;
-          if (draft.cities) {
-            const { list, pointer } = draft.cities;
-            list[pointer].selected = false;
-          }
-        })
-      );
-      history.push('/search');
-    } else {
-      history.push('/');
-    }
+    history.push(`/${location.search ? 'search' : ''}`);
   };
 }
 

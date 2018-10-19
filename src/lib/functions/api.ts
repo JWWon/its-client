@@ -5,6 +5,7 @@ interface Result {
 export const splitQueryFromURL = (location: any) => {
   let result: Result = {};
   let query = location.search.replace(/^\?/g, '');
+  query = decodeURI(query);
   query = query.split('&');
   query.forEach((data: string) => {
     const split = data.split('=');
