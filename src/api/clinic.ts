@@ -29,6 +29,7 @@ export interface ClinicInterface {
 interface Address {
   province: string;
   city: string;
+  after?: string;
 }
 
 interface Keyword {
@@ -39,7 +40,7 @@ interface Keyword {
 export const searchByAddress = async (params: Address) => {
   try {
     const response = await axios.get('/clinics', { params });
-    console.log(response.data);
+    return response.data;
   } catch (e) {
     console.log(e);
   }
@@ -48,7 +49,7 @@ export const searchByAddress = async (params: Address) => {
 export const searchByKeyword = async (params: Keyword) => {
   try {
     const response = await axios.get('/clinics', { params });
-    console.log(response.data);
+    return response.data;
   } catch (e) {
     console.log(e);
   }

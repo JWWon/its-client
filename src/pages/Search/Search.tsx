@@ -2,7 +2,7 @@ import produce from 'immer';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { ClinicInterface, getCityInfo } from 'api/clinic';
+import { ClinicInterface, getCityInfo, searchByAddress } from 'api/clinic';
 import { provinceCity, provinces as _provinces } from 'assets/constant/address';
 import { Section, ShadowBox } from 'components/common';
 import CheckDistrict from './CheckDistrict';
@@ -108,6 +108,18 @@ class Search extends Component<Props, State> {
     this.setState({ cities: { pointer: 0, list } });
   };
 
+  private getClinicsFromAPI = async () => {
+    if (this.state.cities) {
+      const { provinces, cities } = this.state;
+      const province = provinces.list[provinces.pointer].name;
+      const city = cities.list[cities.pointer].name;
+      const list = await searchByAddress({ province, city });
+      this.setState({
+        search: { type: 'address', param: `${province} ${city}`, list },
+      });
+    }
+  };
+
   private handleClickProvince = async (
     e: React.FormEvent<HTMLDivElement>,
     index: number
@@ -124,12 +136,12 @@ class Search extends Component<Props, State> {
     this.getCitiesFromAPI();
   };
 
-  private handleClickCity = (
+  private handleClickCity = async (
     e: React.FormEvent<HTMLDivElement>,
     index: number
   ) => {
     e.preventDefault();
-    this.setState(state =>
+    await this.setState(state =>
       produce(state, (draft: State) => {
         if (draft.cities) {
           const { pointer } = draft.cities;
@@ -139,6 +151,7 @@ class Search extends Component<Props, State> {
         }
       })
     );
+    this.getClinicsFromAPI();
   };
 
   private handleDismiss = () => {
