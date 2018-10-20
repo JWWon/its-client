@@ -12,6 +12,7 @@ import { Section, ShadowBox } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
 import { getSearchFromURL } from 'src/lib/functions/url';
 import CheckDistrict from './CheckDistrict';
+import Result from './Result';
 import * as s from './Search.styled';
 import SearchBar from './SearchBar';
 
@@ -103,7 +104,15 @@ class Search extends PureComponent<Props, State> {
         )}
         {search && (
           <Section title={`'${search.param}' 검색 결과`}>
-            <div>결과값</div>
+            <s.Notice>
+              {search.list.length > 0
+                ? `* 자격증은 왼쪽부터 1.치과교정과전문의, 2대한치과교정학과,
+              3.인비절라인인증의 입니다.`
+                : `* 검색 결과가 없습니다`}
+            </s.Notice>
+            {search.list.map(clinic => (
+              <Result key={clinic.id} clinic={clinic} />
+            ))}
           </Section>
         )}
       </>

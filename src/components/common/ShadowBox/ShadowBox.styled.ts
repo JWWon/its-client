@@ -10,10 +10,11 @@ interface Props {
 }
 
 export const Container = styled<Props, any>('div')`
-  ${({ size }) =>
+  ${({ size, theme }) =>
     size
       ? `width: ${size.width}rem; height: ${size.height}rem;`
-      : `flex: 1; min-height: 16.6rem;`}
+      : `flex: 1;
+         min-height: ${theme.size.desktop.shadowBox}rem;`}
   padding: ${({ rmVerticalPadding, theme }) =>
     `${rmVerticalPadding ? '0 ' : ''}${theme.space.desktop.m}rem`};
   box-shadow: ${({ dimmer }) =>

@@ -1,6 +1,7 @@
 export interface SizeInterface {
   desktop: {
     container: number;
+    shadowBox: number;
     navbar: number;
   };
 }
@@ -8,6 +9,7 @@ export interface SizeInterface {
 const size: SizeInterface = {
   desktop: {
     container: 120,
+    shadowBox: 12,
     navbar: 8,
   },
 };
