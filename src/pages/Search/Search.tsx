@@ -192,7 +192,7 @@ class Search extends PureComponent<Props, State> {
   ) => {
     e.preventDefault();
     // UPDATE URL
-    this.props.history.push(`/search?type=keyword&q=${keyword}`);
+    this.props.history.replace(`/search?type=keyword&q=${keyword}`);
   };
 
   private handleClickProvince = async (
@@ -209,7 +209,7 @@ class Search extends PureComponent<Props, State> {
         })
       );
       // UPDATE URL
-      this.props.history.push('/search');
+      this.props.history.replace('/search');
       this.getCitiesFromAPI(name);
     }
   };
@@ -227,7 +227,7 @@ class Search extends PureComponent<Props, State> {
     );
     // UPDATE URL
     const { provinces } = this.state;
-    this.props.history.push(
+    this.props.history.replace(
       `/search?type=address&province=${provinces.pointer}&city=${name}`
     );
   };
