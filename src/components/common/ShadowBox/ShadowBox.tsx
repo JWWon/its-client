@@ -9,6 +9,8 @@ interface Props {
   } | null;
   dimmer?: boolean;
   rmVerticalPadding?: boolean;
+  single?: boolean;
+  style?: { [x: string]: string };
 }
 
 const ShadowBox: React.SFC<Props> = ({
@@ -16,11 +18,15 @@ const ShadowBox: React.SFC<Props> = ({
   size,
   dimmer,
   rmVerticalPadding,
+  single,
+  style,
 }) => (
   <s.Container
     size={size}
     dimmer={dimmer}
-    rmVerticalPadding={rmVerticalPadding}>
+    rmVerticalPadding={rmVerticalPadding}
+    single={single}
+    style={style}>
     {children}
   </s.Container>
 );
@@ -29,6 +35,7 @@ ShadowBox.defaultProps = {
   size: null,
   dimmer: false,
   rmVerticalPadding: false,
+  single: false,
 };
 
 export default ShadowBox;

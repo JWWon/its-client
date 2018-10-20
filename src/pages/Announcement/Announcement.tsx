@@ -76,7 +76,6 @@ class Announcement extends Component<Props, State> {
   };
 
   private handleClick = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
-    e.preventDefault();
     this.setState(prevState =>
       produce(prevState, (draft: State) => {
         draft.pointer = id;

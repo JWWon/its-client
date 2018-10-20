@@ -199,7 +199,6 @@ class Search extends PureComponent<Props, State> {
     e: React.FormEvent<HTMLDivElement>,
     name: string
   ) => {
-    e.preventDefault();
     if (this.state.provinces.pointer !== name) {
       await this.setState(state =>
         produce(state, (draft: State) => {
@@ -218,7 +217,6 @@ class Search extends PureComponent<Props, State> {
     e: React.FormEvent<HTMLDivElement>,
     name: string
   ) => {
-    e.preventDefault();
     await this.setState(state =>
       produce(state, (draft: State) => {
         // UPDATE CITIES STATE
@@ -234,7 +232,8 @@ class Search extends PureComponent<Props, State> {
 
   private handleDismiss = () => {
     const { location, history } = this.props;
-    history.push(`/${location.search ? 'search' : ''}`);
+    if (location.search) history.replace('/search');
+    else history.goBack();
   };
 }
 
