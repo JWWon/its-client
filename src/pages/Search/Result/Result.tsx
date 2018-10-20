@@ -23,10 +23,9 @@ const Sertif: React.SFC<SertifInterface> = ({ name, type, active }) => (
 class Result extends Component<Props> {
   public render() {
     const { clinic } = this.props;
-    console.log(clinic);
     return (
       <s.Container>
-        <Link to={`/clinic/${clinic.id}`}>
+        <Link to={{ pathname: `/clinic/${clinic.id}`, state: clinic }}>
           <ShadowBox>
             <s.Wrapper>
               <s.LeftContent>
