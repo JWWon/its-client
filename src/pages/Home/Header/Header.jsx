@@ -1,7 +1,11 @@
 import React from 'react';
 import * as s from './Header.styled';
 
-const Header = () => (
+interface Props {
+  count: number;
+}
+
+const Header: React.SFC<Props> = ({ count }) => (
   <s.Background>
     <s.BarPosition>
       <s.BarBackground>
@@ -20,7 +24,7 @@ const Header = () => (
       </div>
       중 기준을 만족하는 오직
       <div>
-        <s.CountUp end={1251} />
+        <s.CountUp end={count} />
       </div>
       의 치과
     </s.CountUpWrapper>

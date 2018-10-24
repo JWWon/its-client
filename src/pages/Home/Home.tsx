@@ -3,18 +3,13 @@ import React, { Component, ReactNodeArray } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { getClinicLength } from 'api/clinic';
+import { getSlides, Image } from 'api/image';
 import { Section } from 'components/common';
 import About from './About';
 import Announcement from './Announcement';
 import Header from './Header';
 import * as s from './Home.styled';
 import Slide from './Slide';
-
-const urls = [
-  'http://post.phinf.naver.net/MjAxODEwMDVfMjQg/MDAxNTM4NzQ2MjE2OTIx.m0yrQuJzpFatCD3NpB8d09dkjZcyzprTn0hdQUh0COog.MeFjpsYcdihxs9xl2zvfiEso1Jqu-8j2lOK2ulX3Lawg.JPEG/I9kEIxEyIto2VI7ZMFmUO4WfnisE.jpg',
-  'http://blogfiles.naver.net/MjAxNzA1MDJfMjQ2/MDAxNDkzNjgxMDY4NzE3.gFzTACUE3cIOelWyOO60tjgocwREMWP41_sjnpGN3C8g.ZqUhAaljgf0TZNoHRCrb1BqnLKq2PfZenY5LmWG7zpEg.JPEG.fstdevil/05.jpg',
-  'http://imgnews.naver.net/image/433/2017/05/29/0000030740_001_20170529102633500.jpg',
-];
 
 const announceList = [
   {
@@ -42,16 +37,19 @@ const announceList = [
 
 interface State {
   count: number;
+  slides: Image[];
 }
 
 class Home extends Component<RouteComponentProps<any>, State> {
   public state: State = {
     count: 0,
+    slides: [],
   };
 
   public async componentDidMount() {
     const count = await getClinicLength();
-    this.setState({ count });
+    const slides = await getSlides();
+    this.setState({ count, slides });
   }
 
   public render() {
@@ -69,11 +67,11 @@ class Home extends Component<RouteComponentProps<any>, State> {
               </div>
             </s.DotsWrapper>
           )}>
-          {urls.map((url, index) => (
-            <Slide key={index} url={url} />
+          {this.state.slides.map((image, index) => (
+            <Slide key={index} image={image} />
           ))}
         </s.Slider>
-        <Header />
+        <Header count={this.state.count} />
         <Section title="'잇츠 교정'이란?">
           <About />
         </Section>

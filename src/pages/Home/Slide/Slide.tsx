@@ -1,12 +1,13 @@
+import { Image } from 'api/image';
 import React from 'react';
 import * as s from './Slide.styled';
 
 interface Props {
-  url: string;
+  image: Image;
 }
 
-const Slide: React.SFC<Props> = ({ url, ...props }) => (
-  <s.Slide url={url} {...props} />
+const Slide: React.SFC<Props> = ({ image }) => (
+  <s.Slide url={image.desktopSrc} alt={image.alt} />
 );
 
 export default Slide;

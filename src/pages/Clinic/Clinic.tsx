@@ -73,6 +73,10 @@ class Clinic extends Component<Props, State> {
         </s.ShadowBox>
         <s.ShadowBox>
           <s.TitleWithBar title="찾아 오시는 길" />
+          {clinic.directions &&
+            Object.keys(clinic.directions).map(key => (
+              <TextRow label={key} content={clinic.directions[key]} key={key} />
+            ))}
         </s.ShadowBox>
       </Section>
     );
