@@ -41,7 +41,7 @@ export const searchByAddress = async (params: Address) => {
     const response = await axios.get('/clinics', { params });
     return response.data;
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 };
 
@@ -50,15 +50,24 @@ export const searchByKeyword = async (params: Keyword) => {
     const response = await axios.get('/clinics', { params });
     return response.data;
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 };
 
-export const getCityInfo = async (province: string) => {
+export const getCityList = async (province: string) => {
   try {
     const response = await axios.get('/clinics', { params: { province } });
     return response.data;
   } catch (e) {
-    console.log(e);
+    throw e;
+  }
+};
+
+export const getClinicLength = async () => {
+  try {
+    const response = await axios.get('/clinics', { params: { count: true } });
+    return response.data;
+  } catch (e) {
+    throw e;
   }
 };

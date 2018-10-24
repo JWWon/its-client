@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ClinicInterface } from 'api/clinic';
 import { Section } from 'components/common';
 import * as s from './Clinic.styled';
+import NaverMap from './NaverMap';
 
 interface TextInterface {
   label: string;
@@ -12,6 +13,12 @@ interface TextInterface {
 
 interface Props extends RouteComponentProps<any> {}
 
+interface State {
+  info: { [label: string]: string };
+  certif: { [label: string]: string };
+  direction: { [label: string]: string };
+}
+
 const TextRow: React.SFC<TextInterface> = ({ label, content }) => (
   <s.TextRowWrapper>
     <s.Label>{label}</s.Label>
@@ -19,36 +26,38 @@ const TextRow: React.SFC<TextInterface> = ({ label, content }) => (
   </s.TextRowWrapper>
 );
 
-class Clinic extends Component<Props> {
+class Clinic extends Component<Props, State> {
+  public constructor(props: Props) {
+    super(props);
+    const clinic: ClinicInterface = props.location.state;
+
+    this.state = {
+      info: {
+        전화번호: clinic.phone || '010-0000-0000',
+        주소: clinic.address || '서울 강남구 논현로171길 15 카로시티 5층',
+        '가까운 곳': clinic.landmark || '2호선 삼성역',
+        홈페이지: clinic.webpage || 'http://www.varomdental.co.kr/',
+      },
+      certif: {},
+      direction: {},
+    };
+  }
+
   public render() {
     const clinic: ClinicInterface = this.props.location.state;
+    const { info } = this.state;
     return (
       <Section title={clinic.name} handleDismiss={this.handleDismiss}>
         <s.ShadowBox>
           <s.DivideHalf>
             <s.Half>
               <s.TitleWithBar title="병원 정보" />
-              <TextRow
-                label="전화번호"
-                content={clinic.phone || '010-0000-0000'}
-              />
-              <TextRow
-                label="주소"
-                content={
-                  clinic.address || '서울 강남구 논현로171길 15 카로시티 5층'
-                }
-              />
-              <TextRow
-                label="가까운 곳"
-                content={clinic.landmark || '2호선 삼성역'}
-              />
-              <TextRow
-                label="홈페이지"
-                content={clinic.webpage || 'http://www.varomdental.co.kr/'}
-              />
+              {Object.keys(info).map(key => (
+                <TextRow label={key} content={info[key]} key={key} />
+              ))}
             </s.Half>
             <s.Half>
-              <p>hello</p>
+              <NaverMap />
             </s.Half>
           </s.DivideHalf>
         </s.ShadowBox>

@@ -1,6 +1,8 @@
 /* tslint:disable:jsx-no-lambda */
 import React, { Component, ReactNodeArray } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
+import { getClinicLength } from 'api/clinic';
 import { Section } from 'components/common';
 import About from './About';
 import Announcement from './Announcement';
@@ -38,7 +40,20 @@ const announceList = [
   },
 ];
 
-class Home extends Component {
+interface State {
+  count: number;
+}
+
+class Home extends Component<RouteComponentProps<any>, State> {
+  public state: State = {
+    count: 0,
+  };
+
+  public async componentDidMount() {
+    const count = await getClinicLength();
+    this.setState({ count });
+  }
+
   public render() {
     return (
       <>

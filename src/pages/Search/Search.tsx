@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import {
   ClinicInterface,
-  getCityInfo,
+  getCityList,
   searchByAddress,
   searchByKeyword,
 } from 'api/clinic';
@@ -121,7 +121,7 @@ class Search extends PureComponent<Props, State> {
 
   // *** NETWORK
   private getCitiesFromAPI = async (province: string) => {
-    const updateCity = await getCityInfo(province);
+    const updateCity = await getCityList(province);
     const citiesObj = { ...provinceCity[province], ...updateCity };
     let list: List = {};
 

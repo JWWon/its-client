@@ -18,7 +18,7 @@ const Header = () => (
       <div>
         <s.CountUp end={17000} />
       </div>
-      중 기준을 만족하는
+      중 기준을 만족하는 오직
       <div>
         <s.CountUp end={1251} />
       </div>
