@@ -15,11 +15,17 @@ export const InputWrapper = styled.div`
   display: flex;
 `;
 
+export const Short = styled.div`
+  flex-basis: 65rem;
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+`;
+
 export const Input = styled.input`
   flex: 1;
-  height: 4.8rem;
+  height: 100%;
   padding: 0 2rem;
-  margin-right: 42rem;
   background: ${({ theme }) => theme.color.whiteDark};
   color: ${({ theme }) => theme.color.black};
   font-size: ${({ theme }) => theme.font.size.s}rem;
@@ -28,4 +34,12 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.color.gray};
     font-weight: ${({ theme }) => theme.font.weight.demiLight};
   }
+`;
+
+export const At = styled.p`
+  width: 2rem;
+  text-align: center;
+  color: ${({ theme }) => theme.color.black};
+  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-weight: ${({ theme }) => theme.font.weight.regular};
 `;

@@ -60,7 +60,7 @@ class Apply extends Component<Props, State> {
                 type: 'email',
                 name: 'email',
               }}
-              handleChange={this.handleChange}
+              handleEmailChange={this.handleEmailChange}
             />
           </s.ShadowBox>
           <s.ShadowBox>
@@ -79,6 +79,10 @@ class Apply extends Component<Props, State> {
   private handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     this.setState(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  private handleEmailChange = (email: string) => {
+    this.setState({ email });
   };
 
   private handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
