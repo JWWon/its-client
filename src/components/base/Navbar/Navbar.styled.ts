@@ -4,7 +4,9 @@ import styled from 'theme';
 import logo from 'lib/logos/logo_its_kyojeong.svg';
 
 export const Container = styled.div`
-  flex-basis: ${({ theme }) => theme.size.desktop.container}rem;
+  flex-basis: ${({ theme }) =>
+    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
+  padding: 0 ${({ theme }) => theme.space.desktop.s}rem;
   height: ${({ theme }) => theme.size.desktop.navbar}rem;
   display: flex;
   justify-content: space-between;

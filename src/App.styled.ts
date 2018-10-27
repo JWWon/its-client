@@ -8,7 +8,7 @@ export default injectGlobal`
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
   html {
-    font-size: ${theme.mobile ? '40%' : '62.5%'};
+    font-size: ${theme.mobile ? '25%' : '62.5%'};
   }
 
   body {
