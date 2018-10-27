@@ -2,12 +2,13 @@ import { injectGlobal } from 'theme';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { theme } from 'theme';
 
 export default injectGlobal`
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
   html {
-    font-size: 62.5%;
+    font-size: ${theme.mobile ? '40%' : '62.5%'};
   }
 
   body {
