@@ -7,9 +7,8 @@ import twitter from 'lib/logos/logo_twitter.svg';
 import styled from 'theme';
 
 export const Container = styled.div`
-  flex-basis: ${({ theme }) =>
-    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
-  padding: 9rem ${({ theme }) => theme.space.desktop.s}rem;
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  padding: 9rem ${({ theme }) => theme.space.s}rem;
   display: flex;
   justify-content: space-between;
 `;

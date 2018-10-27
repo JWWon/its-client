@@ -53,10 +53,9 @@ export const BarPosition = styled.div`
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  max-width: ${({ theme }) =>
-    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
+  max-width: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   height: ${barHeight}rem;
-  padding: 0 ${({ theme }) => theme.space.desktop.s}rem;
+  padding: 0 ${({ theme }) => theme.space.s}rem;
 `;
 
 export const BarBackground = styled.div`

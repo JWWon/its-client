@@ -15,9 +15,9 @@ export const Container = styled<Props, any>('div')`
     size
       ? `width: ${size.width}rem; height: ${size.height}rem;`
       : `flex: 1;
-         min-height: ${theme.size.desktop.shadowBox}rem;`}
+         min-height: ${theme.size.shadowBox}rem;`}
   padding: ${({ rmVerticalPadding, theme }) =>
-    `${rmVerticalPadding ? '0 ' : ''}${theme.space.desktop.m}rem`};
+    `${rmVerticalPadding ? '0 ' : ''}${theme.space.m}rem`};
   box-shadow: ${({ dimmer }) =>
     dimmer ? '-0.2rem 0.4rem 1.5rem ' : '-0.4rem 0.8rem 2rem '}
     rgba(0, 0, 0, 0.16);

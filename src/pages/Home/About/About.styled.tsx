@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const PictogramWrapper = styled(Container)`
-  margin-left: ${({ theme }) => theme.space.desktop.m}rem;
+  margin-left: ${({ theme }) => theme.space.m}rem;
   flex-shrink: 1;
   flex-basis: 60rem;
   align-items: center;

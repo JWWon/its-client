@@ -9,7 +9,7 @@ interface ContentProps {
 export const Content = styled.div`
   width: 100%;
   &:last-of-type {
-    padding-bottom: ${({ theme }) => theme.space.desktop.s}rem;
+    padding-bottom: ${({ theme }) => theme.space.s}rem;
   }
 `;
 
@@ -21,7 +21,7 @@ export const TitleWrapper = styled.div`
 
 export const Date = styled.p`
   margin-left: auto;
-  margin-right: ${({ theme }) => theme.space.desktop.s}rem;
+  margin-right: ${({ theme }) => theme.space.s}rem;
   font-size: ${({ theme }) => theme.font.size.s}rem;
   color: ${({ theme }) => theme.color.grayDark};
   font-weight: ${({ theme }) => theme.font.weight.light};
@@ -50,7 +50,7 @@ export const ContentWrapper = styled<ContentProps, any>('div')`
   ${({ selected, theme }) =>
     selected
       ? `
-        padding: ${theme.space.desktop.s}rem;`
+        padding: ${theme.space.s}rem;`
       : `
         height: 0;
       `};

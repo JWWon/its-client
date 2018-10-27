@@ -14,9 +14,9 @@ export const Container = styled.div`
 
 export const FormBar = styled.form`
   flex-basis: ${({ theme }) =>
-    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
+    theme.size.container + 2 * theme.space.s}rem;
   height: ${barHeight * 0.5}rem;
-  padding: 0 ${({ theme }) => theme.space.desktop.s}rem;
+  padding: 0 ${({ theme }) => theme.space.s}rem;
   display: flex;
   align-items: center;
 `;

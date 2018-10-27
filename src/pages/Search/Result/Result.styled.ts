@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  height: ${({ theme }) => theme.size.desktop.shadowBox}rem;
+  height: ${({ theme }) => theme.size.shadowBox}rem;
   display: flex;
 `;
 
@@ -35,7 +35,7 @@ export const SertifWrapper = styled.div`
 
 // *** IMG
 export const Icon = styled.img.attrs({ src: landmark })`
-  margin: ${({ theme }) => `0 1rem 0 ${theme.space.desktop.s}rem`};
+  margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
   height: 1.6rem;
 `;
 
@@ -70,7 +70,7 @@ export const Phone = styled.p`
 `;
 
 export const Address = styled(Phone)`
-  margin-left: ${({ theme }) => theme.space.desktop.m}rem;
+  margin-left: ${({ theme }) => theme.space.m}rem;
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.regular};
 `;

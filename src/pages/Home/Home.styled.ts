@@ -23,7 +23,7 @@ export const Slider = styled(_Slider).attrs({
   flex-direction: row-reverse;
   .slick-list {
     flex-basis: ${({ theme }) =>
-      `calc(100% - ${getLeft(theme.size.desktop.container)})`};
+      `calc(100% - ${getLeft(theme.size.container)})`};
     box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
     height: ${slideHeight}vh !important;
     border-top-left-radius: ${slideHeight / 2}vh;
@@ -38,13 +38,13 @@ export const DotsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex-basis: ${({ theme }) => getLeft(theme.size.desktop.container)};
+  flex-basis: ${({ theme }) => getLeft(theme.size.container)};
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 1.6rem;
-    padding-left: ${({ theme }) => theme.space.desktop.s}rem;
+    padding-left: ${({ theme }) => theme.space.s}rem;
     padding-right: 8rem;
   }
   @media screen and (max-width: 1480px) {

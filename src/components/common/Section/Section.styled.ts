@@ -12,8 +12,8 @@ export const Section = styled.section`
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) =>
-    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
-  padding: 0 ${({ theme }) => theme.space.desktop.s}rem;
+    theme.size.container + 2 * theme.space.s}rem;
+  padding: 0 ${({ theme }) => theme.space.s}rem;
 `;
 
 const roundHeight = 8;

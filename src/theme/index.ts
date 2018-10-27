@@ -1,13 +1,10 @@
-import MobileDetect from 'mobile-detect';
 import * as styledComponents from 'styled-components';
 
 import color, { ColorInterface } from './color';
 import font, { FontInterface } from './font';
+import mobile from './mobile';
 import size, { SizeInterface } from './size';
 import space, { SpaceInterface } from './space';
-
-const md = new MobileDetect(window.navigator.userAgent);
-const mobile = md.mobile();
 
 export interface ThemeInterface {
   color: ColorInterface;
@@ -27,7 +24,7 @@ const {
   ThemeInterface
 >;
 
-export const theme = { color, font, size, space, mobile };
+export const theme = { color, font, mobile, size, space };
 
 export default styled;
 export { css, injectGlobal, keyframes, ThemeProvider };
