@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'theme';
 
 export const Background = styled.div`
-  margin-top: ${({ theme }) => (theme.mobile ? 5.6 : 16)}rem;
+  margin-top: ${({ theme }) => (theme.mobile ? 4.8 : 16)}rem;
   position: relative;
   height: ${({ theme }) => (theme.mobile ? 8 : 24)}rem;
   background-color: ${({ theme }) => theme.color.whiteDark};
@@ -64,7 +64,9 @@ export const BarBackground = styled.div`
   box-sizing: border-box;
   border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
   background: ${({ theme }) => theme.color.blueDark};
-  box-shadow: -1.5rem 2rem 2.5rem rgba(0, 0, 0, 0.16);
+  box-shadow: ${({ theme }) =>
+      theme.mobile ? '-0.1rem 0.3rem 0.5rem' : '-1.5rem 2rem 2.5rem'}
+    rgba(0, 0, 0, 0.16);
   display: flex;
   align-items: center;
   padding-left: ${({ theme }) => barHeight(theme.mobile) / 2}rem;

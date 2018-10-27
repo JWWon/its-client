@@ -61,9 +61,9 @@ class Home extends Component<RouteComponentProps<any>, State> {
           appendDots={(dots: ReactNodeArray) => (
             <s.DotsWrapper>
               <div>
-                <s.ArrayGray style={{ transform: 'rotate(-90deg)' }} />
+                <s.ArrayGray />
                 <ul>{dots}</ul>
-                <s.ArrayGray style={{ transform: 'rotate(90deg)' }} />
+                <s.ArrayGray />
               </div>
             </s.DotsWrapper>
           )}>
