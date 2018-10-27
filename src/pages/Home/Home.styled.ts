@@ -4,10 +4,8 @@ import styled from 'theme';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 
 /* Slider Style */
-const getLeft = (containerWidth: number) =>
-  `calc((100% - ${containerWidth}rem) / 2)`;
+export const slideHeight = (mobile: string | null) => (mobile ? 32 : 58);
 
-export const slideHeight: number = 58;
 export const Slider = styled(_Slider).attrs({
   dots: true,
   fade: true,
@@ -20,44 +18,48 @@ export const Slider = styled(_Slider).attrs({
   autoplaySpeed: 2000,
 })`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: ${({ theme }) => (theme.mobile ? 'column' : 'row-reverse')};
   .slick-list {
-    flex-basis: ${({ theme }) =>
-      `calc(100% - ${getLeft(theme.size.container)})`};
+    flex: 1;
+    margin-left: ${({ theme }) => theme.space.s}rem;
     box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
-    height: ${slideHeight}vh !important;
-    border-top-left-radius: ${slideHeight / 2}vh;
-    border-bottom-left-radius: ${slideHeight / 2}vh;
+    height: ${({ theme }) => slideHeight(theme.mobile)}vh !important;
+    border-top-left-radius: ${({ theme }) => slideHeight(theme.mobile) / 2}vh;
+    border-bottom-left-radius: ${({ theme }) =>
+      slideHeight(theme.mobile) / 2}vh;
   }
 `;
 
+const dotsWidth = (theme: any) =>
+  `calc((100% - ${theme.size.container + 2 * theme.space.s}rem) / 2 - ${
+    theme.space.s
+  }rem)`;
 export const DotsWrapper = styled.div`
   position: relative;
   top: 0;
   bottom: 0;
+  flex-basis: ${({ theme }) => dotsWidth(theme)};
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex-basis: ${({ theme }) => getLeft(theme.size.container)};
+  box-sizing: border-box;
+  padding-left: ${({ theme }) => theme.space.s}rem;
+  padding-right: 6.4rem;
+  @media screen and (max-width: 1400px) {
+    padding-right: ${({ theme }) => theme.space.s}rem;
+  }
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1.6rem;
-    padding-left: ${({ theme }) => theme.space.s}rem;
-    padding-right: 8rem;
-  }
-  @media screen and (max-width: 1480px) {
-    div {
-      padding-right: 4rem;
-    }
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    margin: 1.2rem 0;
-    li {
+    width: 2.2rem;
+    ul {
+      margin: 0;
+      padding: 0;
       margin: 1.2rem 0;
+      li {
+        margin: 1.2rem 0;
+      }
     }
   }
 `;

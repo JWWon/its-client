@@ -7,7 +7,7 @@ interface Props {
 
 export const Slide = styled<Props, any>('div')`
   width: 100%;
-  height: ${slideHeight}vh;
+  height: ${({ theme }) => slideHeight(theme.mobile)}vh;
   background-image: url(${({ url }) => url});
   background-size: cover;
   background-position: center;
