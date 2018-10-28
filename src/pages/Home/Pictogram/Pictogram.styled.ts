@@ -1,16 +1,17 @@
+import { ShadowBox as _ShadowBox } from 'components/common';
 import styled from 'theme';
 
-export const Wrapper = styled.div`
-  width: 30%;
-  height: 21rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2.8rem;
-  align-items: center;
-  box-shadow: -0.2rem 0.4rem 1.5rem rgba(0, 0, 0, 0.16);
-  box-sizing: border-box;
-`;
+export const ShadowBox = styled(_ShadowBox).attrs({
+  style: {
+    width: '30%',
+    height: '21rem',
+    marginLeft: '5%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})``;
 
 export const Icon = styled.img.attrs({
   alt: 'pictogram of about service',

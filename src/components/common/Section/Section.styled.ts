@@ -1,23 +1,22 @@
 import styled from 'theme';
 
+const space = (mobile: string | null) => (mobile ? 3 : 10);
 export const Section = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  margin-top: ${({ theme }) => space(theme.mobile)}rem;
   &:last-of-type {
-    margin-bottom: 10rem;
+    margin-bottom: ${({ theme }) => space(theme.mobile)}rem;
   }
 `;
 
 export const Container = styled.div`
-  flex-basis: ${({ theme }) =>
-    theme.size.container + 2 * theme.space.s}rem;
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
 `;
 
 const roundHeight = 8;
-
 export const Header = styled.div`
   height: ${roundHeight}rem;
   display: flex;

@@ -1,4 +1,4 @@
-import { Section, ShadowBox } from 'components/common';
+import { Section } from 'components/common';
 import produce from 'immer';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
@@ -37,21 +37,19 @@ class Announcement extends Component<Props, State> {
     const { contentObj, pointer } = this.state;
     return (
       <Section title="왜 잇츠 교정인가?">
-        <s.Container>
-          <ShadowBox rmVerticalPadding>
-            {Object.keys(contentObj).map(title => {
-              const content = contentObj[title];
-              return (
-                <Content
-                  key={content.id}
-                  pointer={pointer}
-                  content={content}
-                  handleClick={this.handleClick}
-                />
-              );
-            })}
-          </ShadowBox>
-        </s.Container>
+        <s.ShadowBox single>
+          {Object.keys(contentObj).map(title => {
+            const content = contentObj[title];
+            return (
+              <Content
+                key={content.id}
+                pointer={pointer}
+                content={content}
+                handleClick={this.handleClick}
+              />
+            );
+          })}
+        </s.ShadowBox>
       </Section>
     );
   }

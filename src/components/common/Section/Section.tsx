@@ -3,8 +3,8 @@ import React, { ReactNode } from 'react';
 import * as s from './Section.styled';
 
 interface Props {
-  title: string;
   children: ReactNode;
+  title?: string;
   subtitle?: string | null;
   handleDismiss?: (e: React.FormEvent<HTMLDivElement>) => void;
 }
@@ -17,12 +17,14 @@ const Section: React.SFC<Props> = ({
 }) => (
   <s.Section>
     <s.Container>
-      <s.Header>
-        <s.HalfRound />
-        <s.Title>{title}</s.Title>
-        {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
-        {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
-      </s.Header>
+      {title && (
+        <s.Header>
+          <s.HalfRound />
+          <s.Title>{title}</s.Title>
+          {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
+          {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
+        </s.Header>
+      )}
       {children}
     </s.Container>
   </s.Section>

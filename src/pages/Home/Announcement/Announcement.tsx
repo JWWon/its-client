@@ -1,5 +1,6 @@
-import { TitleWithBar } from 'components/common';
+import { Section, TitleWithBar } from 'components/common';
 import React from 'react';
+
 import * as s from './Announcement.styled';
 
 interface Item {
@@ -14,15 +15,17 @@ interface Props {
 }
 
 const Announcement: React.SFC<Props> = ({ list }) => (
-  <s.Container>
-    {list.map(item => (
-      <s.Item to={item.url} key={item.title}>
-        <s.Image src={item.src} />
-        <TitleWithBar title={item.title} margin="5.2rem 0 8rem" />
-        <s.Content>{item.content}</s.Content>
-      </s.Item>
-    ))}
-  </s.Container>
+  <Section title="왜 '잇츠 교정'인가?">
+    <s.Container>
+      {list.map(item => (
+        <s.Item to={item.url} key={item.title}>
+          <s.Image src={item.src} />
+          <TitleWithBar title={item.title} margin="5.2rem 0 8rem" />
+          <s.Content>{item.content}</s.Content>
+        </s.Item>
+      ))}
+    </s.Container>
+  </Section>
 );
 
 export default Announcement;

@@ -1,10 +1,9 @@
 /* tslint:disable:jsx-no-lambda */
+import { getClinicLength } from 'api/clinic';
+import { getSlides, Image } from 'api/image';
 import React, { Component, ReactNodeArray } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { getClinicLength } from 'api/clinic';
-import { getSlides, Image } from 'api/image';
-import { Section } from 'components/common';
 import About from './About';
 import Announcement from './Announcement';
 import Header from './Header';
@@ -72,12 +71,8 @@ class Home extends Component<RouteComponentProps<any>, State> {
           ))}
         </s.Slider>
         <Header count={this.state.count} />
-        <Section title="'잇츠 교정'이란?">
-          <About />
-        </Section>
-        <Section title="왜 '잇츠 교정'인가?">
-          <Announcement list={announceList} />
-        </Section>
+        <About />
+        <Announcement list={announceList} />
       </>
     );
   }

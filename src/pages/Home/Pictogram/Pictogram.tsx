@@ -7,10 +7,10 @@ interface Props {
 }
 
 const Pictogram: React.SFC<Props> = ({ src, title }) => (
-  <s.Wrapper>
+  <s.ShadowBox>
     <s.Icon src={src} />
     <s.Title>{title}</s.Title>
-  </s.Wrapper>
+  </s.ShadowBox>
 );
 
 export default Pictogram;
