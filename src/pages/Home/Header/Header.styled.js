@@ -58,7 +58,9 @@ export const BarPosition = styled.div`
   white-space: nowrap;
 `;
 
-export const BarBackground = styled.div`
+export const BarLink = styled(Link).attrs({
+  to: '/search',
+})`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -95,9 +97,7 @@ export const SearchText = styled.p`
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
-export const ArrowCircle = styled(Link).attrs({
-  to: '/search',
-})`
+export const ArrowCircle = styled.div`
   width: ${({ theme }) => barHeight(theme.mobile) * 0.64}rem;
   height: ${({ theme }) => barHeight(theme.mobile) * 0.64}rem;
   margin-right: ${({ theme }) => barHeight(theme.mobile) * 0.18}rem;

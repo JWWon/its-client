@@ -1,7 +1,8 @@
 import icSearch from 'lib/icons/ic_search.svg';
 import styled from 'theme';
+import mobile from 'theme/mobile';
 
-const barHeight: number = 13;
+const barHeight = mobile ? 5.6 : 13;
 
 export const Container = styled.div`
   width: 100%;
@@ -13,8 +14,7 @@ export const Container = styled.div`
 `;
 
 export const FormBar = styled.form`
-  flex-basis: ${({ theme }) =>
-    theme.size.container + 2 * theme.space.s}rem;
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   height: ${barHeight * 0.5}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
   display: flex;
@@ -25,7 +25,7 @@ export const IconCircle = styled.div`
   width: ${barHeight * 0.5}rem;
   height: ${barHeight * 0.5}rem;
   border-radius: ${barHeight * 0.25}rem;
-  margin-right: 2.6rem;
+  margin-right: ${mobile ? 1.2 : 2.6}rem;
   background: ${({ theme }) => theme.color.blueDark};
   display: flex;
   justify-content: center;
@@ -46,11 +46,12 @@ export const InputSearch = styled.input.attrs({
 })`
   flex: 1;
   height: 100%;
-  margin-right: 6rem;
+  margin-right: ${mobile ? 1.4 : 6}rem;
   padding: 0 ${barHeight * 0.25}rem;
   background: transparent;
   box-sizing: border-box;
   border-radius: ${barHeight * 0.25}rem;
-  border: 0.25rem solid ${({ theme }) => theme.color.blueDark};
+  border: ${mobile ? '1px' : '0.25rem'} solid
+    ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.xl}rem;
 `;
