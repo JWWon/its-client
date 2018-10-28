@@ -9,30 +9,35 @@ export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   padding: ${({ theme }) => `${theme.mobile ? 3 : 9}rem ${theme.space.s}rem`};
   display: flex;
-  justify-content: space-between;
+  ${({ theme }) => theme.mobile && 'flex-direction: column'};
 `;
 
-export const Left = styled.div``;
 export const Right = styled.div`
+  margin-left: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  ${({ theme }) =>
+    theme.mobile
+      ? `justify-content: flex-end;
+        align-items: center`
+      : `flex-direction: column;
+        justify-content: center;
+        align-items: flex-end`};
 `;
 
-export const RowDir = styled.div`
+export const Header = styled.div`
   display: flex;
-  margin-bottom: 2rem;
+  ${({ theme }) =>
+    theme.mobile ? 'margin-right: 2rem' : 'margin-bottom: 2rem'};
 `;
 
-export const RowTextWrapper = styled.div`
+export const TextWrapper = styled.div`
   display: flex;
   margin-top: 1.2rem;
-  * {
-    margin-left: 2rem;
-    &:first-of-type {
-      margin-left: 0;
-    }
+  flex-wrap: wrap;
+  margin-left: ${({ theme }) => -(theme.mobile ? 1 : 2)}rem;
+  p,
+  img {
+    margin-left: ${({ theme }) => (theme.mobile ? 1 : 2)}rem;
   }
   &:first-of-type {
     margin-top: 0;
@@ -42,43 +47,48 @@ export const RowTextWrapper = styled.div`
 export const Copyright = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-left: 2.4rem;
+  margin-left: ${({ theme }) => (theme.mobile ? 0.8 : 2.4)}rem;
 `;
 
 export const InfoText = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${({ theme }) => (theme.mobile ? 1.2 : theme.font.size.xs)}rem;
   font-weight: ${({ theme }) => theme.font.weight.regular};
   color: ${({ theme }) => theme.color.grayDark};
+  span {
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+  }
 `;
 
+const iconSize = (mobile: string | null) => (mobile ? 1.6 : 3.2);
 export const Link = styled.a`
-  width: 2.8rem;
-  height: 2.8rem;
+  width: ${({ theme }) => iconSize(theme.mobile)}rem;
+  height: ${({ theme }) => iconSize(theme.mobile)}rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 2rem;
-  img {
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-  }
+  margin-left: ${({ theme }) => (theme.mobile ? 1.2 : 2)}rem;
   &:first-of-type {
     margin-left: 0;
   }
 `;
 
-export const Facebook = styled.img.attrs({ src: facebook })``;
-export const Instagram = styled.img.attrs({ src: instagram })``;
-export const Twitter = styled.img.attrs({ src: twitter })``;
+const Icon = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+export const Facebook = styled(Icon).attrs({ src: facebook })``;
+export const Instagram = styled(Icon).attrs({ src: instagram })``;
+export const Twitter = styled(Icon).attrs({ src: twitter })``;
 
+const btnHeight = (mobile: string | null) => (mobile ? 1.8 : 3.8);
 export const Button = styled(_Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20rem;
-  height: 3.8rem;
-  border-radius: 2rem;
+  width: ${({ theme }) => (theme.mobile ? 12 : 20)}rem;
+  height: ${({ theme }) => btnHeight(theme.mobile)}rem;
+  border-radius: ${({ theme }) => btnHeight(theme.mobile) / 2}rem;
   box-sizing: border-box;
   background: ${({ theme }) => theme.color.blueDark};
   p {
