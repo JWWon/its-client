@@ -8,7 +8,7 @@ import {
   searchByAddress,
   searchByKeyword,
 } from 'api/clinic';
-import { Section, ShadowBox } from 'components/common';
+import { Section } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
 import { getSearchFromURL } from 'src/lib/functions/url';
 import CheckDistrict from './CheckDistrict';
@@ -84,21 +84,21 @@ class Search extends PureComponent<Props, State> {
             subtitle={search ? null : '찾으시는 지역을 선택하세요.'}
             {...option}>
             <s.BoxWrapper>
-              <ShadowBox>
+              <s.ShadowBox>
                 <CheckDistrict
                   title="도 / 특별시"
                   district={provinces}
                   handleClick={this.handleClickProvince}
                 />
-              </ShadowBox>
-              <ShadowBox>
+              </s.ShadowBox>
+              <s.ShadowBox>
                 <CheckDistrict
                   isCity
                   title="시 / 군 / 구"
                   district={cities && cities}
                   handleClick={this.handleClickCity}
                 />
-              </ShadowBox>
+              </s.ShadowBox>
             </s.BoxWrapper>
           </Section>
         )}
