@@ -3,20 +3,28 @@ import * as s from './ShadowBox.styled';
 
 interface Props {
   children: ReactNode;
-  single?: boolean;
-  dimmer?: boolean;
   style?: { [x: string]: string };
+  single?: boolean;
+  space?: string | null;
+  dimmer?: boolean;
 }
 
-const ShadowBox: React.SFC<Props> = ({ children, dimmer, single, style }) => (
-  <s.Container dimmer={dimmer} single={single} style={style}>
+const ShadowBox: React.SFC<Props> = ({
+  children,
+  dimmer,
+  single,
+  space,
+  style,
+}) => (
+  <s.Container style={style} dimmer={dimmer} single={single} space={space}>
     {children}
   </s.Container>
 );
 
 ShadowBox.defaultProps = {
-  dimmer: false,
   single: false,
+  space: null,
+  dimmer: false,
 };
 
 export default ShadowBox;

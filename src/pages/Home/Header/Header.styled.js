@@ -12,7 +12,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-const countHeight = (mobile: string | null) => (mobile ? 2.8 : 4.4);
+const countHeight = (mobile: string | null) => (mobile ? 2.2 : 4.4);
 const barHeight = (mobile: string | null) => (mobile ? 5 : 11);
 
 export const CountUpWrapper = styled.div`
@@ -55,7 +55,7 @@ export const BarPosition = styled.div`
   max-width: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   height: ${({ theme }) => barHeight(theme.mobile)}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
-  white-space: no-wrap;
+  white-space: nowrap;
 `;
 
 export const BarBackground = styled.div`

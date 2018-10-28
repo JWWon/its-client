@@ -4,12 +4,13 @@ import * as s from './TitleWithBar.styled';
 interface Props {
   title: string;
   margin?: string | null;
+  barPosition?: 'top' | 'bottom';
 }
 
-const TitleWithBar: React.SFC<Props> = ({ title, margin }) => (
-  <s.Wrapper margin={margin}>
-    <s.HrBar />
-    <s.Title>{title}</s.Title>
+const TitleWithBar: React.SFC<Props> = ({ title, margin, barPosition }) => (
+  <s.Wrapper margin={margin} barPosition={barPosition}>
+    <s.HrBar barPosition={barPosition} />
+    <s.Title barPosition={barPosition}>{title}</s.Title>
   </s.Wrapper>
 );
 
