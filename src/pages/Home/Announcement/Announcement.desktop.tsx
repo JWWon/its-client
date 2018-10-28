@@ -10,7 +10,7 @@ const Announcement: React.SFC<Props> = ({ list }) => (
       {list.map(item => (
         <s.Item to={item.url} key={item.title}>
           <s.Image src={item.src} />
-          <TitleWithBar title={item.title} margin="5.2rem 0 8rem" />
+          <TitleWithBar title={item.title} margin="3.6rem 0 6rem" />
           <s.Content>{item.content}</s.Content>
         </s.Item>
       ))}

@@ -32,8 +32,8 @@ export const Header = styled.div`
 
 export const TextWrapper = styled.div`
   display: flex;
-  margin-top: 1.2rem;
   flex-wrap: wrap;
+  margin: 1.2rem 0;
   margin-left: ${({ theme }) => -(theme.mobile ? 1 : 2)}rem;
   p,
   img {
