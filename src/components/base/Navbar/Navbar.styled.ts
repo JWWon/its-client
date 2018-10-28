@@ -1,8 +1,6 @@
 import { Link as _Link } from 'react-router-dom';
 import styled from 'theme';
 
-import logo from 'lib/logos/logo_its_kyojeong.svg';
-
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
@@ -10,15 +8,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const Logo = styled.img.attrs({
-  src: logo,
-  alt: '잇츠 교정 logo',
-})`
-  width: ${({ theme }) => (theme.mobile ? 8 : 12.8)}rem;
-  height: 5.2rem;
-  object-fit: contain;
 `;
 
 export const LinkWrapper = styled.div`

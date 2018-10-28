@@ -1,24 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import * as S from './Navbar.styled';
+
+import { Logo } from 'components/common';
+import * as s from './Navbar.styled';
 
 const Navbar: React.SFC<{}> = () => (
-  <S.Container>
-    <Link to="/">
-      <S.Logo />
-    </Link>
-    <S.LinkWrapper>
-      <S.Link to="/about">
+  <s.Container>
+    <Logo />
+    <s.LinkWrapper>
+      <s.Link to="/about">
         <p>잇츠교정이란?</p>
-      </S.Link>
-      <S.Link to="/search">
+      </s.Link>
+      <s.Link to="/search">
         <p>전국 지역 검색</p>
-      </S.Link>
-      <S.Link to="/announcement">
+      </s.Link>
+      <s.Link to="/announcement">
         <p>왜 잇츠교정인가</p>
-      </S.Link>
-    </S.LinkWrapper>
-  </S.Container>
+      </s.Link>
+    </s.LinkWrapper>
+  </s.Container>
 );
 
 export default Navbar;

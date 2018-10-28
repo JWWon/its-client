@@ -2,13 +2,12 @@ import { Link as _Link } from 'react-router-dom';
 
 import facebook from 'lib/logos/logo_facebook.svg';
 import instagram from 'lib/logos/logo_instagram.svg';
-import logo from 'lib/logos/logo_its_kyojeong.svg';
 import twitter from 'lib/logos/logo_twitter.svg';
 import styled from 'theme';
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
-  padding: 9rem ${({ theme }) => theme.space.s}rem;
+  padding: ${({ theme }) => `${theme.mobile ? 3 : 9}rem ${theme.space.s}rem`};
   display: flex;
   justify-content: space-between;
 `;
@@ -38,15 +37,6 @@ export const RowTextWrapper = styled.div`
   &:first-of-type {
     margin-top: 0;
   }
-`;
-
-export const Logo = styled.img.attrs({
-  src: logo,
-  alt: '잇츠 교정 logo',
-})`
-  width: 12.8rem;
-  height: 5.2rem;
-  object-fit: cover;
 `;
 
 export const Copyright = styled.div`

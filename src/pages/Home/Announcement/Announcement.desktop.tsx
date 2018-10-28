@@ -1,18 +1,8 @@
-import { Section, TitleWithBar } from 'components/common';
 import React from 'react';
 
-import * as s from './Announcement.styled';
-
-interface Item {
-  src: string;
-  title: string;
-  content: string;
-  url: string;
-}
-
-interface Props {
-  list: Item[];
-}
+import { Section, TitleWithBar } from 'components/common';
+import * as s from './Announcement.desktop.styled';
+import { Props } from './index';
 
 const Announcement: React.SFC<Props> = ({ list }) => (
   <Section title="왜 '잇츠 교정'인가?">

@@ -1,11 +1,13 @@
 import React from 'react';
+
+import { Logo } from 'components/common';
 import * as s from './Footer.styled';
 
 const Footer: React.SFC<{}> = () => (
   <s.Container>
     <s.Left>
       <s.RowDir>
-        <s.Logo />
+        <Logo />
         <s.Copyright>
           <s.InfoText>© 2018 잇츠교정</s.InfoText>
         </s.Copyright>
