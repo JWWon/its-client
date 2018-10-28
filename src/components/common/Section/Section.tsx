@@ -18,12 +18,15 @@ const Section: React.SFC<Props> = ({
   <s.Section>
     <s.Container>
       {title && (
-        <s.Header>
-          <s.HalfRound />
-          <s.Title>{title}</s.Title>
-          {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
-          {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
-        </s.Header>
+        <>
+          <s.Bar />
+          <s.Header>
+            <s.HalfRound />
+            <s.Title>{title}</s.Title>
+            {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
+            {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
+          </s.Header>
+        </>
       )}
       {children}
     </s.Container>

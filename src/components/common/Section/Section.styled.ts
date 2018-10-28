@@ -18,10 +18,10 @@ export const Container = styled.div`
 
 const roundHeight = 8;
 export const Header = styled.div`
-  height: ${roundHeight}rem;
   display: flex;
   align-items: center;
-  margin-bottom: 9.8rem;
+  ${({ theme }) => !theme.mobile && `height: ${roundHeight}rem`};
+  margin-bottom: ${({ theme }) => (theme.mobile ? 2.8 : 9.6)}rem;
 `;
 
 export const HalfRound = styled.div`
@@ -38,14 +38,25 @@ export const HalfRound = styled.div`
   }
 `;
 
+const barHeight: number = 0.3;
+export const Bar = styled.div`
+  ${({ theme }) => !theme.mobile && 'display: none'};
+  width: 3.6rem;
+  height: ${barHeight}rem;
+  border-radius: ${barHeight / 2}rem;
+  background-color: ${({ theme }) => theme.color.blueDark};
+  margin-bottom: ${({ theme }) => theme.space.s}rem;
+`;
+
 export const Title = styled.h1`
   color: ${({ theme }) => theme.color.blueDark};
+  font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.s}rem;
-  font-weight: ${({ theme }) => theme.font.weight.regular};
-  margin-left: 3rem;
+  font-weight: ${({ theme }) => theme.font.weight.demiLight};
+  margin-left: ${({ theme }) => (theme.mobile ? 1 : 3)}rem;
 `;

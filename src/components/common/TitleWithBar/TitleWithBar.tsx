@@ -4,18 +4,19 @@ import * as s from './TitleWithBar.styled';
 interface Props {
   title: string;
   margin?: string | null;
-  barPosition?: 'top' | 'bottom';
+  vertical?: boolean;
 }
 
-const TitleWithBar: React.SFC<Props> = ({ title, margin, barPosition }) => (
-  <s.Wrapper margin={margin} barPosition={barPosition}>
-    <s.HrBar barPosition={barPosition} />
-    <s.Title barPosition={barPosition}>{title}</s.Title>
+const TitleWithBar: React.SFC<Props> = ({ title, margin, vertical }) => (
+  <s.Wrapper margin={margin} vertical={vertical}>
+    <s.HrBar vertical={vertical} />
+    <s.Title vertical={vertical}>{title}</s.Title>
   </s.Wrapper>
 );
 
 TitleWithBar.defaultProps = {
   margin: null,
+  vertical: false,
 };
 
 export default TitleWithBar;
