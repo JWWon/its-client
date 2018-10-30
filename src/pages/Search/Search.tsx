@@ -108,7 +108,11 @@ class Search extends PureComponent<Props, State> {
         {search && (
           <Section
             title={`'${search.param}' 검색 결과`}
-            banner={<Banners list={search.banners} />}>
+            banner={
+              search.banners.length > 0 ? (
+                <Banners list={search.banners} />
+              ) : null
+            }>
             <s.Notice>
               {search.list.length > 0
                 ? `* 자격증은 왼쪽부터 1.치과교정과전문의, 2대한치과교정학과,

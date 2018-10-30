@@ -36,14 +36,15 @@ const Section: React.SFC<Props> = ({
   <s.Section>
     <s.Container>
       <Header title={title} subtitle={subtitle} handleDismiss={handleDismiss} />
-      {!banner && children}
+      {banner && (
+        <s.BannerArea>
+          <s.BannerWrapper>
+            <s.Container>{banner}</s.Container>
+          </s.BannerWrapper>
+        </s.BannerArea>
+      )}
+      {children}
     </s.Container>
-    {banner && (
-      <>
-        {banner}
-        <s.Container>{children}</s.Container>
-      </>
-    )}
   </s.Section>
 );
 

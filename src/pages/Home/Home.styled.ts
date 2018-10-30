@@ -2,6 +2,7 @@ import _Slider from 'react-slick';
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
+import { windowHalfSpace } from 'lib/functions/space';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 
 /* Slider Style */
@@ -30,17 +31,13 @@ export const Slider = styled(_Slider).attrs({
   }
 `;
 
-const dotsWidth = (theme: any) =>
-  `calc((100% - ${theme.size.container + 2 * theme.space.s}rem) / 2 - ${
-    theme.space.s
-  }rem)`;
 const arrowSize: number = mobile ? 1 : 2.2;
 
 export const DotsWrapper = styled.div`
   position: relative;
   top: 0;
   bottom: 0;
-  flex-basis: ${({ theme }) => (mobile ? '4.8rem' : dotsWidth(theme))};
+  flex-basis: ${({ theme }) => (mobile ? '4.8rem' : windowHalfSpace(theme))};
   display: flex;
   justify-content: ${mobile ? 'center' : 'flex-end'};
   align-items: center;

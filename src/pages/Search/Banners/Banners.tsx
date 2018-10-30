@@ -24,18 +24,15 @@ const Banner: React.SFC<ClinicInterface> = props => (
   </ShadowBox>
 );
 
-const Banners: React.SFC<Props> = ({ list }) =>
-  list.length > 0 ? (
-    <s.Background>
-      <s.Container>
-        <s.BannerSection>
-          {list.map(data => (
-            <Banner {...data} key={data.id} />
-          ))}
-        </s.BannerSection>
-        <s.Notice>* 배너에 표시되는 병원은 랜덤입니다</s.Notice>
-      </s.Container>
-    </s.Background>
-  ) : null;
+const Banners: React.SFC<Props> = ({ list }) => (
+  <s.Container>
+    <s.BannerSection>
+      {list.map(data => (
+        <Banner {...data} key={data.id} />
+      ))}
+    </s.BannerSection>
+    <s.Notice>* 배너에 표시되는 병원은 랜덤입니다</s.Notice>
+  </s.Container>
+);
 
 export default Banners;

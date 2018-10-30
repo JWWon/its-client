@@ -1,4 +1,5 @@
 import styled from 'theme';
+import mobile from 'theme/mobile';
 
 export const Container = styled.div`
   width: 100%;
@@ -7,11 +8,11 @@ export const Container = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  flex-basis: 6rem;
+  flex-basis: ${mobile ? 3.6 : 6}rem;
   display: flex;
   align-items: center;
   border-bottom: 2px solid ${({ theme }) => theme.color.blueDark};
-  margin-bottom: 4.8rem;
+  margin-bottom: ${mobile ? 2.4 : 4.8}rem;
 `;
 
 export const Title = styled.h2`
@@ -29,7 +30,7 @@ interface TextInterface {
   count: number;
 }
 
-const dataHeight = 3.6;
+const dataHeight = mobile ? 2 : 3.6;
 
 export const ListWrapper = styled.div`
   display: flex;
@@ -47,19 +48,20 @@ export const Data = styled<DataInterface, any>('div')`
   justify-content: center;
   align-items: center;
   ${({ selected, theme }) =>
-    selected
-      ? `background-color: ${theme.color.blueDark};
-        p {
-          color: ${theme.color.white};
-        }`
-      : `&:hover {
-          background-color: ${theme.color.grayLight};
-          p {
-            color: ${theme.color.gray};
-          }
-        }`};
+    selected &&
+    `background-color: ${theme.color.blueDark};
+    p {
+      color: ${theme.color.white};
+    }`};
   &:hover {
     cursor: pointer;
+    ${({ selected, theme }) =>
+      !mobile &&
+      !selected &&
+      `background-color: ${theme.color.grayLight};
+      p {
+        color: ${theme.color.gray};
+      }`};
   }
 `;
 

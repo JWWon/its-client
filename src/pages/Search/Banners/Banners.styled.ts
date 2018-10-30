@@ -1,16 +1,12 @@
 import landmark from 'lib/icons/ic_landmark.svg';
 import styled from 'theme';
 
-export const Background = styled.div`
-  width: 100%;
-  background: ${({ theme }) => theme.color.whiteDark};
-  display: flex;
-  justify-content: center;
-`;
-
 export const Container = styled.div`
-  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
-  padding: 4.8rem ${({ theme }) => theme.space.s}rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const BannerSection = styled.div`
@@ -31,7 +27,7 @@ export const Footer = styled.div`
 `;
 
 export const Notice = styled.p`
-  margin: 1.6rem 0;
+  margin: 1.6rem 0 0;
   text-align: right;
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.light};

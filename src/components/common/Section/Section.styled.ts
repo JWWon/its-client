@@ -4,8 +4,7 @@ const space = (mobile: string | null) => (mobile ? 3 : 10);
 export const Section = styled.section`
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   margin-top: ${({ theme }) => space(theme.mobile)}rem;
   &:last-of-type {
     margin-bottom: ${({ theme }) => space(theme.mobile)}rem;
@@ -13,7 +12,7 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
-  max-width: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
 `;
 
@@ -37,6 +36,21 @@ export const HalfRound = styled.div`
   @media screen and (max-width: 1480px) {
     display: none;
   }
+`;
+
+const bannerHeight: number = 28;
+export const BannerArea = styled.div`
+  height: ${bannerHeight}rem;
+`;
+
+export const BannerWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: ${bannerHeight}rem;
+  background: ${({ theme }) => theme.color.whiteDark};
+  display: flex;
+  justify-content: center;
 `;
 
 const barHeight: number = 0.3;
