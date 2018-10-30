@@ -26,17 +26,17 @@ export const HrContent = styled.div`
 `;
 
 export const SertifWrapper = styled.div`
-  width: 14rem;
+  width: ${({ theme }) => (theme.mobile ? 3.5 : 14)}rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  ${({ theme }) => theme.mobile && 'justify-content: center'};
 `;
 
 // *** IMG
 export const Icon = styled.img.attrs({ src: landmark })`
   margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
-  height: 1.6rem;
+  height: ${({ theme }) => (theme.mobile ? 0.8 : 1.6)}rem;
 `;
 
 export interface SertifInterface {
@@ -48,7 +48,7 @@ export const SertifIcon = styled.img.attrs<SertifInterface, any>({
   src: ({ type, active }: SertifInterface) =>
     require(`lib/icons/ic_${type}${active ? '_active' : ''}.svg`),
 })`
-  height: 6.4rem;
+  height: ${({ theme }) => (theme.mobile ? 2.5 : 6.4)}rem;
 `;
 
 // *** TEXT
@@ -57,6 +57,8 @@ interface SertifTextInterface {
 }
 
 export const SertifText = styled<SertifTextInterface, any>('p')`
+  ${({ theme }) => theme.mobile && 'display: none'};
+  margin-top: auto;
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ active, theme }) =>

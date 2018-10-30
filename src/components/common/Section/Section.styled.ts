@@ -1,13 +1,14 @@
 import styled from 'theme';
+import mobile from 'theme/mobile';
 
-const space = (mobile: string | null) => (mobile ? 3 : 10);
+const space: number = mobile ? 3 : 10;
 export const Section = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: ${({ theme }) => space(theme.mobile)}rem;
+  margin-top: ${space}rem;
   &:last-of-type {
-    margin-bottom: ${({ theme }) => space(theme.mobile)}rem;
+    margin-bottom: ${space}rem;
   }
 `;
 
@@ -38,7 +39,7 @@ export const HalfRound = styled.div`
   }
 `;
 
-const bannerHeight: number = 28;
+const bannerHeight: number = mobile ? 16 : 28;
 export const BannerArea = styled.div`
   height: ${bannerHeight}rem;
 `;
