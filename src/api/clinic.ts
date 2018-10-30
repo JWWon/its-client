@@ -71,3 +71,14 @@ export const getClinicLength = async () => {
     throw e;
   }
 };
+
+// tslint:disable-next-line
+export const getBanners = async (_params: Address) => {
+  try {
+    const params = { ..._params, banner: true };
+    const response = await axios.get('/clinics', { params });
+    return response.data;
+  } catch (e) {
+    throw e;
+  }
+};

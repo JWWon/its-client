@@ -19,7 +19,7 @@ export const HrBar = styled<Props, any>('div')`
   background-color: ${({ theme }) => theme.color.blueDark};
 `;
 
-export const Title = styled<Props, any>('h3')`
+export const Title = styled.h3`
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size[theme.mobile ? 'xxl' : 'l']}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};

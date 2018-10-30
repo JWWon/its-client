@@ -8,6 +8,7 @@ interface Props {
 
 export const Container = styled<Props, any>('div')`
   flex: 1;
+  background: ${({ theme }) => theme.color.white};
   padding: ${({ theme }) => theme.space[theme.mobile ? 's' : 'm']}rem;
   box-sizing: border-box;
   box-shadow: ${({ theme, dimmer }) =>

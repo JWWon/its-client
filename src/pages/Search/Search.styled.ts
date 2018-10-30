@@ -11,12 +11,12 @@ export const BoxWrapper = styled.div`
   margin: -${space} 0;
 `;
 
-export const ShadowBox = styled(_ShadowBox).attrs({
-  single: mobile !== null,
-  style: {
-    margin: '1.4rem 0',
-  },
-})``;
+function setAttrs() {
+  if (!mobile) return {};
+  return { single: true, style: { margin: '1.4rem 0' } };
+}
+const attrs: object = setAttrs();
+export const ShadowBox = styled(_ShadowBox).attrs(attrs)``;
 
 export const Notice = styled.p`
   margin: 1.6rem 0;

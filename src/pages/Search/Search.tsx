@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import {
   ClinicInterface,
+  getBanners,
   getCityList,
   searchByAddress,
   searchByKeyword,
@@ -11,6 +12,7 @@ import {
 import { Section } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
 import { getSearchFromURL } from 'src/lib/functions/url';
+import Banners from './Banners';
 import CheckDistrict from './CheckDistrict';
 import Result from './Result';
 import * as s from './Search.styled';
@@ -31,6 +33,7 @@ interface State {
   search: {
     type: 'keyword' | 'address';
     param: string;
+    banners: ClinicInterface[];
     list: ClinicInterface[];
   } | null;
   provinces: District;
@@ -103,7 +106,9 @@ class Search extends PureComponent<Props, State> {
           </Section>
         )}
         {search && (
-          <Section title={`'${search.param}' 검색 결과`}>
+          <Section
+            title={`'${search.param}' 검색 결과`}
+            banner={<Banners list={search.banners} />}>
             <s.Notice>
               {search.list.length > 0
                 ? `* 자격증은 왼쪽부터 1.치과교정과전문의, 2대한치과교정학과,
@@ -136,21 +141,22 @@ class Search extends PureComponent<Props, State> {
     const { type } = query;
     let list;
     let param;
+    let banners;
     switch (type) {
       case 'keyword':
         const keyword = query.q;
         list = await searchByKeyword({ keyword });
+        banners = [];
         param = keyword;
         break;
       case 'address':
         const { province, city } = query;
         list = await searchByAddress({ province, city });
+        banners = await getBanners({ province, city });
         param = `${province} ${city}`;
         break;
     }
-    await this.setState({
-      search: { type, param, list },
-    });
+    await this.setState({ search: { type, banners, param, list } });
   };
 
   // *** HANDLE EVENT
