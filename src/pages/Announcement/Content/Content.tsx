@@ -21,13 +21,13 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
   const selected = content.id === pointer;
   return (
     <s.Content>
-      <s.TitleWrapper>
+      <s.TitleWrapper
+        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+          handleClick(e, content.id)
+        }>
         <TitleWithBar title={content.title} margin="0" />
         <s.Date>{content.createdAt.format('YYYY.MM.DD')}</s.Date>
-        <s.Toggle
-          onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-            handleClick(e, content.id)
-          }>
+        <s.Toggle>
           <s.Arrow selected={selected} />
         </s.Toggle>
       </s.TitleWrapper>

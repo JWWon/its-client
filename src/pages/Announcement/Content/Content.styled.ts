@@ -1,6 +1,8 @@
+import styled from 'theme';
+import mobile from 'theme/mobile';
+
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
-import styled from 'theme';
 
 interface ContentProps {
   selected: boolean;
@@ -15,7 +17,7 @@ export const Content = styled.div`
 
 export const TitleWrapper = styled.div`
   display: flex;
-  height: 8rem;
+  height: ${mobile ? 4 : 8}rem;
   align-items: center;
 `;
 
@@ -27,9 +29,10 @@ export const Date = styled.p`
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;
 
+const toggleSize: number = mobile ? 1.2 : 3;
 export const Toggle = styled.div`
-  width: 3rem;
-  height: 3rem;
+  width: ${toggleSize}rem;
+  height: ${toggleSize}rem;
   &:hover {
     cursor: pointer;
   }
@@ -50,7 +53,7 @@ export const ContentWrapper = styled<ContentProps, any>('div')`
   ${({ selected, theme }) =>
     selected
       ? `
-        padding: ${theme.space.s}rem;`
+        padding: ${mobile ? 1 : theme.space.s}rem;`
       : `
         height: 0;
       `};

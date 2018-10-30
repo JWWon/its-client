@@ -12,13 +12,12 @@ interface ContentObj {
   [id: string]: AnnouncementInterface;
 }
 
-interface Props extends RouteComponentProps<any> {}
 interface State {
   pointer: string | null;
   contentObj: ContentObj;
 }
 
-class Announcement extends Component<Props, State> {
+class Announcement extends Component<RouteComponentProps, State> {
   public state: State = { pointer: null, contentObj: {} };
   private unlisten: (location?: Location) => void;
 
@@ -36,7 +35,7 @@ class Announcement extends Component<Props, State> {
   public render() {
     const { contentObj, pointer } = this.state;
     return (
-      <Section title="왜 잇츠 교정인가?">
+      <Section title="왜 잇츠 교정인가?" handleDismiss={this.handleDismiss}>
         <s.ShadowBox single>
           {Object.keys(contentObj).map(title => {
             const content = contentObj[title];
@@ -80,6 +79,11 @@ class Announcement extends Component<Props, State> {
       })
     );
     this.props.history.replace(`/announcement#${id}`);
+  };
+
+  private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    this.props.history.push('/');
   };
 }
 
