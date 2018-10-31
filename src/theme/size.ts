@@ -8,7 +8,7 @@ export interface SizeInterface {
 
 const size: SizeInterface = {
   container: 120,
-  shadowBox: mobile ? 6.4 : 12,
+  shadowBox: mobile ? 5.6 : 12,
   navbar: mobile ? 5.6 : 8,
 };
 

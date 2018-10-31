@@ -21,8 +21,15 @@ export const LeftContent = styled.div`
 `;
 
 export const HrContent = styled.div`
-  display: flex;
-  align-items: center;
+  ${({ theme }) =>
+    theme.mobile
+      ? `&:first-of-type {
+          display: flex;
+          align-items: center;
+        }`
+      : `display: flex;
+        align-items: center;
+  `};
 `;
 
 export const SertifWrapper = styled.div`
@@ -72,12 +79,13 @@ export const Phone = styled.p`
 `;
 
 export const Address = styled(Phone)`
-  margin-left: ${({ theme }) => theme.space.m}rem;
+  ${({ theme }) =>
+    theme.mobile ? 'margin-top: 0.4rem' : `margin-left: ${theme.space.m}rem`};
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.regular};
 `;
 
 export const Landmark = styled(Address)`
-  margin-left: 0;
+  margin: 0;
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;
