@@ -11,7 +11,8 @@ const MAP_ID = 'map';
 const { maps } = window.naver;
 const Map = styled.div.attrs({ id: MAP_ID })`
   width: 100%;
-  height: 100%;
+  height: ${({ theme }) => (theme.mobile ? '16rem' : '100%')};
+  margin-top: 1.6rem;
 `;
 
 interface State {
