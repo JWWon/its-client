@@ -67,14 +67,21 @@ class Input extends Component<Props, State> {
   };
 
   private handleEmailChange = async (e: React.FormEvent<HTMLInputElement>) => {
-    let { name, value } = e.currentTarget;
+    e.persist();
+    const { name, value } = e.currentTarget;
     await this.setState(prevState => ({ ...prevState, [name]: value }));
 
     const { email_head, email_tail } = this.state;
-    name = 'email';
-    value = `${email_head}@${email_tail}`;
+    const event: React.FormEvent<HTMLInputElement> = {
+      ...e,
+      currentTarget: {
+        ...e.currentTarget,
+        name: 'email',
+        value: `${email_head}@${email_tail}`,
+      },
+    };
 
-    this.props.handleChange(e);
+    this.props.handleChange(event);
   };
 }
 

@@ -11,6 +11,7 @@ interface Props extends RouteComponentProps<any> {}
 interface State {
   name: string;
   phone: string;
+  address: string;
   manager: string;
   email: string;
 }
@@ -19,6 +20,7 @@ class Apply extends Component<Props, State> {
   public state: State = {
     name: '',
     phone: '',
+    address: '',
     manager: '',
     email: '',
   };

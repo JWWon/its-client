@@ -21,7 +21,9 @@ export const Short = styled.div`
   align-items: center;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input.attrs({
+  type: 'text',
+})`
   flex: 1;
   height: 100%;
   padding: 0 2rem;
