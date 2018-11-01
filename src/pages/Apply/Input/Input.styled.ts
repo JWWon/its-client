@@ -10,16 +10,16 @@ export const Content = styled.div`
 export const InputWrapper = styled.div`
   width: 100%;
   margin-top: 2rem;
-  padding-left: 8rem;
+  padding-left: ${({ theme }) => (theme.mobile ? 2.6 : 8)}rem;
   box-sizing: border-box;
   display: flex;
 `;
 
 export const Short = styled.div`
-  flex-basis: 65rem;
-  height: 4.8rem;
   display: flex;
   align-items: center;
+  ${({ theme }) => (theme.mobile ? 'flex: 1' : 'flex-basis: 65rem')};
+  height: ${({ theme }) => (theme.mobile ? 3.2 : 4.8)}rem;
 `;
 
 export const Input = styled.input`
