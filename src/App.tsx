@@ -6,6 +6,13 @@ import { Footer, Navbar, Template } from 'components/base';
 import { About, Announcement, Apply, Clinic, Home, Search } from 'pages';
 import { theme, ThemeProvider } from 'theme';
 
+declare global {
+  interface Window {
+    naver: { maps: any };
+    daum: any;
+  }
+}
+
 const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>

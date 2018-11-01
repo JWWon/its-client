@@ -1,17 +1,17 @@
 import { TitleWithBar } from 'components/common';
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import * as s from './Input.styled';
+
+interface Meta {
+  placeholder: string;
+  name: string;
+  type: 'text' | 'tel' | 'number' | 'email';
+}
 
 interface Props {
   title: string;
-  children?: ReactNode;
-  meta?: {
-    placeholder: string;
-    name: string;
-    type: 'text' | 'tel' | 'number' | 'email';
-  };
-  handleChange?: (e: React.FormEvent<HTMLInputElement>) => void;
-  handleEmailChange?: (email: string) => void;
+  meta: Meta;
+  handleChange: (e: React.FormEvent<HTMLInputElement> | string) => void;
 }
 
 interface State {
@@ -23,54 +23,58 @@ class Input extends Component<Props, State> {
   public state: State = { email_head: '', email_tail: '' };
 
   public render() {
-    const { title, children, meta, handleChange } = this.props;
+    const { title, meta } = this.props;
     return (
       <s.Content>
         <TitleWithBar title={title} margin="0" />
         <s.InputWrapper>
-          {meta ? (
-            <s.Short>
-              {meta.type !== 'email' ? (
-                <s.Input
-                  placeholder={meta.placeholder}
-                  name={meta.name}
-                  type={meta.type}
-                  onChange={handleChange}
-                />
-              ) : (
-                <>
-                  <s.Input
-                    placeholder="example"
-                    name="email_head"
-                    type="text"
-                    onChange={this.handleEmailChange}
-                  />
-                  <s.At>@</s.At>
-                  <s.Input
-                    placeholder="company.com"
-                    name="email_tail"
-                    type="text"
-                    onChange={this.handleEmailChange}
-                  />
-                </>
-              )}
-            </s.Short>
-          ) : (
-            children
-          )}
+          <s.Short>{this.InputBox(meta)}</s.Short>
         </s.InputWrapper>
       </s.Content>
     );
   }
 
+  private InputBox = (meta: Meta) => {
+    switch (meta.type) {
+      case 'email':
+        return (
+          <>
+            <s.Input
+              placeholder="example"
+              name="email_head"
+              type="text"
+              onChange={this.handleEmailChange}
+            />
+            <s.At>@</s.At>
+            <s.Input
+              placeholder="company.com"
+              name="email_tail"
+              type="text"
+              onChange={this.handleEmailChange}
+            />
+          </>
+        );
+      default:
+        return (
+          <s.Input
+            placeholder={meta.placeholder}
+            name={meta.name}
+            type={meta.type}
+            onChange={this.props.handleChange}
+          />
+        );
+    }
+  };
+
   private handleEmailChange = async (e: React.FormEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
+    let { name, value } = e.currentTarget;
     await this.setState(prevState => ({ ...prevState, [name]: value }));
 
-    const { handleEmailChange } = this.props;
     const { email_head, email_tail } = this.state;
+    name = 'email';
+    value = `${email_head}@${email_tail}`;
 
-    if (handleEmailChange) handleEmailChange(`${email_head}@${email_tail}`);
+    this.props.handleChange(e);
   };
 }
 

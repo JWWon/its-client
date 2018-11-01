@@ -2,6 +2,7 @@ import { Section } from 'components/common';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import Address from './Address';
 import * as s from './Apply.styled';
 import Input from './Input';
 
@@ -34,9 +35,10 @@ class Apply extends Component<Props, State> {
             />
             <Input
               title="병원 연락처"
-              meta={{ placeholder: '02-352-5823', type: 'tel', name: 'phone' }}
+              meta={{ placeholder: '02-123-4567', type: 'tel', name: 'phone' }}
               handleChange={this.handleChange}
             />
+            <Address handleChange={this.handleChange} />
           </s.ShadowBox>
           <s.ShadowBox>
             <Input
@@ -60,15 +62,11 @@ class Apply extends Component<Props, State> {
                 type: 'email',
                 name: 'email',
               }}
-              handleEmailChange={this.handleEmailChange}
+              handleChange={this.handleChange}
             />
           </s.ShadowBox>
           <s.ShadowBox>
-            <Input title="자격증 첨부">
-              <div>
-                <p>HELLO</p>
-              </div>
-            </Input>
+            <div>자격증 첨부 영역</div>
           </s.ShadowBox>
           <s.ButtonWrapper>
             <s.Submit>신청하기</s.Submit>
@@ -83,11 +81,7 @@ class Apply extends Component<Props, State> {
     this.setState(prevState => ({ ...prevState, [name]: value }));
   };
 
-  private handleEmailChange = (email: string) => {
-    this.setState({ email });
-  };
-
-  private handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  private handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(this.state);
   };

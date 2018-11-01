@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'theme';
 
-declare global {
-  interface Window {
-    naver: { maps: any };
-  }
+interface State {
+  map: any;
 }
 
 const MAP_ID = 'map';
@@ -14,10 +12,6 @@ const Map = styled.div.attrs({ id: MAP_ID })`
   height: ${({ theme }) => (theme.mobile ? '16rem' : '100%')};
   margin-top: 1.6rem;
 `;
-
-interface State {
-  map: any;
-}
 
 class NaverMap extends Component<{}, State> {
   public state: State = { map: null };
