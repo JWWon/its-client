@@ -2,6 +2,10 @@ import { ShadowBox as _ShadowBox } from 'components/common';
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
+export const Form = styled.form`
+  flex: 1;
+`;
+
 export const ShadowBox = styled(_ShadowBox).attrs({
   single: true,
   style: { marginBottom: `${mobile ? 3 : 6}rem` },

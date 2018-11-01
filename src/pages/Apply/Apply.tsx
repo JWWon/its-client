@@ -28,7 +28,7 @@ class Apply extends Component<Props, State> {
   public render() {
     return (
       <Section title="병원 입점 신청하기" handleDismiss={this.handleDismiss}>
-        <form onSubmit={this.handleSubmit}>
+        <s.Form onSubmit={this.handleSubmit}>
           <s.ShadowBox>
             <Input
               title="병원명"
@@ -73,7 +73,7 @@ class Apply extends Component<Props, State> {
           <s.ButtonWrapper>
             <s.Submit>신청하기</s.Submit>
           </s.ButtonWrapper>
-        </form>
+        </s.Form>
       </Section>
     );
   }

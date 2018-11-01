@@ -5,12 +5,11 @@ export const Content = styled.div`
   margin-top: 3.2rem;
 `;
 
+const barSpace: number = mobile ? 2.6 : 8;
 export const InputWrapper = styled.div`
-  width: 100%;
-  height: ${({ theme }) => (theme.mobile ? 3.2 : 4.8)}rem;
   margin-top: 2rem;
-  padding-left: ${({ theme }) => (theme.mobile ? 2.6 : 8)}rem;
-  box-sizing: border-box;
+  height: ${mobile ? 3.2 : 4.8}rem;
+  padding-left: ${barSpace}rem;
   display: flex;
 `;
 

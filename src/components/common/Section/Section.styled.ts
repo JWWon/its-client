@@ -13,7 +13,10 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
-  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  ${({ theme }) =>
+    mobile
+      ? `flex: 1`
+      : `flex-basis: ${theme.size.container + 2 * theme.space.s}rem`};
   padding: 0 ${({ theme }) => theme.space.s}rem;
 `;
 

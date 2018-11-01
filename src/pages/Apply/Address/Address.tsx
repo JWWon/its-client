@@ -29,7 +29,7 @@ class Address extends Component<Props, State> {
   public render() {
     return (
       <s.Content>
-        <TitleWithBar title="병원 주소" />
+        <TitleWithBar title="병원 주소" margin="0" />
         <s.InputWrapper>
           <s.Short>
             <s.Input
