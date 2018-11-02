@@ -1,21 +1,24 @@
+import { ShadowBox as _ShadowBox } from 'components/common';
 import styled from 'theme';
+import mobile from 'theme/mobile';
 
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
+export const ShadowBox = styled(_ShadowBox).attrs({
+  space: '5%',
+  style: {
+    width: '30%',
+    height: mobile ? 'auto' : '21rem',
+    textAlign: 'center',
+  },
+})``;
 
 export const Icon = styled.img.attrs({
   alt: 'pictogram of about service',
 })`
   width: 100%;
-  height: 9rem;
+  height: ${mobile ? 3 : 9}rem;
   object-fit: contain;
   object-position: center;
+  margin-bottom: ${mobile ? 0.6 : 2.8}rem;
 `;
 
 export const Title = styled.p`

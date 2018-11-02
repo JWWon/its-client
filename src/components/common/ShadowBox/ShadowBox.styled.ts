@@ -1,24 +1,28 @@
 import styled from 'theme';
 
 interface Props {
-  size: {
-    width: number;
-    height: number;
-  } | null;
   dimmer: boolean;
+  single: boolean;
+  space: string | null;
 }
 
 export const Container = styled<Props, any>('div')`
-  ${({ size }) =>
-    size
-      ? `width: ${size.width}rem; height: ${size.height}rem;`
-      : `flex: 1; min-height: 16.6rem;`}
-  margin-left: ${({ dimmer }) => (dimmer ? 3.5 : 10)}rem;
-  padding: ${({ theme }) => theme.space.desktop.m}rem;
-  box-shadow: ${({ dimmer }) =>
-    dimmer ? '-0.2rem 0.4rem 1.5rem ' : '-0.4rem 0.8rem 2rem '}
+  flex: 1;
+  background: ${({ theme }) => theme.color.white};
+  padding: ${({ theme }) => theme.space[theme.mobile ? 's' : 'm']}rem;
+  box-sizing: border-box;
+  box-shadow: ${({ theme, dimmer }) =>
+      theme.mobile
+        ? '-0.1rem 0.2rem 0.5rem '
+        : dimmer
+          ? '-0.2rem 0.4rem 1.5rem '
+          : '-0.4rem 0.8rem 2rem '}
     rgba(0, 0, 0, 0.16);
-  &:first-of-type {
-    margin-left: 0;
-  }
+  ${({ single, space, dimmer }) =>
+    !single &&
+    `margin-left: ${space || (dimmer ? '3.5rem' : '10rem')};
+    &:first-of-type {
+      margin-left: 0;
+    }
+  `};
 `;

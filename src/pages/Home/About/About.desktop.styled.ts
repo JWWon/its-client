@@ -1,15 +1,18 @@
 import { Link as _Link } from 'react-router-dom';
 import styled from 'theme';
 
-import arrowBlue from 'assets/icons/ic_arrow_blue.svg';
+import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 
-export const PictogramWrapper = styled.div`
+export const Container = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 `;
 
-export const Container = styled(PictogramWrapper)`
-  justify-content: space-between;
+export const PictogramWrapper = styled(Container)`
+  margin-left: ${({ theme }) => theme.space.m}rem;
+  flex-shrink: 1;
+  flex-basis: 60rem;
+  align-items: center;
 `;
 
 export const SubTitle = styled.h3`

@@ -1,6 +1,8 @@
 import * as styledComponents from 'styled-components';
+
 import color, { ColorInterface } from './color';
 import font, { FontInterface } from './font';
+import mobile from './mobile';
 import size, { SizeInterface } from './size';
 import space, { SpaceInterface } from './space';
 
@@ -9,6 +11,7 @@ export interface ThemeInterface {
   font: FontInterface;
   size: SizeInterface;
   space: SpaceInterface;
+  mobile: string | null;
 }
 
 const {
@@ -21,7 +24,7 @@ const {
   ThemeInterface
 >;
 
-export const theme = { color, font, size, space };
+export const theme = { color, font, mobile, size, space };
 
 export default styled;
 export { css, injectGlobal, keyframes, ThemeProvider };

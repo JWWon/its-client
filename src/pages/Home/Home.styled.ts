@@ -1,13 +1,13 @@
 import _Slider from 'react-slick';
 import styled from 'theme';
+import mobile from 'theme/mobile';
 
-import arrowGray from 'assets/icons/ic_arrow_gray.svg';
+import { windowHalfSpace } from 'lib/functions/space';
+import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 
 /* Slider Style */
-const getLeft = (containerWidth: number) =>
-  `calc((100% - ${containerWidth}rem) / 2)`;
+export const slideHeight: number = mobile ? 32 : 58;
 
-export const slideHeight: number = 58;
 export const Slider = styled(_Slider).attrs({
   dots: true,
   fade: true,
@@ -20,10 +20,10 @@ export const Slider = styled(_Slider).attrs({
   autoplaySpeed: 2000,
 })`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: ${mobile ? 'column' : 'row-reverse'};
   .slick-list {
-    flex-basis: ${({ theme }) =>
-      `calc(100% - ${getLeft(theme.size.desktop.container)})`};
+    flex: 1;
+    margin-left: ${({ theme }) => theme.space.s}rem;
     box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
     height: ${slideHeight}vh !important;
     border-top-left-radius: ${slideHeight / 2}vh;
@@ -31,33 +31,33 @@ export const Slider = styled(_Slider).attrs({
   }
 `;
 
+const arrowSize: number = mobile ? 1 : 2.2;
+
 export const DotsWrapper = styled.div`
   position: relative;
   top: 0;
   bottom: 0;
+  flex-basis: ${({ theme }) => (mobile ? '4.8rem' : windowHalfSpace(theme))};
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${mobile ? 'center' : 'flex-end'};
   align-items: center;
-  flex-basis: ${({ theme }) => getLeft(theme.size.desktop.container)};
+  box-sizing: border-box;
+  padding-left: ${({ theme }) => theme.space.s}rem;
+  padding-right: 6.4rem;
+  @media screen and (max-width: 1400px) {
+    padding-right: ${({ theme }) => theme.space.s}rem;
+  }
+
   div {
     display: flex;
-    flex-direction: column;
+    ${!mobile && `flex-direction: column; width: ${arrowSize}rem`};
     align-items: center;
-    width: 1.6rem;
-    padding-left: ${({ theme }) => theme.space.desktop.s}rem;
-    padding-right: 8rem;
-  }
-  @media screen and (max-width: 1480px) {
-    div {
-      padding-right: 4rem;
-    }
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    margin: 1.2rem 0;
-    li {
-      margin: 1.2rem 0;
+    ul {
+      margin: ${mobile ? '0 0.4rem' : '1.2rem 0'};
+      padding: 0;
+      li {
+        margin: ${mobile ? '0 0.4rem' : '1.2rem 0'};
+      }
     }
   }
 `;
@@ -69,7 +69,13 @@ export const HideArrow = styled.div`
 export const ArrayGray = styled.img.attrs({
   src: arrowGray,
 })`
-  width: 100%;
-  height: 2.2rem;
+  width: ${arrowSize}rem;
+  height: ${arrowSize}rem;
   object-fit: contain;
+  &:first-of-type {
+    transform: rotate(${mobile ? 180 : -90}deg);
+  }
+  &:last-of-type {
+    transform: rotate(${mobile ? 0 : 90}deg);
+  }
 `;

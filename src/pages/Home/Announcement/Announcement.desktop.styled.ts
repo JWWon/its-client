@@ -11,34 +11,21 @@ export const Container = styled.div`
 export const Item = styled(Link)`
   flex-basis: 36rem;
   margin: 0 ${space}rem;
+  &:hover {
+    img {
+      margin-top: -0.8rem;
+      margin-bottom: 0.8rem;
+      box-shadow: -2rem 1.9rem 5.2rem rgba(0, 0, 0, 0.32);
+    }
+  }
 `;
 
 export const Image = styled.img`
   width: 100%;
   height: 36rem;
   box-shadow: -2rem 1.9rem 3.8rem rgba(0, 0, 0, 0.16);
+  transition: all 0.2s ease-out;
   object-fit: cover;
-`;
-
-export const TitleWrapper = styled.div`
-  margin: 5.2rem 0 8rem;
-  display: flex;
-  align-items: center;
-`;
-
-const height = 0.8;
-export const HrBar = styled.div`
-  width: 6rem;
-  height: ${height}rem;
-  border-radius: ${height / 2}rem;
-  background-color: ${({ theme }) => theme.color.blueDark};
-  margin-right: 2rem;
-`;
-
-export const Title = styled.h3`
-  color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.l}rem;
-  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 export const Content = styled.p`

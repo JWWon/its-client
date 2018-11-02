@@ -3,34 +3,33 @@ import { Link } from 'react-router-dom';
 import styled from 'theme';
 
 export const Background = styled.div`
-  margin-top: 16rem;
+  margin-top: ${({ theme }) => (theme.mobile ? 4.8 : 16)}rem;
   position: relative;
-  height: 24rem;
-  background-color: ${({ theme }) => theme.color.grayLight};
+  height: ${({ theme }) => (theme.mobile ? 8 : 24)}rem;
+  background-color: ${({ theme }) => theme.color.whiteDark};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const countUpHeight: number = 4.4;
-const barHeight = 11;
+const countHeight = (mobile: string | null) => (mobile ? 2.2 : 4.4);
+const barHeight = (mobile: string | null) => (mobile ? 5 : 11);
 
 export const CountUpWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: ${barHeight / 3}rem;
+  margin-top: ${({ theme }) => barHeight(theme.mobile) / 3}rem;
   font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ theme }) => theme.color.blueDark};
   div {
-    width: 16rem;
-    height: ${countUpHeight}rem;
-    border-radius: ${countUpHeight / 2}rem;
+    height: ${({ theme }) => countHeight(theme.mobile)}rem;
+    border-radius: ${({ theme }) => countHeight(theme.mobile) / 2}rem;
     background: ${({ theme }) => theme.color.blueDark};
-    margin: 0 2rem;
+    padding: 0 ${({ theme }) => (theme.mobile ? 1.2 : 2.8)}rem;
+    margin: 0 ${({ theme }) => (theme.mobile ? 0.6 : 2)}rem;
     display: flex;
-    justify-content: center;
     align-items: center;
   }
 `;
@@ -48,37 +47,41 @@ export const CountUp = styled(countUp).attrs({
 
 export const BarPosition = styled.div`
   position: absolute;
-  top: -${barHeight / 2}rem;
+  top: -${({ theme }) => barHeight(theme.mobile) / 2}rem;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  max-width: ${({ theme }) =>
-    theme.size.desktop.container + 2 * theme.space.desktop.s}rem;
-  height: ${barHeight}rem;
-  padding: 0 ${({ theme }) => theme.space.desktop.s}rem;
+  max-width: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  height: ${({ theme }) => barHeight(theme.mobile)}rem;
+  padding: 0 ${({ theme }) => theme.space.s}rem;
+  white-space: nowrap;
 `;
 
-export const BarBackground = styled.div`
+export const BarLink = styled(Link).attrs({
+  to: '/search',
+})`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: ${barHeight / 2}rem;
+  border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
   background: ${({ theme }) => theme.color.blueDark};
-  box-shadow: -1.5rem 2rem 2.5rem rgba(0, 0, 0, 0.16);
+  box-shadow: ${({ theme }) =>
+      theme.mobile ? '-0.1rem 0.3rem 0.5rem' : '-1.5rem 2rem 2.5rem'}
+    rgba(0, 0, 0, 0.16);
   display: flex;
   align-items: center;
-  padding-left: ${barHeight / 2}rem;
+  padding-left: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
   color: ${({ theme }) => theme.color.white};
 `;
 
 export const SearchIcon = styled.img.attrs({
-  src: require('assets/icons/ic_search.svg'),
+  src: require('lib/icons/ic_search.svg'),
 })`
   width: auto;
   height: 40%;
   object-fit: contain;
-  margin-right: 3.2rem;
+  margin-right: ${({ theme }) => (theme.mobile ? 1.6 : 3.2)}rem;
 `;
 
 export const Context = styled.p`
@@ -87,19 +90,18 @@ export const Context = styled.p`
 `;
 
 export const SearchText = styled.p`
+  ${({ theme }) => theme.mobile && 'visibility: hidden'};
   margin-left: auto;
   margin-right: 3.2rem;
   font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
-export const ArrowCircle = styled(Link).attrs({
-  to: '/search',
-})`
-  width: ${barHeight * 0.64}rem;
-  height: ${barHeight * 0.64}rem;
-  margin-right: ${barHeight * 0.18}rem;
-  border-radius: ${barHeight * 0.32}rem;
+export const ArrowCircle = styled.div`
+  width: ${({ theme }) => barHeight(theme.mobile) * 0.64}rem;
+  height: ${({ theme }) => barHeight(theme.mobile) * 0.64}rem;
+  margin-right: ${({ theme }) => barHeight(theme.mobile) * 0.18}rem;
+  border-radius: ${({ theme }) => barHeight(theme.mobile) * 0.32}rem;
   background: ${({ theme }) => theme.color.white};
   box-shadow: -2rem 3.5rem 3rem rgba(0, 0, 0, 0.16);
   display: flex;
@@ -111,7 +113,7 @@ export const ArrowCircle = styled(Link).attrs({
 `;
 
 export const Arrow = styled.img.attrs({
-  src: require('assets/icons/ic_arrow_blue.svg'),
+  src: require('lib/icons/ic_arrow_blue.svg'),
 })`
   margin-left: 6%;
   width: 32%;

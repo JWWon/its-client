@@ -40,6 +40,7 @@
     "@types/react-slick": "^0.23.2",
     "@types/redux-actions": "^2.3.1",
     "@types/styled-components": "^4.0.0",
+    "jquery": "^3.3.1",
     "typescript": "^3.1.2"
   }
 }

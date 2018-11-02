@@ -1,4 +1,5 @@
 export interface ColorInterface {
+  black: string;
   blueDark: string;
   blueGray: string;
   white: string;
@@ -10,6 +11,7 @@ export interface ColorInterface {
 }
 
 const color: ColorInterface = {
+  black: '#121212',
   // blue
   blueDark: '#1A2748',
   blueGray: '#95A4A9',
