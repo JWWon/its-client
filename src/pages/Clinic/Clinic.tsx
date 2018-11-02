@@ -36,34 +36,22 @@ const TextRow: React.SFC<TextInterface> = ({ label, content }) => (
 class Clinic extends Component<RouteComponentProps, State> {
   public constructor(props: RouteComponentProps) {
     super(props);
-    // const clinic: ClinicInterface = props.location.state;
-    // const { specialist } = clinic.certificates;
+    const clinic: ClinicInterface = props.location.state;
+    const { specialist } = clinic.certificates;
 
     this.state = {
-      // info: {
-      //   전화번호: clinic.phone,
-      //   주소: clinic.address,
-      //   '가까운 곳': clinic.landmark,
-      //   홈페이지: clinic.webpage,
-      // },
-      // specialist: {
-      //   병원장: specialist.chief,
-      //   수련기관: specialist.school,
-      //   수련기간: `${moment(specialist.period.startAt)} - ${moment(
-      //     specialist.period.endAt
-      //   )}`,
-      //   자격증명: '치과교정전문의',
-      // },
       info: {
-        전화번호: '010-0000-0000',
-        주소: '서울 강남구 논현로171길 15 카로시티 5층',
-        '가까운 곳': '2호선 삼성역',
-        홈페이지: 'http://www.varomdental.co.kr/',
+        전화번호: clinic.phone,
+        주소: clinic.address,
+        '가까운 곳': clinic.landmark,
+        홈페이지: clinic.webpage,
       },
       specialist: {
-        병원장: '마미손',
-        수련기관: '쇼미777',
-        수련기간: `${moment()} - ${moment()}`,
+        병원장: specialist.chief,
+        수련기관: specialist.school,
+        수련기간: `${moment(specialist.period.startAt)} - ${moment(
+          specialist.period.endAt
+        )}`,
         자격증명: '치과교정전문의',
       },
     };
@@ -72,6 +60,7 @@ class Clinic extends Component<RouteComponentProps, State> {
   public render() {
     const clinic: ClinicInterface = this.props.location.state;
     const { info, specialist } = this.state;
+
     return (
       <Section title={clinic.name} handleDismiss={this.handleDismiss}>
         <s.ShadowBox>
@@ -103,7 +92,10 @@ class Clinic extends Component<RouteComponentProps, State> {
           <s.TitleWithBar title="전문의 자격증" />
           <s.SepcialistWrapper>
             <s.Image
-              url="https://media.vanityfair.com/photos/56e6ca9c4cac3c8266605125/master/w_768,c_limit/charlie-puth-feud.jpg"
+              url={
+                specialist.image ||
+                'https://media.vanityfair.com/photos/56e6ca9c4cac3c8266605125/master/w_768,c_limit/charlie-puth-feud.jpg'
+              }
               onClick={this.handleClickImg}
             />
             <s.FlexOne>

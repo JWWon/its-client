@@ -1,6 +1,7 @@
-import { EditorState } from 'draft-js';
+import axios from 'axios';
+
+import { convertFromRaw, EditorState } from 'draft-js';
 import moment, { Moment } from 'moment';
-import axios from './axios';
 
 export interface AnnouncementInterface {
   id: string;
@@ -12,15 +13,16 @@ export interface AnnouncementInterface {
 export const getAnnouncement = async () => {
   try {
     const response = await axios.get('/announcements');
-    const data = response.data;
-    const result: AnnouncementInterface[] = data.map((e: any) => {
-      // e.content = convertFromHTML(e.content);
-      // e.createdAt = moment(e.createdAt);
-      e.content = EditorState.createEmpty();
-      e.createdAt = moment();
-      return e;
+    const { data } = response;
+
+    data.forEach((announcement: any) => {
+      const content = JSON.parse(announcement.content);
+      const contentState = convertFromRaw(content);
+      announcement.content = EditorState.createWithContent(contentState);
+      announcement.createdAt = moment();
     });
-    return result;
+
+    return data;
   } catch (e) {
     return e;
   }
