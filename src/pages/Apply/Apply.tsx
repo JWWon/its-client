@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import Address from './Address';
 import * as s from './Apply.styled';
+import Certificates from './Certificates';
 import Input from './Input';
 
 interface Props extends RouteComponentProps<any> {}
@@ -68,7 +69,7 @@ class Apply extends Component<Props, State> {
             />
           </s.ShadowBox>
           <s.ShadowBox>
-            <div>자격증 첨부 영역</div>
+            <Certificates />
           </s.ShadowBox>
           <s.ButtonWrapper>
             <s.Submit>신청하기</s.Submit>

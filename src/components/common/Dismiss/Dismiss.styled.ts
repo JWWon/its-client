@@ -1,4 +1,4 @@
-import icDelete from 'lib/icons/ic_delete.svg';
+import icClose from 'lib/icons/ic_close.svg';
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
@@ -8,7 +8,7 @@ export const Dismiss = styled.div`
   margin-left: auto;
   width: ${size}rem;
   height: ${size}rem;
-  background: no-repeat center url(${icDelete});
+  background: no-repeat center url(${icClose});
   &:hover {
     cursor: pointer;
     transform: rotate(90deg);
