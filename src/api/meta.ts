@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { convertFromRaw, EditorState } from 'draft-js';
 
-export interface Meta {
+export interface Footer {
   president: string;
   manager: string;
   registration: string;
@@ -12,10 +13,21 @@ export interface Meta {
     instagram: string;
     blog: string;
   };
-  content: string; // 소개
 }
 
-export const getMeta = async () => {
+export interface Content {
+  content: EditorState;
+}
+
+export const getFooter = async () => {
   const response = await axios.get('/meta');
-  return response.data;
+  const { content, ...other } = response.data;
+  return other;
+};
+
+export const getContent = async () => {
+  const response = await axios.get('/meta');
+  const content = JSON.parse(response.data.content);
+  const contentState = convertFromRaw(content);
+  return { content: EditorState.createWithContent(contentState) };
 };

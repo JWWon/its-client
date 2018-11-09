@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getMeta, Meta as MetaInterface } from 'api/meta';
+import { Footer as FooterInterface, getFooter } from 'api/meta';
 import { Logo } from 'components/common';
 import mobile from 'theme/mobile';
 import * as s from './Footer.styled';
@@ -9,8 +9,8 @@ interface TextInterface {
   [title: string]: string;
 }
 
-class Footer extends Component<{}, MetaInterface> {
-  public state: MetaInterface = {
+class Footer extends Component<{}, FooterInterface> {
+  public state: FooterInterface = {
     president: '',
     manager: '',
     registration: '',
@@ -22,11 +22,10 @@ class Footer extends Component<{}, MetaInterface> {
       instagram: '',
       blog: '',
     },
-    content: '',
   };
 
   public async componentDidMount() {
-    const response = await getMeta();
+    const response = await getFooter();
     this.setState({ ...this.state, ...response });
   }
 
