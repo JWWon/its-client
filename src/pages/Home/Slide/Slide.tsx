@@ -7,7 +7,9 @@ interface Props {
 }
 
 const Slide: React.SFC<Props> = ({ image }) => (
-  <s.Slide url={image.desktopSrc} alt={image.alt} />
+  <a href={image.href}>
+    <s.Slide url={image.desktopSrc} alt={image.alt} />
+  </a>
 );
 
 export default Slide;
