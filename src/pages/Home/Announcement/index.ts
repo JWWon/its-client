@@ -1,17 +1,11 @@
 import mobile from 'theme/mobile';
 
+import { News as NewsInterface } from 'api/image';
 import Desktop from './Announcement.desktop';
 import Mobile from './Announcement.mobile';
 
-interface Item {
-  src: string;
-  title: string;
-  content: string;
-  url: string;
-}
-
 export interface Props {
-  list: Item[];
+  list: NewsInterface[];
 }
 
 const Component = () => (mobile ? Mobile : Desktop);

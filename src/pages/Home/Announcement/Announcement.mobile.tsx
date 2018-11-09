@@ -10,8 +10,8 @@ const Announcemnet: React.SFC<Props> = ({ list }) => (
       <TitleWithBar title="왜 '잇츠교정'인가?" margin="1.2rem 0" vertical />
       <s.Container>
         {list.map(item => (
-          <s.Item to={item.url} key={item.title}>
-            <s.Image src={item.src} />
+          <s.Item to={item.href} key={item.title}>
+            <s.Image src={item.mobileSrc} />
             <TitleWithBar title={item.title} margin="1.2rem 0 0" />
           </s.Item>
         ))}
