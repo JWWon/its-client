@@ -1,8 +1,8 @@
 import mobile from 'theme/mobile';
 
 import { News as NewsInterface } from 'api/image';
-import Desktop from './Announcement.desktop';
-import Mobile from './Announcement.mobile';
+import Desktop from './News.desktop';
+import Mobile from './News.mobile';
 
 export interface Props {
   list: NewsInterface[];

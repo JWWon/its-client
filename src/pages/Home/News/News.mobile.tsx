@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Section, TitleWithBar } from 'components/common';
-import * as s from './Announcement.mobile.styled';
 import { Props } from './index';
+import * as s from './News.mobile.styled';
 
 const Announcemnet: React.SFC<Props> = ({ list }) => (
   <Section>

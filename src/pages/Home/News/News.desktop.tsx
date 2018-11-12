@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Section, TitleWithBar } from 'components/common';
-import * as s from './Announcement.desktop.styled';
 import { Props } from './index';
+import * as s from './News.desktop.styled';
 
 const Announcement: React.SFC<Props> = ({ list }) => (
   <Section title="왜 '잇츠 교정'인가?">

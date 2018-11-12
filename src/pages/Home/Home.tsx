@@ -10,9 +10,9 @@ import React, { Component, ReactNodeArray } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import About from './About';
-import Announcement from './Announcement';
 import Header from './Header';
 import * as s from './Home.styled';
+import News from './News';
 import Slide from './Slide';
 
 interface State {
@@ -58,7 +58,7 @@ class Home extends Component<RouteComponentProps<any>, State> {
         </s.Slider>
         <Header count={count} />
         <About />
-        <Announcement list={news} />
+        <News list={news} />
       </>
     );
   }
