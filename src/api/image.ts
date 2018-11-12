@@ -20,4 +20,9 @@ const getImages = async (type: 'slide' | 'news') => {
 };
 
 export const getSlides = () => getImages('slide');
-export const getNews = () => getImages('news');
+export const getNews = async () => {
+  const data: News[] = await getImages('news');
+
+  if (data.length > 3) return data.splice(0, 3);
+  return data;
+};
