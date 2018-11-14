@@ -82,7 +82,7 @@ class Footer extends Component<{}, FooterInterface> {
             </s.Link>
           </s.Header>
           <s.Button to="/apply">
-            <p>병원 입점 신청하기</p>
+            <p>병원 등록자격 확인하기</p>
           </s.Button>
         </s.Right>
       </s.Container>

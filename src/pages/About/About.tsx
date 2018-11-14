@@ -29,7 +29,7 @@ class About extends Component<RouteComponentProps, ContentInterface> {
             />
           </ShadowBox>
         </s.Container>
-        <s.Link>검색 바로가기</s.Link>
+        <s.Link>잇츠교정 치과찾기</s.Link>
       </Section>
     );
   }

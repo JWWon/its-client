@@ -28,7 +28,9 @@ class Apply extends Component<Props, State> {
 
   public render() {
     return (
-      <Section title="병원 입점 신청하기" handleDismiss={this.handleDismiss}>
+      <Section
+        title="병원 등록자격 확인하기"
+        handleDismiss={this.handleDismiss}>
         <s.Form onSubmit={this.handleSubmit}>
           <s.ShadowBox>
             <Input

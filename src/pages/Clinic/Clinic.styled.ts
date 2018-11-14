@@ -5,6 +5,8 @@ import {
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
+import icPhone from 'lib/icons/ic_phone.svg';
+
 export const ShadowBox = styled(_ShadowBox).attrs({
   single: true,
   style: { marginBottom: '6rem' },
@@ -60,4 +62,27 @@ export const Label = styled(Content)`
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme }) => theme.color.blueDark};
   white-space: nowrap;
+`;
+
+const btnSize = 5.6;
+export const PhoneButton = styled.div`
+  position: fixed;
+  bottom: ${({ theme }) => theme.space.m}rem;
+  right: ${({ theme }) => theme.space.s}rem;
+  width: ${btnSize}rem;
+  height: ${btnSize}rem;
+  border-radius: ${btnSize / 2}rem;
+  background: ${({ theme }) => theme.color.blueDark};
+  box-shadow: -0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.16);
+  display: ${mobile ? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PhoneIcon = styled.img.attrs({
+  src: icPhone,
+  alt: 'phone',
+})`
+  width: ${btnSize * 0.52}rem;
+  height: ${btnSize * 0.52}rem;
 `;

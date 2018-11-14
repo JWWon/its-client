@@ -7,7 +7,7 @@ import * as s from './News.mobile.styled';
 const Announcemnet: React.SFC<Props> = ({ list }) => (
   <Section>
     <s.ShadowBox single>
-      <TitleWithBar title="왜 '잇츠교정'인가?" margin="1.2rem 0" vertical />
+      <TitleWithBar title="잇츠교정의 선물" margin="1.2rem 0" vertical />
       <s.Container>
         {list.map(item => (
           <s.Item to={item.href} key={item.id}>

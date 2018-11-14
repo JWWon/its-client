@@ -14,7 +14,7 @@ const Navbar: React.SFC<{}> = () => (
         <p>전국 지역 검색</p>
       </s.Link>
       <s.Link to="/announcement">
-        <p>왜 잇츠교정인가</p>
+        <p>잇츠교정의 선물</p>
       </s.Link>
     </s.LinkWrapper>
   </s.Container>

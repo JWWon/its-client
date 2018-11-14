@@ -48,11 +48,11 @@ class Clinic extends Component<RouteComponentProps, State> {
       },
       specialist: {
         병원장: specialist.chief,
+        자격증명: '치과교정전문의',
         수련기관: specialist.school,
         수련기간: `${moment(specialist.period.startAt)} - ${moment(
           specialist.period.endAt
         )}`,
-        자격증명: '치과교정전문의',
       },
     };
   }
@@ -63,31 +63,6 @@ class Clinic extends Component<RouteComponentProps, State> {
 
     return (
       <Section title={clinic.name} handleDismiss={this.handleDismiss}>
-        <s.ShadowBox>
-          <s.InfoWrapper>
-            <s.FlexOne>
-              <s.TitleWithBar title="병원 정보" />
-              {Object.keys(info).map(
-                key =>
-                  key === '전화번호' || key === '홈페이지' ? (
-                    <TextWithButton label={key} content={info[key]} key={key} />
-                  ) : (
-                    <TextRow label={key} content={info[key]} key={key} />
-                  )
-              )}
-            </s.FlexOne>
-            <s.FlexOne>
-              <NaverMap />
-            </s.FlexOne>
-          </s.InfoWrapper>
-        </s.ShadowBox>
-        <s.ShadowBox>
-          <s.TitleWithBar title="진료 시간" />
-          {clinic.timetable &&
-            Object.keys(clinic.timetable).map(key => (
-              <TextRow label={key} content={clinic.timetable[key]} key={key} />
-            ))}
-        </s.ShadowBox>
         <s.ShadowBox>
           <s.TitleWithBar title="전문의 자격증" />
           <s.SepcialistWrapper>
@@ -105,6 +80,32 @@ class Clinic extends Component<RouteComponentProps, State> {
             </s.FlexOne>
           </s.SepcialistWrapper>
         </s.ShadowBox>
+
+        <s.ShadowBox>
+          <s.InfoWrapper>
+            <s.FlexOne>
+              <s.TitleWithBar title="병원 정보" />
+              {Object.keys(info).map(key =>
+                key === '전화번호' || key === '홈페이지' ? (
+                  <TextWithButton label={key} content={info[key]} key={key} />
+                ) : (
+                  <TextRow label={key} content={info[key]} key={key} />
+                )
+              )}
+            </s.FlexOne>
+            <s.FlexOne>
+              <NaverMap />
+            </s.FlexOne>
+          </s.InfoWrapper>
+        </s.ShadowBox>
+        <s.ShadowBox>
+          <s.TitleWithBar title="진료 시간" />
+          {clinic.timetable &&
+            Object.keys(clinic.timetable).map(key => (
+              <TextRow label={key} content={clinic.timetable[key]} key={key} />
+            ))}
+        </s.ShadowBox>
+
         <s.ShadowBox>
           <s.TitleWithBar title="찾아 오시는 길" />
           {clinic.directions &&
@@ -112,6 +113,11 @@ class Clinic extends Component<RouteComponentProps, State> {
               <TextRow label={key} content={clinic.directions[key]} key={key} />
             ))}
         </s.ShadowBox>
+        <a href={`tel:${clinic.phone}`}>
+          <s.PhoneButton>
+            <s.PhoneIcon />
+          </s.PhoneButton>
+        </a>
       </Section>
     );
   }

@@ -10,7 +10,7 @@ const Header: React.SFC<Props> = ({ count }) => (
     <s.BarPosition>
       <s.BarLink>
         <s.SearchIcon />
-        <s.Context>잇츠교정 멤버스 전국 지역 검색</s.Context>
+        <s.Context>잇츠교정 자격치과 빠른 검색</s.Context>
         <s.SearchText>검색하기</s.SearchText>
         <s.ArrowCircle>
           <s.Arrow />
