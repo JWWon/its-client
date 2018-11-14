@@ -73,6 +73,12 @@ export const BarLink = styled(Link).attrs({
   align-items: center;
   padding-left: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
   color: ${({ theme }) => theme.color.white};
+  transition: all 0.2s ease-out;
+  &:hover {
+    margin-top: -0.8rem;
+    margin-bottom: 0.8rem;
+    box-shadow: -2rem 1.9rem 5.2rem rgba(0, 0, 0, 0.32);
+  }
 `;
 
 export const SearchIcon = styled.img.attrs({

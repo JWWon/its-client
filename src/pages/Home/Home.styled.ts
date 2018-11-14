@@ -6,9 +6,13 @@ import { windowHalfSpace } from 'lib/functions/space';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
 
 /* Slider Style */
-export const slideHeight: number = mobile ? 32 : 58;
+interface SliderInterface {
+  single: boolean;
+}
 
-export const Slider = styled(_Slider).attrs({
+export const slideHeight: number = mobile ? 44 : 58;
+
+export const Slider = styled(_Slider).attrs<SliderInterface, any>({
   dots: true,
   fade: true,
   infinite: true,
@@ -21,6 +25,8 @@ export const Slider = styled(_Slider).attrs({
 })`
   display: flex;
   flex-direction: ${mobile ? 'column' : 'row-reverse'};
+  margin-left: ${({ theme, single }) =>
+    !mobile && single && windowHalfSpace(theme)};
   .slick-list {
     flex: 1;
     margin-left: ${({ theme }) => theme.space.s}rem;

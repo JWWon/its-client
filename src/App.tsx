@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import 'api/axios';
 import 'App.styled';
 import { Footer, Navbar, Template } from 'components/base';
 import { About, Announcement, Apply, Clinic, Home, Search } from 'pages';

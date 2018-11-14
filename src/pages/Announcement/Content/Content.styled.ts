@@ -49,12 +49,6 @@ export const Arrow = styled.img.attrs<ContentProps, any>({
 
 export const ContentWrapper = styled<ContentProps, any>('div')`
   background-color: ${({ theme }) => theme.color.whiteDim};
-  transition: all 0.24s ease-out;
-  ${({ selected, theme }) =>
-    selected
-      ? `
-        padding: ${mobile ? 1 : theme.space.s}rem;`
-      : `
-        height: 0;
-      `};
+  padding: ${({ theme }) => (mobile ? 1 : theme.space.s)}rem;
+  ${({ selected }) => !selected && 'display: none'};
 `;

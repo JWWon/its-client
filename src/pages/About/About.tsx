@@ -2,17 +2,19 @@ import { Editor, EditorState } from 'draft-js';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import { Content as ContentInterface, getContent } from 'api/meta';
 import { Section, ShadowBox } from 'components/common';
 import * as s from './About.styled';
 
-interface State {
-  editorState: EditorState;
-}
-
-class About extends Component<RouteComponentProps, State> {
+class About extends Component<RouteComponentProps, ContentInterface> {
   public state = {
-    editorState: EditorState.createEmpty(),
+    content: EditorState.createEmpty(),
   };
+
+  public async componentDidMount() {
+    const response = await getContent();
+    this.setState(response);
+  }
 
   public render() {
     return (
@@ -22,7 +24,7 @@ class About extends Component<RouteComponentProps, State> {
             <s.TitleWithBar title="치아 교정병원을 선택하는 가장 객관적인 기준" />
             <Editor
               readOnly
-              editorState={this.state.editorState}
+              editorState={this.state.content}
               onChange={this.muteChange}
             />
           </ShadowBox>
