@@ -23,6 +23,9 @@ const Sertif: React.SFC<SertifInterface> = ({ name, type, active }) => (
 class Result extends Component<Props> {
   public render() {
     const { clinic } = this.props;
+    const { image } = clinic.certificates.specialist;
+    const isSpecialist = image ? image.length > 0 : false;
+
     return (
       <s.Container>
         <Link to={{ pathname: `/clinic/${clinic.id}`, state: clinic }}>
@@ -32,19 +35,28 @@ class Result extends Component<Props> {
                 <s.HrContent>
                   <TitleWithBar title={clinic.name} margin="0" />
                   <s.Icon />
-                  <s.Landmark>{clinic.landmark || '2호선 삼성역'}</s.Landmark>
+                  <s.Landmark>{clinic.landmark}</s.Landmark>
                 </s.HrContent>
                 <s.HrContent>
-                  <s.Phone>{clinic.phone || '010-0000-0000'}</s.Phone>
-                  <s.Address>
-                    {clinic.address ||
-                      '서울 강남구 논현로171길 15 카로시티 5층'}
-                  </s.Address>
+                  <s.Phone>{clinic.phone}</s.Phone>
+                  <s.Address>{clinic.address}</s.Address>
                 </s.HrContent>
               </s.LeftContent>
-              <Sertif name="치과교정과전문의" type="specialist" active />
-              <Sertif name="대한치과교정학회" type="association" />
-              <Sertif name="인비절라인인증의" type="invisalign" active />
+              <Sertif
+                name="치과교정과전문의"
+                type="specialist"
+                active={isSpecialist}
+              />
+              <Sertif
+                name="대한치과교정학회"
+                type="association"
+                active={clinic.certificates.association}
+              />
+              <Sertif
+                name="인비절라인인증의"
+                type="invisalign"
+                active={clinic.certificates.invisalign}
+              />
             </s.Wrapper>
           </ShadowBox>
         </Link>

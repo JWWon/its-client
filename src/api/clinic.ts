@@ -13,12 +13,8 @@ export interface ClinicInterface {
   // director: string;
   directions: { [x: string]: string }; // ex. { '도보': '불가능', '버스': '30분', '비행기': '인천공항에서 택시' }
   certificates: {
-    association: {
-      image: string;
-    };
-    invisalign: {
-      image: string;
-    };
+    association: boolean;
+    invisalign: boolean;
     specialist: {
       chief: string;
       school: string;

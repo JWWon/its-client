@@ -10,7 +10,7 @@ const Announcemnet: React.SFC<Props> = ({ list }) => (
       <TitleWithBar title="잇츠교정의 선물" margin="1.2rem 0" vertical />
       <s.Container>
         {list.map(item => (
-          <s.Item to={item.href} key={item.id}>
+          <s.Item to={`announcement#${item.href}`} key={item.id}>
             <s.Image src={item.mobileSrc} />
             <TitleWithBar title={item.title} margin="1.2rem 0 0" />
           </s.Item>

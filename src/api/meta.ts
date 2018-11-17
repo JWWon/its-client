@@ -27,7 +27,12 @@ export const getFooter = async () => {
 
 export const getContent = async () => {
   const response = await axios.get('/meta');
-  const content = JSON.parse(response.data.content);
-  const contentState = convertFromRaw(content);
-  return { content: EditorState.createWithContent(contentState) };
+  const { content } = response.data;
+  if (content) {
+    const rawContent = JSON.parse(content);
+    const contentState = convertFromRaw(rawContent);
+    return { content: EditorState.createWithContent(contentState) };
+  } else {
+    return { content: EditorState.createEmpty() };
+  }
 };

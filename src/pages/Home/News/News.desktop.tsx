@@ -10,7 +10,7 @@ const Announcement: React.SFC<Props> = ({ list }) => (
     subtitle="무분별한 허위/과대 광고는 지양합니다. 잇츠교정은 건강한 사회를 지향합니다.">
     <s.Container>
       {list.map(item => (
-        <s.Item to={item.href} key={item.id}>
+        <s.Item to={`announcement#${item.href}`} key={item.id}>
           <s.Image src={item.desktopSrc} />
           <TitleWithBar title={item.title} margin="3.6rem 0 6rem" />
           <s.Content>{item.content}</s.Content>
