@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import { convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
@@ -26,7 +25,6 @@ const transform = (node, index) => {
       styleObject[arr[0]] = arr[1].trim();
     });
     const { float, ...styles } = styleObject;
-    console.log(styles);
 
     return (
       <s.ImgContainer key={index} float={float}>

@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 import styled from 'styled-components';
 
 const convertToFlex = float => {
