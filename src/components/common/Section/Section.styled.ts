@@ -71,6 +71,7 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.xl}rem;
   font-weight: ${({ theme }) => theme.font.weight.bold};
+  white-space: nowrap;
 `;
 
 export const SubTitle = styled.h3`

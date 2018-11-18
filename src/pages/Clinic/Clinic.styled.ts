@@ -67,6 +67,7 @@ export const Label = styled(Content)`
 const btnSize = 5.6;
 export const PhoneButton = styled.div`
   position: fixed;
+  z-index: 1000;
   bottom: ${({ theme }) => theme.space.m}rem;
   right: ${({ theme }) => theme.space.s}rem;
   width: ${btnSize}rem;

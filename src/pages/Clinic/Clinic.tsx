@@ -86,7 +86,7 @@ class Clinic extends Component<RouteComponentProps, State> {
         draft.specialist = {
           병원장: certificates.specialist.chief,
           자격증명: '치과교정전문의',
-          수련기관: certificates.specialist.school,
+          면허번호: certificates.specialist.school,
           수련기간: `${moment(
             certificates.specialist.period.startAt
           )} - ${moment(certificates.specialist.period.endAt)}`,
