@@ -1,4 +1,10 @@
+// tslint:disable:no-console
 import styled from 'styled-components';
+
+const screenWidth =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
 
 const convertToFlex = float => {
   switch (float) {
@@ -11,7 +17,13 @@ const convertToFlex = float => {
   }
 };
 
-const convertToStyle = (object, key) => `${key}: ${object[key]};`;
+const convertToStyle = object =>
+  Object.keys(object).map(key => {
+    if (key === 'width' && object.width > `${screenWidth}px`) {
+      return 'width: 100%';
+    }
+    return `${key}: ${object[key]};`;
+  });
 
 export const Container = styled.div`
   font-size: 1.6rem;
@@ -25,6 +37,6 @@ export const ImgContainer = styled.div`
 export const Image = styled.img.attrs({
   src: ({ src }) => src,
 })`
-  ${({ styles }) =>
-    Object.keys(styles).map(key => convertToStyle(styles, key))};
+  ${({ styles }) => convertToStyle(styles)};
+  object-fit: contain;
 `;
