@@ -24,13 +24,13 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
           handleClick(e, content.id)
         }>
         <TitleWithBar title={content.title} margin="0" />
-        <s.Date>{content.createdAt.format('YYYY.MM.DD')}</s.Date>
+        <s.Date>{content.createdAt}</s.Date>
         <s.Toggle>
           <s.Arrow selected={selected} />
         </s.Toggle>
       </s.TitleWrapper>
       <s.ContentWrapper selected={selected}>
-        <Viewer editorState={content.content} />
+        <Viewer content={content.content} />
       </s.ContentWrapper>
     </s.Content>
   );

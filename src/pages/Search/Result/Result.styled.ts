@@ -44,6 +44,8 @@ export const SertifWrapper = styled.div`
 export const Icon = styled.img.attrs({ src: landmark })`
   margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
   height: ${({ theme }) => (theme.mobile ? 0.8 : 1.6)}rem;
+  /* ADD FOR IE */
+  width: 1rem;
 `;
 
 export interface SertifInterface {

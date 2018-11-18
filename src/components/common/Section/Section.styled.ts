@@ -26,18 +26,22 @@ export const Header = styled.div`
   align-items: center;
   ${({ theme }) => !theme.mobile && `height: ${roundHeight}rem`};
   margin-bottom: ${({ theme }) => (theme.mobile ? 2.8 : 9.6)}rem;
+  /* ADD FOR IE */
+  max-height: 100%;
+  box-sizing: border-box;
 `;
 
 export const HalfRound = styled.div`
   position: absolute;
   width: 14rem;
   height: ${roundHeight}rem;
+  top: 0;
   left: 0;
   background: ${({ theme }) => theme.color.blueDark};
   border-top-right-radius: ${roundHeight / 2}rem;
   border-bottom-right-radius: ${roundHeight / 2}rem;
   box-shadow: 0.9rem 1.5rem 2.5rem rgba(0, 0, 0, 0.16);
-  @media screen and (max-width: 1480px) {
+  @media screen and (max-width: 1540px) {
     display: none;
   }
 `;

@@ -48,6 +48,8 @@ export const Bar = styled.div`
 export const Icon = styled.img.attrs({ src: landmark })`
   margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
   height: 1.6rem;
+  /* ADD FOR IE */
+  width: 1rem;
 `;
 
 export const Landmark = styled.p`

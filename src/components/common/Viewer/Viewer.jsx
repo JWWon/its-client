@@ -1,11 +1,12 @@
-import { convertToRaw, EditorState } from 'draft-js';
+import { RawDraftContentState } from 'draft-js';
+import _ from 'lodash';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import React from 'react';
 import * as s from './Viewer.styled';
 
 interface Props {
-  editorState: EditorState;
+  content: RawDraftContentState;
 }
 
 const transform = (node, index) => {
@@ -20,7 +21,7 @@ const transform = (node, index) => {
   if (node.name === 'img') {
     const { style, src } = node.attribs;
     const styleObject = {};
-    style.split(';').forEach(item => {
+    _.forEach(style.split(';'), item => {
       const arr = item.split(':');
       styleObject[arr[0]] = arr[1].trim();
     });
@@ -34,8 +35,8 @@ const transform = (node, index) => {
   }
 };
 
-const EditorWrapper: React.SFC<Props> = ({ editorState }) => {
-  const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+const EditorWrapper: React.SFC<Props> = ({ content }) => {
+  const html = draftToHtml(content);
   const options = { transform };
   return <s.Container>{ReactHtmlParser(html, options)}</s.Container>;
 };

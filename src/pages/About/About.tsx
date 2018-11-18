@@ -1,5 +1,5 @@
 import Viewer from 'components/common/Viewer';
-import { EditorState } from 'draft-js';
+import { convertToRaw, EditorState } from 'draft-js';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -9,12 +9,12 @@ import * as s from './About.styled';
 
 class About extends Component<RouteComponentProps, ContentInterface> {
   public state = {
-    content: EditorState.createEmpty(),
+    content: convertToRaw(EditorState.createEmpty().getCurrentContent()),
   };
 
   public async componentDidMount() {
     const response = await getContent();
-    this.setState(response);
+    this.setState({ content: response.content });
   }
 
   public render() {
@@ -23,7 +23,7 @@ class About extends Component<RouteComponentProps, ContentInterface> {
         <s.Container>
           <ShadowBox>
             <s.TitleWithBar title="치아 교정병원을 선택하는 가장 객관적인 기준" />
-            <Viewer editorState={this.state.content} />
+            <Viewer content={this.state.content} />
           </ShadowBox>
         </s.Container>
         <s.Link>잇츠교정 치과찾기</s.Link>

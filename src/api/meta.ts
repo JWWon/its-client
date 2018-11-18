@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { convertFromRaw, EditorState } from 'draft-js';
+import { convertToRaw, EditorState, RawDraftContentState } from 'draft-js';
 
 export interface Footer {
   president: string;
@@ -16,7 +16,7 @@ export interface Footer {
 }
 
 export interface Content {
-  content: EditorState;
+  content: RawDraftContentState;
 }
 
 export const getFooter = async () => {
@@ -29,10 +29,10 @@ export const getContent = async () => {
   const response = await axios.get('/meta');
   const { content } = response.data;
   if (content) {
-    const rawContent = JSON.parse(content);
-    const contentState = convertFromRaw(rawContent);
-    return { content: EditorState.createWithContent(contentState) };
+    return { content: JSON.parse(content) };
   } else {
-    return { content: EditorState.createEmpty() };
+    return {
+      content: convertToRaw(EditorState.createEmpty().getCurrentContent()),
+    };
   }
 };

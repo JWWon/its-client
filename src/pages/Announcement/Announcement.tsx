@@ -1,5 +1,6 @@
 import { Section } from 'components/common';
 import produce from 'immer';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -59,7 +60,7 @@ class Announcement extends Component<RouteComponentProps, State> {
   private getAnnouncementFromAPI = async () => {
     let contentObj: ContentObj = {};
     const list = await getAnnouncement();
-    list.forEach((announcement: AnnouncementInterface) => {
+    _.forEach(list, (announcement: AnnouncementInterface) => {
       contentObj = {
         ...contentObj,
         [announcement.id]: announcement,
