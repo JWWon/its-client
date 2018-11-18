@@ -2,8 +2,12 @@ import { ShadowBox as _ShadowBox } from 'components/common';
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
+export const registrationWidth = (theme: any) =>
+  `calc(${window.innerWidth}px - ${2 * theme.space.s}rem)`;
+
 export const Form = styled.form`
   flex: 1;
+  ${({ theme }) => mobile && `width: ${registrationWidth(theme)}`};
 `;
 
 export const ShadowBox = styled(_ShadowBox).attrs({
