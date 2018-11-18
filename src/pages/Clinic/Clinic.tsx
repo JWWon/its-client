@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { moment } from 'lib/functions/moment';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
@@ -7,113 +8,145 @@ import { Section } from 'components/common';
 import * as s from './Clinic.styled';
 import DaumMap from './DaumMap';
 
-interface TextInterface {
-  readonly label: string;
-  readonly content: string;
+interface ObjectInterface {
+  object: { [key: string]: string };
 }
 
 interface State {
-  readonly info: { [label: string]: string };
-  readonly specialist: { [label: string]: string };
+  readonly name: string;
+  readonly address: string;
+  readonly phone: string;
+  readonly image: string;
+  readonly timetable: { [key: string]: string };
+  readonly directions: { [key: string]: string };
+  readonly info: { [key: string]: string };
+  readonly specialist: { [key: string]: string };
 }
 
-const TextWithButton: React.SFC<TextInterface> = ({ label, content }) => (
-  <s.TextWrapper>
-    <s.Label>{label}</s.Label>
-    <a href={`${label === '전화번호' ? 'tel:' : ''}${content}`}>
-      <s.Content>{content}</s.Content>
-    </a>
-  </s.TextWrapper>
-);
-
-const TextRow: React.SFC<TextInterface> = ({ label, content }) => (
-  <s.TextWrapper>
-    <s.Label>{label}</s.Label>
-    <s.Content>{content}</s.Content>
-  </s.TextWrapper>
+const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
+  <>
+    {Object.keys(object).map(key => {
+      const content = object[key];
+      return (
+        <s.TextWrapper key={key}>
+          <s.Label>{key}</s.Label>
+          {key === '전화번호' ? (
+            <a href={`tel:${content}`}>
+              <s.Content>{content}</s.Content>
+            </a>
+          ) : (
+            <s.Content>{content}</s.Content>
+          )}
+        </s.TextWrapper>
+      );
+    })}
+  </>
 );
 
 class Clinic extends Component<RouteComponentProps, State> {
-  public constructor(props: RouteComponentProps) {
-    super(props);
-    const clinic: ClinicInterface = props.location.state;
-    const { specialist } = clinic.certificates;
+  public state: State = {
+    name: '',
+    address: '',
+    phone: '',
+    image: '',
+    timetable: {},
+    directions: {},
+    info: {},
+    specialist: {},
+  };
 
-    this.state = {
-      info: {
-        전화번호: clinic.phone,
-        주소: clinic.address,
-        '가까운 곳': clinic.landmark,
-        홈페이지: clinic.webpage,
-      },
-      specialist: {
-        병원장: specialist.chief,
-        자격증명: '치과교정전문의',
-        수련기관: specialist.school,
-        수련기간: `${moment(specialist.period.startAt)} - ${moment(
-          specialist.period.endAt
-        )}`,
-      },
-    };
+  public async componentDidMount() {
+    const clinic: ClinicInterface = this.props.location.state;
+    const {
+      name,
+      phone,
+      address,
+      landmark,
+      webpage,
+      certificates,
+      timetable,
+      directions,
+    } = clinic;
+
+    this.setState(state =>
+      produce(state, draft => {
+        draft.name = name;
+        draft.address = address;
+        draft.phone = phone;
+        draft.image = certificates.specialist.image;
+
+        draft.timetable = timetable;
+        draft.directions = directions;
+        draft.info = {
+          전화번호: phone,
+          주소: address,
+          '가까운 곳': landmark,
+          홈페이지: webpage,
+        };
+        draft.specialist = {
+          병원장: certificates.specialist.chief,
+          자격증명: '치과교정전문의',
+          수련기관: certificates.specialist.school,
+          수련기간: `${moment(
+            certificates.specialist.period.startAt
+          )} - ${moment(certificates.specialist.period.endAt)}`,
+        };
+      })
+    );
   }
 
   public render() {
-    const clinic: ClinicInterface = this.props.location.state;
-    const { info, specialist } = this.state;
+    const {
+      name,
+      info,
+      image,
+      specialist,
+      timetable,
+      address,
+      directions,
+    } = this.state;
 
     return (
-      <Section title={clinic.name} handleDismiss={this.handleDismiss}>
-        <s.ShadowBox>
-          <s.TitleWithBar title="전문의 자격증" />
-          <s.SepcialistWrapper>
-            <s.Image
-              url={
-                specialist.image ||
-                'https://media.vanityfair.com/photos/56e6ca9c4cac3c8266605125/master/w_768,c_limit/charlie-puth-feud.jpg'
-              }
-              onClick={this.handleClickImg}
-            />
-            <s.FlexOne>
-              {Object.keys(specialist).map(key => (
-                <TextRow label={key} content={specialist[key]} key={key} />
-              ))}
-            </s.FlexOne>
-          </s.SepcialistWrapper>
-        </s.ShadowBox>
+      <Section title={name} handleDismiss={this.handleDismiss}>
+        {specialist && (
+          <s.ShadowBox>
+            <s.TitleWithBar title="전문의 자격증" />
+            <s.SepcialistWrapper>
+              {image && <s.Image url={image} onClick={this.handleClickImg} />}
+              <s.FlexOne>
+                <RenderObject object={specialist} />
+              </s.FlexOne>
+            </s.SepcialistWrapper>
+          </s.ShadowBox>
+        )}
 
-        <s.ShadowBox>
-          <s.InfoWrapper>
-            <s.FlexOne>
-              <s.TitleWithBar title="병원 정보" />
-              {Object.keys(info).map(key =>
-                key === '전화번호' || key === '홈페이지' ? (
-                  <TextWithButton label={key} content={info[key]} key={key} />
-                ) : (
-                  <TextRow label={key} content={info[key]} key={key} />
-                )
-              )}
-            </s.FlexOne>
-            <s.FlexOne>
-              <DaumMap address={clinic.address} />
-            </s.FlexOne>
-          </s.InfoWrapper>
-        </s.ShadowBox>
-        <s.ShadowBox>
-          <s.TitleWithBar title="진료 시간" />
-          {clinic.timetable &&
-            Object.keys(clinic.timetable).map(key => (
-              <TextRow label={key} content={clinic.timetable[key]} key={key} />
-            ))}
-        </s.ShadowBox>
+        {info && (
+          <s.ShadowBox>
+            <s.InfoWrapper>
+              <s.FlexOne>
+                <s.TitleWithBar title="병원 정보" />
+                <RenderObject object={info} />
+              </s.FlexOne>
+              <s.FlexOne>{address && <DaumMap address={address} />}</s.FlexOne>
+            </s.InfoWrapper>
+          </s.ShadowBox>
+        )}
 
-        <s.ShadowBox>
-          <s.TitleWithBar title="찾아 오시는 길" />
-          {clinic.directions &&
-            Object.keys(clinic.directions).map(key => (
-              <TextRow label={key} content={clinic.directions[key]} key={key} />
-            ))}
-        </s.ShadowBox>
-        <a href={`tel:${clinic.phone}`}>
+        {timetable && (
+          <s.ShadowBox>
+            <s.TitleWithBar title="진료 시간" />
+            <RenderObject object={timetable} />
+          </s.ShadowBox>
+        )}
+
+        {directions && (
+          <s.ShadowBox>
+            <s.TitleWithBar title="찾아 오시는 길" />
+            <RenderObject object={directions} />
+          </s.ShadowBox>
+        )}
+
+        <a href={`tel:${this.state.phone}`}>
           <s.PhoneButton>
             <s.PhoneIcon />
           </s.PhoneButton>
