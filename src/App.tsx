@@ -9,8 +9,10 @@ import { theme, ThemeProvider } from 'theme';
 
 declare global {
   interface Window {
-    naver: { maps: any };
-    daum: any;
+    daum: {
+      Postcode: any;
+      maps: any;
+    };
   }
 }
 

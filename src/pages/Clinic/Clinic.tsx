@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ClinicInterface } from 'api/clinic';
 import { Section } from 'components/common';
 import * as s from './Clinic.styled';
-import NaverMap from './NaverMap';
+import DaumMap from './DaumMap';
 
 interface TextInterface {
   readonly label: string;
@@ -94,7 +94,7 @@ class Clinic extends Component<RouteComponentProps, State> {
               )}
             </s.FlexOne>
             <s.FlexOne>
-              <NaverMap />
+              <DaumMap address={clinic.address} />
             </s.FlexOne>
           </s.InfoWrapper>
         </s.ShadowBox>
