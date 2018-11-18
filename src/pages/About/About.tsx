@@ -1,4 +1,5 @@
-import { Editor, EditorState } from 'draft-js';
+import Viewer from 'components/common/Viewer';
+import { EditorState } from 'draft-js';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -22,11 +23,7 @@ class About extends Component<RouteComponentProps, ContentInterface> {
         <s.Container>
           <ShadowBox>
             <s.TitleWithBar title="치아 교정병원을 선택하는 가장 객관적인 기준" />
-            <Editor
-              readOnly
-              editorState={this.state.content}
-              onChange={this.muteChange}
-            />
+            <Viewer editorState={this.state.content} />
           </ShadowBox>
         </s.Container>
         <s.Link>잇츠교정 치과찾기</s.Link>
@@ -38,8 +35,6 @@ class About extends Component<RouteComponentProps, ContentInterface> {
     e.preventDefault();
     this.props.history.push('/');
   };
-
-  private muteChange = (editorState: EditorState) => null;
 }
 
 export default About;

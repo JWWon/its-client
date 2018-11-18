@@ -1,5 +1,5 @@
 /* tslint:disable:jsx-no-lambda */
-import { Editor, EditorState } from 'draft-js';
+import Viewer from 'components/common/Viewer';
 import React from 'react';
 
 import { AnnouncementInterface } from 'api/announcement';
@@ -14,8 +14,6 @@ interface Props {
     id: string
   ) => void;
 }
-
-const muteChange = (e: EditorState) => null;
 
 const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
   const selected = content.id === pointer;
@@ -32,7 +30,7 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
         </s.Toggle>
       </s.TitleWrapper>
       <s.ContentWrapper selected={selected}>
-        <Editor readOnly editorState={content.content} onChange={muteChange} />
+        <Viewer editorState={content.content} />
       </s.ContentWrapper>
     </s.Content>
   );
