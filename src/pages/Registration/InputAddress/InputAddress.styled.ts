@@ -44,7 +44,9 @@ export const DetailInput = styled(Input)`
 
 const btnHeight: number = mobile ? 2.4 : 3.8;
 
-export const Button = styled.button`
+export const Button = styled.button.attrs({
+  type: 'button',
+})`
   width: ${mobile ? 8 : 16}rem;
   height: ${btnHeight}rem;
   margin-left: ${space}rem;

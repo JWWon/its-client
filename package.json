@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/lodash": "^4.14.118",
     "ajv": "^6.5.4",
+    "aws-sdk": "^2.358.0",
     "axios": "^0.18.0",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/draft-js": "^0.10.25",
     "@types/jest": "^23.3.5",
+    "@types/lodash": "^4.14.118",
     "@types/node": "^10.11.6",
     "@types/react": "^16.4.16",
     "@types/react-dom": "^16.0.9",

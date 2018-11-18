@@ -4,32 +4,22 @@ import mobile from 'theme/mobile';
 import icAdd from 'lib/icons/ic_add.svg';
 import icDelete from 'lib/icons/ic_delete.svg';
 
-export const Content = styled.div``;
-
-const imageSpace: number = mobile ? 1.4 : 2.8;
-const barSpace: number = mobile ? 2.6 : 8;
-export const InputWrapper = styled.div`
-  margin: 2rem -${imageSpace}rem 0;
-  margin-top: 2rem;
-  padding-left: ${barSpace}rem;
-  display: flex;
-`;
-
-const imageWidth: number = mobile ? 8 : 20;
-export const Image = styled.div`
-  position: relative;
-  width: ${imageWidth}rem;
-  height: ${imageWidth * 1.61}rem;
-  margin: 0 ${imageSpace}rem;
-`;
-
-export const ImageInput = styled.input.attrs({
+export const Input = styled.input.attrs({
   type: 'file',
   accept: 'image/*',
 })`
   width: 0;
   height: 0;
   opacity: 0;
+`;
+
+const barSpace: number = mobile ? 2.6 : 8;
+const imageWidth: number = mobile ? 8 : 24;
+export const ImageWrapper = styled.div`
+  position: relative;
+  width: ${imageWidth}rem;
+  height: ${imageWidth * 1.61}rem;
+  margin: 2rem 0 0 ${barSpace}rem;
 `;
 
 export const Label = styled.label`
@@ -45,23 +35,16 @@ export const Label = styled.label`
   cursor: pointer;
 `;
 
-export const Text = styled.p`
-  margin-top: ${mobile ? 0.8 : 1.6}rem;
-  text-align: center;
-  color: ${({ theme }) => theme.color.gray};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+export const Preview = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `;
 
 const iconSize: number = mobile ? 1 : 4;
 export const AddIcon = styled.img.attrs({ src: icAdd })`
   width: ${iconSize}rem;
   height: ${iconSize}rem;
-  object-fit: contain;
-`;
-
-export const Preview = styled.img`
-  width: 100%;
-  height: 100%;
   object-fit: contain;
 `;
 
