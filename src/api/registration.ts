@@ -18,7 +18,6 @@ export interface RegistrationInterface {
 
 export const register = async (data: RegistrationInterface) => {
   try {
-    console.log(data);
     if (window.confirm('신청하시겠습니까?')) {
       const response = await axios.post('/registrations', data);
       alert('신청되었습니다');

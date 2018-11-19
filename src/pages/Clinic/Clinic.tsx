@@ -3,7 +3,7 @@ import { moment } from 'lib/functions/moment';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { ClinicInterface } from 'api/clinic';
+import { ClinicInterface, searchById } from 'api/clinic';
 import { Section } from 'components/common';
 import * as s from './Clinic.styled';
 import DaumMap from './DaumMap';
@@ -43,7 +43,7 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
   </>
 );
 
-class Clinic extends Component<RouteComponentProps, State> {
+class Clinic extends Component<RouteComponentProps<any>, State> {
   public state: State = {
     name: '',
     address: '',
@@ -56,7 +56,10 @@ class Clinic extends Component<RouteComponentProps, State> {
   };
 
   public async componentDidMount() {
-    const clinic: ClinicInterface = this.props.location.state;
+    const { location, match } = this.props;
+    const clinic: ClinicInterface =
+      location.state || (await searchById(match.params.id));
+
     const {
       name,
       phone,

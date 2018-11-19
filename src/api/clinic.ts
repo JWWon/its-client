@@ -61,6 +61,16 @@ export const searchByKeyword = async (params: Keyword) => {
   }
 };
 
+export const searchById = async (id: string) => {
+  try {
+    const response = await axios.get(`/clinics/${id}`);
+    const data: ClinicInterface = response.data;
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export const getCityList = async (province: string) => {
   try {
     const response = await axios.get('/clinics', { params: { province } });
