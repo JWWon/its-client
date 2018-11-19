@@ -4,9 +4,6 @@ import styled from 'theme';
 import mobile from 'theme/mobile';
 
 export const Container = styled.div`
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
   margin-bottom: ${mobile ? 2.4 : 6}rem;
 `;
 

@@ -17,10 +17,10 @@ export const InputWrapper = styled.div`
 `;
 
 export const Short = styled.div`
+  ${({ theme }) => (theme.mobile ? 'flex: 1' : 'flex-basis: 65rem')};
+  height: 100%;
   display: flex;
   align-items: center;
-  ${({ theme }) => (theme.mobile ? 'flex: 1' : 'flex-basis: 65rem')};
-  height: ${({ theme }) => (theme.mobile ? 3.2 : 4.8)}rem;
 `;
 
 export const Input = styled.input`

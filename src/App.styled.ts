@@ -1,10 +1,10 @@
-import { injectGlobal } from 'theme';
+import { createGlobalStyle } from 'theme';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import mobile from 'theme/mobile';
 
-export default injectGlobal`
+export default createGlobalStyle`
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
   html {

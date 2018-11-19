@@ -38,7 +38,7 @@ export const Toggle = styled.div`
   }
 `;
 
-export const Arrow = styled.img.attrs<ContentProps, any>({
+export const Arrow = styled<ContentProps & any>('img').attrs({
   src: ({ selected }: ContentProps) => (selected ? arrowBlue : arrowGray),
 })`
   width: 100%;
@@ -47,7 +47,7 @@ export const Arrow = styled.img.attrs<ContentProps, any>({
   transition: all 0.24s ease-out;
 `;
 
-export const ContentWrapper = styled<ContentProps, any>('div')`
+export const ContentWrapper = styled<ContentProps & any>('div')`
   background-color: ${({ theme }) => theme.color.whiteDim};
   padding: ${({ theme }) => (mobile ? 1 : theme.space.s)}rem;
   ${({ selected }) => !selected && 'display: none'};

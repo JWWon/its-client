@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import 'api/axios';
-import 'App.styled';
-import { Footer, Navbar, Template } from 'components/base';
-import { About, Announcement, Apply, Clinic, Home, Search } from 'pages';
+import GlobalStyle from 'App.styled';
+import { Core, Footer, Navbar, Template, withTracker } from 'components/base';
+import { About, Announcement, Clinic, Home, Registration, Search } from 'pages';
 import { theme, ThemeProvider } from 'theme';
 
 declare global {
   interface Window {
-    naver: { maps: any };
-    daum: any;
+    daum: {
+      Postcode: any;
+      maps: any;
+    };
   }
 }
 
@@ -18,12 +19,18 @@ const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <Template navbar={<Navbar />} footer={<Footer />}>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/apply" component={Apply} />
-        <Route path="/search" component={Search} />
-        <Route path="/announcement" component={Announcement} />
-        <Route path="/clinic/:id" component={Clinic} />
+        <Core />
+        <GlobalStyle />
+        <Route exact path="/" component={withTracker(Home)} />
+        <Route exact path="/about" component={withTracker(About)} />
+        <Route
+          exact
+          path="/registeration"
+          component={withTracker(Registration)}
+        />
+        <Route path="/search" component={withTracker(Search)} />
+        <Route path="/announcement" component={withTracker(Announcement)} />
+        <Route path="/clinic/:id" component={withTracker(Clinic)} />
       </Template>
     </BrowserRouter>
   </ThemeProvider>

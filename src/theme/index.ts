@@ -1,30 +1,29 @@
 import * as styledComponents from 'styled-components';
+import { ThemedStyledComponentsModule } from 'styled-components';
 
-import color, { ColorInterface } from './color';
+import color from './color';
 import font, { FontInterface } from './font';
 import mobile from './mobile';
-import size, { SizeInterface } from './size';
-import space, { SpaceInterface } from './space';
+import size from './size';
+import space from './space';
 
 export interface ThemeInterface {
-  color: ColorInterface;
+  color: { [key in keyof typeof color]: string };
   font: FontInterface;
-  size: SizeInterface;
-  space: SpaceInterface;
+  size: { [key in keyof typeof size]: number };
+  space: { [key in keyof typeof space]: number };
   mobile: string | null;
 }
 
 const {
   default: styled,
   css,
-  injectGlobal,
+  createGlobalStyle,
   keyframes,
   ThemeProvider,
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<
-  ThemeInterface
->;
+} = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
-export const theme = { color, font, mobile, size, space };
+export const theme: ThemeInterface = { color, font, mobile, size, space };
 
 export default styled;
-export { css, injectGlobal, keyframes, ThemeProvider };
+export { css, createGlobalStyle, keyframes, ThemeProvider };

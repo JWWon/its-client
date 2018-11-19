@@ -1,5 +1,5 @@
 /* tslint:disable:jsx-no-lambda */
-import { Editor, EditorState } from 'draft-js';
+import Viewer from 'components/common/Viewer';
 import React from 'react';
 
 import { AnnouncementInterface } from 'api/announcement';
@@ -15,8 +15,6 @@ interface Props {
   ) => void;
 }
 
-const muteChange = (e: EditorState) => null;
-
 const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
   const selected = content.id === pointer;
   return (
@@ -26,13 +24,13 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
           handleClick(e, content.id)
         }>
         <TitleWithBar title={content.title} margin="0" />
-        <s.Date>{content.createdAt.format('YYYY.MM.DD')}</s.Date>
+        <s.Date>{content.createdAt}</s.Date>
         <s.Toggle>
           <s.Arrow selected={selected} />
         </s.Toggle>
       </s.TitleWrapper>
       <s.ContentWrapper selected={selected}>
-        <Editor readOnly editorState={content.content} onChange={muteChange} />
+        <Viewer content={content.content} />
       </s.ContentWrapper>
     </s.Content>
   );

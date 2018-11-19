@@ -1,5 +1,6 @@
 import { Section } from 'components/common';
 import produce from 'immer';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -35,7 +36,10 @@ class Announcement extends Component<RouteComponentProps, State> {
   public render() {
     const { contentObj, pointer } = this.state;
     return (
-      <Section title="잇츠교정의 선물" handleDismiss={this.handleDismiss}>
+      <Section
+        title="잇츠교정의 선물"
+        subtitle="무분별한 허위/과대 광고는 지양합니다. 잇츠교정은 건강한 사회를 지향합니다."
+        handleDismiss={this.handleDismiss}>
         <s.ShadowBox single>
           {Object.keys(contentObj).map(title => {
             const content = contentObj[title];
@@ -56,7 +60,7 @@ class Announcement extends Component<RouteComponentProps, State> {
   private getAnnouncementFromAPI = async () => {
     let contentObj: ContentObj = {};
     const list = await getAnnouncement();
-    list.forEach((announcement: AnnouncementInterface) => {
+    _.forEach(list, (announcement: AnnouncementInterface) => {
       contentObj = {
         ...contentObj,
         [announcement.id]: announcement,

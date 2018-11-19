@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 interface Result {
   [x: string]: string;
 }
@@ -7,7 +9,7 @@ export const getSearchFromURL = (location: any) => {
   let query = location.search.replace(/^\?/g, '');
   query = decodeURI(query);
   query = query.split('&');
-  query.forEach((data: string) => {
+  _.forEach(query, (data: string) => {
     const split = data.split('=');
     result = { ...result, [split[0]]: split[1] };
   });

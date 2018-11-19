@@ -81,7 +81,7 @@ class Footer extends Component<{}, FooterInterface> {
               <s.Twitter />
             </s.Link>
           </s.Header>
-          <s.Button to="/apply">
+          <s.Button to="/registeration">
             <p>병원 등록자격 확인하기</p>
           </s.Button>
         </s.Right>

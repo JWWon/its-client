@@ -1,4 +1,5 @@
-import { Editor, EditorState } from 'draft-js';
+import Viewer from 'components/common/Viewer';
+import { convertToRaw, EditorState } from 'draft-js';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -8,12 +9,12 @@ import * as s from './About.styled';
 
 class About extends Component<RouteComponentProps, ContentInterface> {
   public state = {
-    content: EditorState.createEmpty(),
+    content: convertToRaw(EditorState.createEmpty().getCurrentContent()),
   };
 
   public async componentDidMount() {
     const response = await getContent();
-    this.setState(response);
+    this.setState({ content: response.content });
   }
 
   public render() {
@@ -22,11 +23,7 @@ class About extends Component<RouteComponentProps, ContentInterface> {
         <s.Container>
           <ShadowBox>
             <s.TitleWithBar title="치아 교정병원을 선택하는 가장 객관적인 기준" />
-            <Editor
-              readOnly
-              editorState={this.state.content}
-              onChange={this.muteChange}
-            />
+            <Viewer content={this.state.content} />
           </ShadowBox>
         </s.Container>
         <s.Link>잇츠교정 치과찾기</s.Link>
@@ -38,8 +35,6 @@ class About extends Component<RouteComponentProps, ContentInterface> {
     e.preventDefault();
     this.props.history.push('/');
   };
-
-  private muteChange = (editorState: EditorState) => null;
 }
 
 export default About;

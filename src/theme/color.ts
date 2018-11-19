@@ -1,18 +1,7 @@
-export interface ColorInterface {
-  black: string;
-  blueDark: string;
-  blueGray: string;
-  white: string;
-  whiteDim: string;
-  whiteDark: string;
-  grayDark: string;
-  gray: string;
-  grayLight: string;
-}
-
-const color: ColorInterface = {
+const color = {
   black: '#121212',
   // blue
+  blue: '#2D478B',
   blueDark: '#1A2748',
   blueGray: '#95A4A9',
   // white

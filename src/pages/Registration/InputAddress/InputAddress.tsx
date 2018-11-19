@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-expression */
 import { TitleWithBar } from 'components/common';
 import React, { Component } from 'react';
-import * as s from './Address.styled';
+import * as s from './InputAddress.styled';
 
 interface Props {
   handleChange: (e: React.FormEvent<HTMLInputElement> | string) => void;
@@ -15,7 +15,7 @@ interface State {
 
 const { daum } = window;
 
-class Address extends Component<Props, State> {
+class InputAddress extends Component<Props, State> {
   public state: State = {
     postalCode: '',
     fullAddress: '',
@@ -61,7 +61,8 @@ class Address extends Component<Props, State> {
     );
   }
 
-  private getAddress = () => {
+  private getAddress = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     new daum.Postcode({
       oncomplete: (data: any) => {
         let fullAddress: string = '';
@@ -114,4 +115,4 @@ class Address extends Component<Props, State> {
   };
 }
 
-export default Address;
+export default InputAddress;

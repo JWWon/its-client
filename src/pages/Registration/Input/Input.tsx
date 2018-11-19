@@ -2,15 +2,10 @@ import { TitleWithBar } from 'components/common';
 import React, { Component } from 'react';
 import * as s from './Input.styled';
 
-interface Meta {
-  placeholder: string;
-  name: string;
-  type: 'text' | 'tel' | 'number' | 'email';
-}
-
 interface Props {
-  title: string;
-  meta: Meta;
+  label: string;
+  name: string;
+  placeholder: string;
   handleChange: (e: React.FormEvent<HTMLInputElement> | string) => void;
 }
 
@@ -23,19 +18,20 @@ class Input extends Component<Props, State> {
   public state: State = { email_head: '', email_tail: '' };
 
   public render() {
-    const { title, meta } = this.props;
+    const { label } = this.props;
     return (
       <s.Content>
-        <TitleWithBar title={title} margin="0" />
+        <TitleWithBar title={label} margin="0" />
         <s.InputWrapper>
-          <s.Short>{this.InputBox(meta)}</s.Short>
+          <s.Short>{this.InputBox()}</s.Short>
         </s.InputWrapper>
       </s.Content>
     );
   }
 
-  private InputBox = (meta: Meta) => {
-    switch (meta.type) {
+  private InputBox = () => {
+    const { name, placeholder } = this.props;
+    switch (name) {
       case 'email':
         return (
           <>
@@ -54,12 +50,21 @@ class Input extends Component<Props, State> {
             />
           </>
         );
+      case 'phone':
+        return (
+          <s.Input
+            placeholder={placeholder}
+            name={name}
+            type="tel"
+            onChange={this.props.handleChange}
+          />
+        );
       default:
         return (
           <s.Input
-            placeholder={meta.placeholder}
-            name={meta.name}
-            type={meta.type}
+            placeholder={placeholder}
+            name={name}
+            type="text"
             onChange={this.props.handleChange}
           />
         );

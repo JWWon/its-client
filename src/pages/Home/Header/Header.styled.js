@@ -50,19 +50,17 @@ export const BarPosition = styled.div`
   top: -${({ theme }) => barHeight(theme.mobile) / 2}rem;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
-  height: ${({ theme }) => barHeight(theme.mobile)}rem;
-  padding: 0 ${({ theme }) => theme.space.s}rem;
+  display: flex;
+  justify-content: center;
   white-space: nowrap;
 `;
 
 export const BarLink = styled(Link).attrs({
   to: '/search',
 })`
-  width: 100%;
-  height: 100%;
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  height: ${({ theme }) => barHeight(theme.mobile)}rem;
+  margin: 0 ${({ theme }) => theme.space.s}rem;
   box-sizing: border-box;
   border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
   background: ${({ theme }) => theme.color.blueDark};

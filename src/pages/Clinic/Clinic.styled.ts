@@ -33,7 +33,7 @@ interface ImageInterface {
   url: string;
 }
 const imgWidth: number = mobile ? 6 : 21;
-export const Image = styled<ImageInterface, any>('div')`
+export const Image = styled<ImageInterface & any>('div')`
   width: ${imgWidth}rem;
   height: ${imgWidth * 1.41}rem;
   margin-right: ${mobile ? 2.4 : 4.8}rem;
@@ -64,15 +64,16 @@ export const Label = styled(Content)`
   white-space: nowrap;
 `;
 
-const btnSize = 5.6;
+const btnSize = 7.2;
 export const PhoneButton = styled.div`
   position: fixed;
+  z-index: 1000;
   bottom: ${({ theme }) => theme.space.m}rem;
   right: ${({ theme }) => theme.space.s}rem;
   width: ${btnSize}rem;
   height: ${btnSize}rem;
   border-radius: ${btnSize / 2}rem;
-  background: ${({ theme }) => theme.color.blueDark};
+  background: ${({ theme }) => theme.color.blue};
   box-shadow: -0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.16);
   display: ${mobile ? 'flex' : 'none'};
   justify-content: center;
