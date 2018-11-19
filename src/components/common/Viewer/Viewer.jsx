@@ -18,6 +18,7 @@ const transform = (node, index) => {
       return <br key={index} />;
     }
   }
+
   if (node.name === 'img') {
     const { style, src } = node.attribs;
     const styleObject = {};
@@ -29,7 +30,7 @@ const transform = (node, index) => {
 
     return (
       <s.ImgContainer key={index} float={float}>
-        <s.Image src={src} styles={styles} />
+        <s.Image id={`image_${index}`} src={src} styles={styles} />
       </s.ImgContainer>
     );
   }

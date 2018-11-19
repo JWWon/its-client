@@ -1,4 +1,5 @@
 import axios from 'axios';
+import mobile from 'theme/mobile';
 
 export interface ClinicInterface {
   id: string;
@@ -43,7 +44,8 @@ interface Keyword {
 export const searchByAddress = async (params: Address) => {
   try {
     const response = await axios.get('/clinics', { params });
-    return response.data;
+    const data: ClinicInterface[] = response.data;
+    return data;
   } catch (e) {
     throw e;
   }
@@ -52,7 +54,8 @@ export const searchByAddress = async (params: Address) => {
 export const searchByKeyword = async (params: Keyword) => {
   try {
     const response = await axios.get('/clinics', { params });
-    return response.data;
+    const data: ClinicInterface[] = response.data;
+    return data;
   } catch (e) {
     throw e;
   }
@@ -61,7 +64,8 @@ export const searchByKeyword = async (params: Keyword) => {
 export const getCityList = async (province: string) => {
   try {
     const response = await axios.get('/clinics', { params: { province } });
-    return response.data;
+    const data: ClinicInterface[] = response.data;
+    return data;
   } catch (e) {
     throw e;
   }
@@ -70,7 +74,8 @@ export const getCityList = async (province: string) => {
 export const getClinicLength = async () => {
   try {
     const response = await axios.get('/clinics', { params: { count: true } });
-    return response.data;
+    const data: number = response.data;
+    return data;
   } catch (e) {
     throw e;
   }
@@ -81,7 +86,8 @@ export const getBanners = async (_params: Address) => {
   try {
     const params = { ..._params, banner: true };
     const response = await axios.get('/clinics', { params });
-    return response.data;
+    const data: ClinicInterface[] = response.data;
+    return mobile ? data.slice(0, 2) : data;
   } catch (e) {
     throw e;
   }

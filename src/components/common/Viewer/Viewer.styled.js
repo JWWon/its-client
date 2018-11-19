@@ -1,5 +1,6 @@
 // tslint:disable:no-console
-import styled from 'styled-components';
+import styled from 'theme';
+import mobile from 'theme/mobile';
 
 const screenWidth =
   window.innerWidth ||
@@ -19,8 +20,8 @@ const convertToFlex = float => {
 
 const convertToStyle = object =>
   Object.keys(object).map(key => {
-    if (key === 'width' && object.width > `${screenWidth}px`) {
-      return 'width: 100%';
+    if (key === 'width' && mobile) {
+      return 'max-width: 100%';
     }
     return `${key}: ${object[key]};`;
   });

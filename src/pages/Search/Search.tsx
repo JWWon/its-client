@@ -143,9 +143,9 @@ class Search extends PureComponent<Props, State> {
 
   private getClinicsFromAPI = async (query: any) => {
     const { type } = query;
-    let list;
-    let param;
-    let banners;
+    let list: ClinicInterface[];
+    let param: string;
+    let banners: ClinicInterface[];
     switch (type) {
       case 'keyword':
         const keyword = query.q;
@@ -159,6 +159,10 @@ class Search extends PureComponent<Props, State> {
         banners = await getBanners({ province, city });
         param = `${province} ${city}`;
         break;
+      default:
+        list = [];
+        banners = [];
+        param = '';
     }
     await this.setState({ search: { type, banners, param, list } });
   };
