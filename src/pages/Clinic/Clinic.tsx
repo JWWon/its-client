@@ -30,8 +30,8 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
       return (
         <s.TextWrapper key={key}>
           <s.Label>{key}</s.Label>
-          {key === '전화번호' ? (
-            <a href={`tel:${content}`}>
+          {key === '전화번호' || key === '홈페이지' ? (
+            <a href={`${key === '전화번호' ? 'tel:' : ''}${content}`}>
               <s.Content>{content}</s.Content>
             </a>
           ) : (
