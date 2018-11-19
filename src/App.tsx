@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
-import { Core, Footer, Navbar, Template } from 'components/base';
+import { Core, Footer, Navbar, Template, withTracker } from 'components/base';
 import { About, Announcement, Clinic, Home, Registration, Search } from 'pages';
 import { theme, ThemeProvider } from 'theme';
 
@@ -21,12 +21,16 @@ const App: React.SFC<{}> = () => (
       <Template navbar={<Navbar />} footer={<Footer />}>
         <Core />
         <GlobalStyle />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/registeration" component={Registration} />
-        <Route path="/search" component={Search} />
-        <Route path="/announcement" component={Announcement} />
-        <Route path="/clinic/:id" component={Clinic} />
+        <Route exact path="/" component={withTracker(Home)} />
+        <Route exact path="/about" component={withTracker(About)} />
+        <Route
+          exact
+          path="/registeration"
+          component={withTracker(Registration)}
+        />
+        <Route path="/search" component={withTracker(Search)} />
+        <Route path="/announcement" component={withTracker(Announcement)} />
+        <Route path="/clinic/:id" component={withTracker(Clinic)} />
       </Template>
     </BrowserRouter>
   </ThemeProvider>

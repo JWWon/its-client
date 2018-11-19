@@ -1,4 +1,3 @@
-import landmark from 'lib/icons/ic_landmark.svg';
 import styled from 'theme';
 
 export const Container = styled.div`
@@ -41,7 +40,9 @@ export const SertifWrapper = styled.div`
 `;
 
 // *** IMG
-export const Icon = styled.img.attrs({ src: landmark })`
+export const Icon = styled.img.attrs({
+  src: require('lib/icons/ic_landmark.svg'),
+})`
   margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
   height: ${({ theme }) => (theme.mobile ? 0.8 : 1.6)}rem;
   /* ADD FOR IE */
