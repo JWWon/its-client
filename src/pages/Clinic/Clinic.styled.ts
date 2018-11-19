@@ -64,7 +64,7 @@ export const Label = styled(Content)`
   white-space: nowrap;
 `;
 
-const btnSize = 5.6;
+const btnSize = 7.2;
 export const PhoneButton = styled.div`
   position: fixed;
   z-index: 1000;
@@ -73,7 +73,7 @@ export const PhoneButton = styled.div`
   width: ${btnSize}rem;
   height: ${btnSize}rem;
   border-radius: ${btnSize / 2}rem;
-  background: ${({ theme }) => theme.color.blueDark};
+  background: ${({ theme }) => theme.color.blue};
   box-shadow: -0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.16);
   display: ${mobile ? 'flex' : 'none'};
   justify-content: center;

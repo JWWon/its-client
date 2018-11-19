@@ -3,11 +3,14 @@
   "name": "잇츠 교정, 교정 선택의 객관적 기준",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logo_itso_o.png",
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
-  "display": "standalone"
+  "display": "standalone",
+  "theme_color": "#1A2748",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
 }

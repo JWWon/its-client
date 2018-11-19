@@ -16,6 +16,7 @@ export const Navbar = styled<Props, any>('nav')`
   left: 0;
   right: 0;
   display: flex;
+  z-index: 99;
   justify-content: center;
   background: ${({ theme }) => theme.color.white};
   border-bottom: ${({ isTop, theme }) =>

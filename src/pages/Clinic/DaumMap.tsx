@@ -9,10 +9,7 @@ const { daum } = window;
 const Map = styled.div`
   width: 100%;
   height: ${({ theme }) => (theme.mobile ? '16rem' : '100%')};
-  margin-top: 1.6rem;
-  &:only-child {
-    margin: 0;
-  }
+  ${({ theme }) => theme.mobile && 'margin-top: 1.6rem'};
 `;
 
 class DamuMap extends Component<Props> {
