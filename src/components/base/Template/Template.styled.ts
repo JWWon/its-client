@@ -10,7 +10,7 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Navbar = styled<Props, any>('nav')`
+export const Navbar = styled<Props & any>('nav')`
   position: fixed;
   top: 0;
   left: 0;

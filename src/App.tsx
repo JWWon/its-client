@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import 'App.styled';
+import GlobalStyle from 'App.styled';
 import { Core, Footer, Navbar, Template } from 'components/base';
 import { About, Announcement, Clinic, Home, Registration, Search } from 'pages';
 import { theme, ThemeProvider } from 'theme';
@@ -20,6 +20,7 @@ const App: React.SFC<{}> = () => (
     <BrowserRouter>
       <Template navbar={<Navbar />} footer={<Footer />}>
         <Core />
+        <GlobalStyle />
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/registeration" component={Registration} />

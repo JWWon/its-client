@@ -5,7 +5,7 @@ interface Props {
   url: string;
 }
 
-export const Slide = styled<Props, any>('div')`
+export const Slide = styled<Props & any>('div')`
   width: 100%;
   height: ${slideHeight}vh;
   background-image: url(${({ url }) => url});

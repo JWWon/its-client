@@ -65,7 +65,7 @@ interface SertifTextInterface {
   active?: boolean;
 }
 
-export const SertifText = styled<SertifTextInterface, any>('p')`
+export const SertifText = styled<SertifTextInterface & any>('p')`
   ${({ theme }) => theme.mobile && 'display: none'};
   margin-top: auto;
   font-size: ${({ theme }) => theme.font.size.xs}rem;

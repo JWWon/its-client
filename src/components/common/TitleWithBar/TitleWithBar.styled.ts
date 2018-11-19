@@ -7,7 +7,7 @@ interface Props {
 
 const barHeight = (mobile: string | null) => (mobile ? 0.3 : 0.8);
 
-export const HrBar = styled<Props, any>('div')`
+export const HrBar = styled<Props & any>('div')`
   width: ${({ theme }) => (theme.mobile ? 2 : 6)}rem;
   height: ${({ theme }) => barHeight(theme.mobile)}rem;
   margin-right: ${({ theme }) => (theme.mobile ? 0.6 : 2)}rem;
@@ -25,7 +25,7 @@ export const Title = styled.h3`
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
-export const Wrapper = styled<Props, any>('div')`
+export const Wrapper = styled<Props & any>('div')`
   display: flex;
   align-items: center;
   margin: ${({ margin }) => margin || '4rem 0'};

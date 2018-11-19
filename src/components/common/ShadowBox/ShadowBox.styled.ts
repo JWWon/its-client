@@ -6,7 +6,7 @@ interface Props {
   space: string | null;
 }
 
-export const Container = styled<Props, any>('div')`
+export const Container = styled<Props & any>('div')`
   flex: 1;
   background: ${({ theme }) => theme.color.white};
   padding: ${({ theme }) => theme.space[theme.mobile ? 's' : 'm']}rem;
@@ -15,8 +15,8 @@ export const Container = styled<Props, any>('div')`
       theme.mobile
         ? '-0.1rem 0.2rem 0.5rem '
         : dimmer
-          ? '-0.2rem 0.4rem 1.5rem '
-          : '-0.4rem 0.8rem 2rem '}
+        ? '-0.2rem 0.4rem 1.5rem '
+        : '-0.4rem 0.8rem 2rem '}
     rgba(0, 0, 0, 0.16);
   ${({ single, space, dimmer }) =>
     !single &&

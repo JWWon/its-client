@@ -39,7 +39,7 @@ export const ListWrapper = styled.div`
   margin: -0.8rem -1%;
 `;
 
-export const Data = styled<DataInterface, any>('div')`
+export const Data = styled<DataInterface & any>('div')`
   flex-basis: ${({ isCity }) => (isCity ? '31.3%' : '23%')};
   margin: 0.8rem 1%;
   height: ${dataHeight}rem;
@@ -65,7 +65,7 @@ export const Data = styled<DataInterface, any>('div')`
   }
 `;
 
-export const TextWrapper = styled<TextInterface, any>('div')`
+export const TextWrapper = styled<TextInterface & any>('div')`
   flex: 1;
   padding: 0 ${dataHeight / 2 + 1.6}rem;
   display: flex;

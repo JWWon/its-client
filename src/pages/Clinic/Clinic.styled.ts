@@ -33,7 +33,7 @@ interface ImageInterface {
   url: string;
 }
 const imgWidth: number = mobile ? 6 : 21;
-export const Image = styled<ImageInterface, any>('div')`
+export const Image = styled<ImageInterface & any>('div')`
   width: ${imgWidth}rem;
   height: ${imgWidth * 1.41}rem;
   margin-right: ${mobile ? 2.4 : 4.8}rem;
