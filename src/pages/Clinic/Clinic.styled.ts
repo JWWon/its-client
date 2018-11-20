@@ -2,8 +2,7 @@ import {
   ShadowBox as _ShadowBox,
   TitleWithBar as _TitleWithBar,
 } from 'components/common';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 import icPhone from 'lib/icons/ic_phone.svg';
 
@@ -13,12 +12,12 @@ export const ShadowBox = styled(_ShadowBox).attrs({
 })``;
 
 export const TitleWithBar = styled(_TitleWithBar).attrs({
-  margin: `0 0 ${mobile ? 1.6 : 4}rem`,
+  margin: (props: any) => `0 0 ${selectByDevice({ m: 1.6, d: 4 })(props)}`,
 })``;
 
 export const InfoWrapper = styled.div`
   display: flex;
-  ${mobile && 'flex-direction: column'};
+  ${selectByDevice({ m: 'flex-direction: column', d: '' })};
 `;
 
 export const FlexOne = styled.div`
@@ -32,11 +31,11 @@ export const SepcialistWrapper = styled.div`
 interface ImageInterface {
   url: string;
 }
-const imgWidth: number = mobile ? 6 : 21;
+const imgWidth = { m: 6, d: 21 };
 export const Image = styled<ImageInterface & any>('div')`
-  width: ${imgWidth}rem;
-  height: ${imgWidth * 1.41}rem;
-  margin-right: ${mobile ? 2.4 : 4.8}rem;
+  width: ${selectByDevice(imgWidth)};
+  height: ${selectByDevice(imgWidth, 1.41)};
+  margin-right: ${selectByDevice({ m: 2.4, d: 4.8 })};
   background-image: url(${({ url }) => url});
   background-size: contain;
   background-position: center;
@@ -45,7 +44,7 @@ export const Image = styled<ImageInterface & any>('div')`
 
 export const TextWrapper = styled.div`
   display: flex;
-  margin-bottom: ${mobile ? 1.2 : 3}rem;
+  margin-bottom: ${selectByDevice({ m: 1.2, d: 3 })};
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -58,7 +57,7 @@ export const Content = styled.p`
 `;
 
 export const Label = styled(Content)`
-  flex-basis: ${({ theme }) => (theme.mobile ? 8 : 20)}rem;
+  flex-basis: ${selectByDevice({ m: 8, d: 20 })};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme }) => theme.color.blueDark};
   white-space: nowrap;
@@ -75,7 +74,7 @@ export const PhoneButton = styled.div`
   border-radius: ${btnSize / 2}rem;
   background: ${({ theme }) => theme.color.blue};
   box-shadow: -0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.16);
-  display: ${mobile ? 'flex' : 'none'};
+  display: ${selectByDevice({ m: 'flex', d: 'none' })};
   justify-content: center;
   align-items: center;
 `;

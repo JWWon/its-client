@@ -1,5 +1,4 @@
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 import icAdd from 'lib/icons/ic_add.svg';
 import icDelete from 'lib/icons/ic_delete.svg';
@@ -13,13 +12,13 @@ export const Input = styled.input.attrs({
   opacity: 0;
 `;
 
-const barSpace: number = mobile ? 2.6 : 8;
-const imageWidth: number = mobile ? 8 : 24;
+const barSpace = { m: 2.6, d: 8 };
+const imageWidth = { m: 8, d: 24 };
 export const ImageWrapper = styled.div`
   position: relative;
-  width: ${imageWidth}rem;
-  height: ${imageWidth * 1.61}rem;
-  margin: 2rem 0 0 ${barSpace}rem;
+  width: ${selectByDevice(imageWidth)};
+  height: ${selectByDevice(imageWidth, 1.61)};
+  margin: 2rem 0 0 ${selectByDevice(barSpace)};
 `;
 
 export const Label = styled.label`
@@ -41,27 +40,27 @@ export const Preview = styled.img`
   object-fit: contain;
 `;
 
-const iconSize: number = mobile ? 1 : 4;
+const iconSize = { m: 1, d: 4 };
 export const AddIcon = styled.img.attrs({ src: icAdd })`
-  width: ${iconSize}rem;
-  height: ${iconSize}rem;
+  width: ${selectByDevice(iconSize)};
+  height: ${selectByDevice(iconSize)};
   object-fit: contain;
 `;
 
-const deleteSize: number = mobile ? 3 : 4;
+const deleteSize = { m: 3, d: 4 };
 export const Delete = styled.div`
   position: absolute;
-  top: ${imageWidth * 0.02}rem;
-  right: ${imageWidth * 0.02}rem;
-  width: ${deleteSize}rem;
-  height: ${deleteSize}rem;
+  top: ${selectByDevice(imageWidth, 0.02)};
+  right: ${selectByDevice(imageWidth, 0.02)};
+  width: ${selectByDevice(deleteSize)};
+  height: ${selectByDevice(deleteSize)};
   border-radius: 0.4rem;
   background-color: ${({ theme }) => theme.color.grayDark};
   background-image: url(${icDelete});
-  background-size: ${deleteSize * 0.4}rem ${deleteSize * 0.4}rem;
+  background-size: ${selectByDevice(deleteSize, 0.4)};
   background-position: center;
   background-repeat: no-repeat;
-  ${!mobile && 'visibility: hidden'};
+  ${selectByDevice({ m: '', d: 'visibility: hidden' })};
   ${Label}:hover & {
     visibility: visible;
   }

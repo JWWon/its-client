@@ -1,18 +1,19 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 export const registrationWidth = (theme: any) =>
   `calc(${window.innerWidth}px - ${2 * theme.space.s}rem)`;
 
 export const Form = styled.form`
   flex: 1;
-  ${({ theme }) => mobile && `width: ${registrationWidth(theme)}`};
+  ${({ theme }) => theme.mobile && `width: ${registrationWidth(theme)}`};
 `;
 
 export const ShadowBox = styled(_ShadowBox).attrs({
   single: true,
-  style: { marginBottom: `${mobile ? 3 : 6}rem` },
+  style: (props: any) => ({
+    marginBottom: selectByDevice({ m: 3, d: 6 })(props),
+  }),
 })``;
 
 export const ButtonWrapper = styled.div`
@@ -20,12 +21,13 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const btnHeight: number = mobile ? 2.4 : 3.8;
+const btnHeight = { m: 2.4, d: 3.8 };
 export const Submit = styled.button`
-  width: ${mobile ? 14 : 24}rem;
+  width: ${selectByDevice({ m: 14, d: 24 })};
   height: ${btnHeight}rem;
-  border: ${mobile ? 1 : 2}px solid ${({ theme }) => theme.color.blueDark};
-  border-radius: ${btnHeight / 2}rem;
+  border: ${selectByDevice({ m: '1px', d: '2px' })} solid
+    ${({ theme }) => theme.color.blueDark};
+  border-radius: ${selectByDevice(btnHeight, 0.5)};
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.s}rem;
   background: transparent;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { selectByDevice } from 'theme';
 
 interface Props {
   address: string;
@@ -8,8 +8,8 @@ interface Props {
 const { daum } = window;
 const Map = styled.div`
   width: 100%;
-  height: ${({ theme }) => (theme.mobile ? '16rem' : '100%')};
-  ${({ theme }) => theme.mobile && 'margin-top: 1.6rem'};
+  height: ${selectByDevice({ m: '16rem', d: '100%' })};
+  ${selectByDevice({ m: 'margin-top: 1.6rem', d: '' })};
 `;
 
 class DamuMap extends Component<Props> {

@@ -1,5 +1,4 @@
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
@@ -17,7 +16,7 @@ export const Content = styled.div`
 
 export const TitleWrapper = styled.div`
   display: flex;
-  height: ${mobile ? 4 : 8}rem;
+  height: ${selectByDevice({ m: 4, d: 8 })};
   align-items: center;
 `;
 
@@ -29,10 +28,10 @@ export const Date = styled.p`
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;
 
-const toggleSize: number = mobile ? 1.2 : 3;
+const toggleSize = { m: 1.2, d: 3 };
 export const Toggle = styled.div`
-  width: ${toggleSize}rem;
-  height: ${toggleSize}rem;
+  width: ${selectByDevice(toggleSize)};
+  height: ${selectByDevice(toggleSize)};
   &:hover {
     cursor: pointer;
   }
@@ -49,6 +48,6 @@ export const Arrow = styled<ContentProps & any>('img').attrs({
 
 export const ContentWrapper = styled<ContentProps & any>('div')`
   background-color: ${({ theme }) => theme.color.whiteDim};
-  padding: ${({ theme }) => (mobile ? 1 : theme.space.s)}rem;
+  padding: ${({ theme }) => (theme.mobile ? 1 : theme.space.s)}rem;
   ${({ selected }) => !selected && 'display: none'};
 `;

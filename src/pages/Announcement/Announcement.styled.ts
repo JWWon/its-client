@@ -1,7 +1,8 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 export const ShadowBox = styled(_ShadowBox).attrs({
-  style: { padding: `0 ${mobile ? 1.6 : 3.2}rem` },
+  style: (props: any) => ({
+    padding: `0 ${selectByDevice({ m: 1.6, d: 3.2 })(props)}`,
+  }),
 })``;

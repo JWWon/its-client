@@ -1,17 +1,16 @@
 import icClose from 'lib/icons/ic_close.svg';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
-const size: number = mobile ? 1.4 : 2.6;
+const size = { m: 1.4, d: 2.6 };
 
 export const Dismiss = styled.div`
   margin-left: auto;
-  width: ${size}rem;
-  height: ${size}rem;
+  width: ${selectByDevice(size)}rem;
+  height: ${selectByDevice(size)}rem;
   background: no-repeat center url(${icClose});
   &:hover {
     cursor: pointer;
     transform: rotate(90deg);
   }
-  ${!mobile && 'transition: transform ease-out 0.2s'};
+  ${selectByDevice({ m: '', d: 'transition: transform ease-out 0.2s' })};
 `;

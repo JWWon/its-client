@@ -1,21 +1,21 @@
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
 
 interface Props {
   margin: string | null;
   vertical: boolean;
 }
 
-const barHeight = (mobile: string | null) => (mobile ? 0.3 : 0.8);
+const barHeight = { m: 0.3, d: 0.8 };
 
 export const HrBar = styled<Props & any>('div')`
-  width: ${({ theme }) => (theme.mobile ? 2 : 6)}rem;
-  height: ${({ theme }) => barHeight(theme.mobile)}rem;
-  margin-right: ${({ theme }) => (theme.mobile ? 0.6 : 2)}rem;
+  width: ${selectByDevice({ m: 2, d: 6 })};
+  height: ${selectByDevice(barHeight)};
+  margin-right: ${selectByDevice({ m: 0.6, d: 2 })};
   ${({ vertical }) =>
     vertical &&
     `width: 3.6rem;
     margin: 1.4rem 0 0`};
-  border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
+  border-radius: ${selectByDevice(barHeight, 0.5)};
   background-color: ${({ theme }) => theme.color.blueDark};
 `;
 

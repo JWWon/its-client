@@ -1,5 +1,4 @@
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 export const Content = styled.div`
   margin-top: 3.2rem;
@@ -8,16 +7,16 @@ export const Content = styled.div`
   }
 `;
 
-const barSpace: number = mobile ? 2.6 : 8;
+const barSpace = { m: 2.6, d: 8 };
 export const InputWrapper = styled.div`
   margin-top: 2rem;
-  height: ${mobile ? 3.2 : 4.8}rem;
-  padding-left: ${barSpace}rem;
+  height: ${selectByDevice({ m: 3.2, d: 4.8 })};
+  padding-left: ${selectByDevice(barSpace)};
   display: flex;
 `;
 
 export const Short = styled.div`
-  ${({ theme }) => (theme.mobile ? 'flex: 1' : 'flex-basis: 65rem')};
+  ${selectByDevice({ m: 'flex: 1', d: 'flex-basis: 65rem' })};
   height: 100%;
   display: flex;
   align-items: center;

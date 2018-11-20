@@ -1,26 +1,24 @@
 import { TitleWithBar as _TitleWithBar } from 'components/common';
 import { Link as _Link } from 'react-router-dom';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
-  margin-bottom: ${mobile ? 2.4 : 6}rem;
+  margin-bottom: ${selectByDevice({ m: 2.4, d: 6 })};
 `;
 
 export const TitleWithBar = styled(_TitleWithBar).attrs({
-  margin: mobile ? '0.8rem 0' : '0.8rem 0 4rem',
+  margin: selectByDevice({ m: '0.8rem 0', d: '0.8rem 0 4rem' }),
 })``;
 
-const linkHeight: number = mobile ? 2.4 : 4.8;
-
+const linkHeight = { m: 2.4, d: 4.8 };
 export const Link = styled(_Link).attrs({
   to: '/search',
 })`
   margin: 0 auto;
-  width: ${mobile ? 10 : 32}rem;
+  width: ${selectByDevice({ m: 10, d: 32 })};
   box-sizing: border-box;
-  height: ${linkHeight}rem;
-  border-radius: ${linkHeight / 2}rem;
+  height: ${selectByDevice(linkHeight)};
+  border-radius: ${selectByDevice(linkHeight, 0.5)};
   background: ${({ theme }) => theme.color.blueDark};
   display: flex;
   justify-content: center;

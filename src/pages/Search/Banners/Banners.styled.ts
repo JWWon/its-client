@@ -1,5 +1,5 @@
 import landmark from 'lib/icons/ic_landmark.svg';
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
   width: 100%;
@@ -34,12 +34,11 @@ export const Notice = styled.p`
   color: ${({ theme }) => theme.color.grayDark};
 `;
 
-const barHeight = (mobile: string | null) => (mobile ? 0.3 : 0.8);
-
+const barHeight = { m: 0.3, d: 0.8 };
 export const Bar = styled.div`
-  width: ${({ theme }) => (theme.mobile ? 2 : 6)}rem;
-  height: ${({ theme }) => barHeight(theme.mobile)}rem;
-  border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
+  width: ${selectByDevice({ m: 2, d: 6 })};
+  height: ${selectByDevice(barHeight)};
+  border-radius: ${selectByDevice(barHeight, 0.5)};
   background-color: ${({ theme }) => theme.color.blueDark};
   margin-right: auto;
 `;

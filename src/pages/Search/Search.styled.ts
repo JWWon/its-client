@@ -1,22 +1,21 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 const space = '1.4rem';
 export const BoxWrapper = styled.div`
   display: flex;
-  ${({ theme }) => theme.mobile && 'flex-direction: column'};
+  ${selectByDevice({ m: 'flex-direction: column', d: '' })};
   width: 100%;
   min-height: 64rem;
   margin: -${space} 0;
 `;
 
-function setAttrs() {
-  if (!mobile) return {};
-  return { single: true, style: { margin: '1.4rem 0' } };
-}
-const attrs: object = setAttrs();
-export const ShadowBox = styled(_ShadowBox).attrs(attrs)``;
+export const ShadowBox = styled(_ShadowBox).attrs({
+  single: ({ theme }: any) => theme.mobile !== null,
+  style: (props: any) => ({
+    margin: selectByDevice({ m: `${space} 0`, d: '' })(props),
+  }),
+})``;
 
 export const Notice = styled.p`
   margin: 1.6rem 0;

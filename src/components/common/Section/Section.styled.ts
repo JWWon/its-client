@@ -1,20 +1,19 @@
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
-const space: number = mobile ? 3 : 10;
+const space = { m: 3, d: 10 };
 export const Section = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: ${space}rem;
+  margin-top: ${selectByDevice(space)};
   &:last-of-type {
-    margin-bottom: ${space}rem;
+    margin-bottom: ${selectByDevice(space)};
   }
 `;
 
 export const Container = styled.div`
   ${({ theme }) =>
-    mobile
+    theme.mobile
       ? `flex: 1`
       : `flex-basis: ${theme.size.container + 2 * theme.space.s}rem`};
   padding: 0 ${({ theme }) => theme.space.s}rem;
@@ -24,8 +23,8 @@ const roundHeight = 8;
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  ${({ theme }) => !theme.mobile && `height: ${roundHeight}rem`};
-  margin-bottom: ${({ theme }) => (theme.mobile ? 2.8 : 9.6)}rem;
+  ${selectByDevice({ m: '', d: `height: ${roundHeight}rem` })};
+  margin-bottom: ${selectByDevice({ m: 2.8, d: 9.6 })};
   /* ADD FOR IE */
   max-height: 100%;
   box-sizing: border-box;
@@ -46,16 +45,16 @@ export const HalfRound = styled.div`
   }
 `;
 
-const bannerHeight: number = mobile ? 16 : 28;
+const bannerHeight = { m: 16, d: 28 };
 export const BannerArea = styled.div`
-  height: ${bannerHeight}rem;
+  height: ${selectByDevice(bannerHeight)};
 `;
 
 export const BannerWrapper = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  height: ${bannerHeight}rem;
+  height: ${selectByDevice(bannerHeight)};
   background: ${({ theme }) => theme.color.whiteDark};
   display: flex;
   justify-content: center;
@@ -63,7 +62,7 @@ export const BannerWrapper = styled.div`
 
 const barHeight: number = 0.3;
 export const Bar = styled.div`
-  ${({ theme }) => !theme.mobile && 'display: none'};
+  ${selectByDevice({ m: '', d: 'display: none' })};
   width: 3.6rem;
   height: ${barHeight}rem;
   border-radius: ${barHeight / 2}rem;

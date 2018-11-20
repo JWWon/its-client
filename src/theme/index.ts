@@ -23,7 +23,22 @@ const {
   ThemeProvider,
 } = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
-export const theme: ThemeInterface = { color, font, mobile, size, space };
+export const theme: ThemeInterface = { color, font, size, space, mobile };
+
+const selectByDevice = (
+  obj: { m: number | string; d: number | string },
+  multiply?: number,
+  unit?: string
+) => (props: any) => {
+  if (typeof obj.m === 'number' && typeof obj.d === 'number') {
+    const result: number = props.theme.mobile ? obj.m : obj.d;
+    return `${multiply ? result * multiply : result}${unit || 'rem'}`;
+  } else if (typeof obj.m === 'string' && typeof obj.d === 'string') {
+    const result: string = props.theme.mobile ? obj.m : obj.d;
+    return result;
+  }
+  return '';
+};
 
 export default styled;
-export { css, createGlobalStyle, keyframes, ThemeProvider };
+export { css, createGlobalStyle, keyframes, ThemeProvider, selectByDevice };
