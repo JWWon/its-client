@@ -16,7 +16,7 @@ export const Context = styled.div`
   width: 78%;
   text-align: center;
   color: ${({ theme }) => theme.color.gray};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
 `;
 
@@ -58,4 +58,9 @@ export const ArrowBlue = styled.img.attrs({
 })`
   width: auto;
   height: 0.8rem;
+`;
+
+export const Important = styled.span`
+  color: ${({ theme }) => theme.color.blueDark};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;

@@ -43,7 +43,7 @@ export const SertifWrapper = styled.div`
 export const Icon = styled.img.attrs({
   src: require('lib/icons/ic_landmark.svg'),
 })`
-  margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
+  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
   height: ${selectByDevice({ m: 0.8, d: 1.6 })};
   /* ADD FOR IE */
   width: 1rem;
@@ -91,4 +91,5 @@ export const Address = styled(Phone)`
 export const Landmark = styled(Address)`
   margin: 0;
   font-weight: ${({ theme }) => theme.font.weight.light};
+  white-space: nowrap;
 `;

@@ -17,14 +17,14 @@ export const PictogramWrapper = styled(Container)`
 
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${({ theme }) => theme.font.size.l}rem;
   font-weight: ${({ theme }) => theme.font.weight.bold};
   margin-bottom: 4.8rem;
 `;
 
 export const Context = styled.p`
   color: ${({ theme }) => theme.color.gray};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   line-height: 4rem;
 `;
@@ -55,4 +55,9 @@ export const ArrowBlue = styled.img.attrs({
 })`
   width: auto;
   height: 1.6rem;
+`;
+
+export const Important = styled.span`
+  color: ${({ theme }) => theme.color.blueDark};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;

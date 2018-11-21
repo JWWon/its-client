@@ -1,3 +1,4 @@
+import { Element as _Element } from 'react-scroll';
 import styled, { selectByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
@@ -7,7 +8,7 @@ interface ContentProps {
   selected: boolean;
 }
 
-export const Content = styled.div`
+export const Element = styled(_Element)`
   width: 100%;
   &:last-of-type {
     padding-bottom: ${({ theme }) => theme.space.s}rem;

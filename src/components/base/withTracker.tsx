@@ -1,17 +1,20 @@
 import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 import { RouteComponentProps } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
+
+const scrollOptions = {
+  duration: 720,
+};
 
 const withTracker = <P extends RouteComponentProps>(
   Component: React.ComponentType<P>,
   options: object = {}
 ) => {
   const trackPage = (page: string) => {
-    ReactGA.set({
-      page,
-      ...options,
-    });
+    ReactGA.set({ page, ...options });
     ReactGA.pageview(page);
+    if (page !== '/announcement') scroll.scrollToTop(scrollOptions);
   };
 
   const HOC = class extends PureComponent<RouteComponentProps> {

@@ -110,7 +110,7 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
     } = this.state;
 
     return (
-      <Section title={name} handleDismiss={this.handleDismiss}>
+      <Section title={name} handleDismiss={this.handleDismiss} massive={true}>
         {specialist && (
           <s.ShadowBox>
             <s.TitleWithBar title="전문의 자격증" />

@@ -5,6 +5,10 @@ interface Props {
   vertical: boolean;
 }
 
+interface TitleInterface {
+  vertical: boolean;
+}
+
 const barHeight = { m: 0.3, d: 0.8 };
 
 export const HrBar = styled<Props & any>('div')`
@@ -19,9 +23,14 @@ export const HrBar = styled<Props & any>('div')`
   background-color: ${({ theme }) => theme.color.blueDark};
 `;
 
-export const Title = styled.h3`
+export const Title = styled<TitleInterface & any>('h3')`
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size[theme.mobile ? 'xxl' : 'l']}rem;
+  font-size: ${({ theme, vertical }) =>
+    theme.mobile
+      ? vertical
+        ? 4.4
+        : theme.font.size.xxl
+      : theme.font.size.l}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 

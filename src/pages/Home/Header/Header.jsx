@@ -20,7 +20,7 @@ const Header: React.SFC<Props> = ({ count }) => (
     <s.CountUpWrapper>
       전국 치과병의원
       <div>
-        <s.CountUp end={17000} />
+        <s.CountUp end={18107} />
       </div>
       중 기준을 만족하는 오직
       <div>

@@ -76,9 +76,9 @@ export const TextWrapper = styled<TextInterface & any>('div')`
 `;
 
 export const Name = styled.p`
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.black};
   font-size: ${({ theme }) => theme.font.size.s}rem;
-  font-weight: ${({ theme }) => theme.font.weight.regular};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 export const Count = styled(Name)`

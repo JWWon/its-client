@@ -9,8 +9,10 @@ const About = () => (
     <s.ShadowBox single>
       <TitleWithBar title="'잇츠교정'이란?" margin="1.2rem 0" vertical />
       <s.Context>
-        잇츠교정은 치과교정과전문의에 의해 설립된 병원만을 선별하여,
-        치아교정치료중 발생되는 많은 문제를 해결하기 위해 만들어졌습니다.
+        잇츠교정은{' '}
+        <s.Important>치과교정과전문의에 의해 설립된 병원</s.Important>만을
+        선별하여, 치아교정치료중 발생되는 많은 문제를 해결하기 위해
+        만들어졌습니다.
       </s.Context>
       <s.Container>
         <s.PictogramWrapper>

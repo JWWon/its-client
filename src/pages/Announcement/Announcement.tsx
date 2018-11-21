@@ -1,8 +1,8 @@
 import { Section } from 'components/common';
-import produce from 'immer';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { scroller } from 'react-scroll';
 
 import { AnnouncementInterface, getAnnouncement } from 'api/announcement';
 import { getHashFromURL } from 'src/lib/functions/url';
@@ -70,19 +70,19 @@ class Announcement extends Component<RouteComponentProps, State> {
   };
 
   // *** HANDLE EVENT
-  private handleToggleByURL = (location: any) => {
-    const { contentObj } = this.state;
-    const pointer = getHashFromURL(location) || Object.keys(contentObj)[0];
-    this.setState({ pointer });
+  private handleToggleByURL = async (location: any) => {
+    const pointer = getHashFromURL(location);
+    await this.setState({ pointer });
+    scroller.scrollTo(pointer, { duration: 800, smooth: true, offset: -60 });
   };
 
-  private handleClick = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
-    this.setState(prevState =>
-      produce(prevState, (draft: State) => {
-        draft.pointer = id;
-      })
-    );
-    this.props.history.replace(`/announcement#${id}`);
+  private handleClick = async (
+    e: React.MouseEvent<HTMLDivElement>,
+    id: string
+  ) => {
+    const { history } = this.props;
+    const isSamePointer = this.state.pointer === id;
+    history.replace(`/announcement${isSamePointer ? '' : `#${id}`}`);
   };
 
   private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {
