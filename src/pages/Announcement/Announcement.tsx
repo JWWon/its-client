@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { scroller } from 'react-scroll';
 
 import { AnnouncementInterface, getAnnouncement } from 'api/announcement';
-import { getHashFromURL } from 'src/lib/functions/url';
+import { getHashFromURL } from 'lib/functions/url';
 import * as s from './Announcement.styled';
 import Content from './Content';
 

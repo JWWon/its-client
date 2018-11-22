@@ -12,7 +12,7 @@ import {
 } from 'api/clinic';
 import { Section } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
-import { getSearchFromURL } from 'src/lib/functions/url';
+import { getSearchFromURL } from 'lib/functions/url';
 import Banners from './Banners';
 import CheckDistrict from './CheckDistrict';
 import Result from './Result';
