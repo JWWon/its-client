@@ -1,5 +1,5 @@
 import { ClinicInterface } from 'api/clinic';
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ShadowBox, TitleWithBar } from 'components/common';
@@ -13,12 +13,27 @@ interface Props {
   clinic: ClinicInterface;
 }
 
+interface SwitchInterface extends Props {
+  children: ReactNode;
+}
+
 const Sertif: React.SFC<SertifInterface> = ({ name, type, active }) => (
   <s.SertifWrapper>
     <s.SertifIcon type={type} active={active} />
     <s.SertifText active={active}>{name}</s.SertifText>
   </s.SertifWrapper>
 );
+
+const SwitchLink: React.SFC<SwitchInterface> = ({ clinic, children }) => {
+  if (clinic.grade > -1) {
+    return (
+      <Link to={{ pathname: `/clinic/${clinic.id}`, state: clinic }}>
+        {children}
+      </Link>
+    );
+  }
+  return <>{children}</>;
+};
 
 class Result extends Component<Props> {
   public render() {
@@ -28,7 +43,7 @@ class Result extends Component<Props> {
 
     return (
       <s.Container>
-        <Link to={{ pathname: `/clinic/${clinic.id}`, state: clinic }}>
+        <SwitchLink clinic={clinic}>
           <ShadowBox>
             <s.Wrapper>
               <s.LeftContent>
@@ -59,7 +74,7 @@ class Result extends Component<Props> {
               />
             </s.Wrapper>
           </ShadowBox>
-        </Link>
+        </SwitchLink>
       </s.Container>
     );
   }
