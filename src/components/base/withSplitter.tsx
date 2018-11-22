@@ -11,10 +11,10 @@ const scrollOptions = {
 };
 
 const withSplitter = <P extends RouteComponentProps>(
-  loadComponent: Promise<any>,
+  loadComponent: () => Promise<any>,
   options: object = {}
 ) => {
-  const Component = Loadable({ loader: () => loadComponent, loading: Spinner });
+  const Component = Loadable({ loader: loadComponent, loading: Spinner });
 
   const trackPage = (pathname: string) => {
     ReactGA.set({ pathname, ...options });
