@@ -31,7 +31,9 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
         <s.TextWrapper key={key}>
           <s.Label>{key}</s.Label>
           {key === '전화번호' || key === '홈페이지' ? (
-            <a href={`${key === '전화번호' ? 'tel:' : ''}${content}`}>
+            <a
+              href={`${key === '전화번호' ? 'tel:' : ''}${content}`}
+              target={key === '전화번호' ? '_self' : '_blank'}>
               <s.Content>{content}</s.Content>
             </a>
           ) : (

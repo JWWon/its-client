@@ -1,5 +1,10 @@
+import { ShadowBox as _ShadowBox } from 'components/common';
 import landmark from 'lib/icons/ic_landmark.svg';
 import styled, { selectByDevice } from 'theme';
+
+export const ShadowBox = styled(_ShadowBox).attrs({
+  space: selectByDevice({ m: 1.6, d: 3.5 }),
+})``;
 
 export const Container = styled.div`
   width: 100%;
@@ -45,8 +50,8 @@ export const Bar = styled.div`
 
 // *** IMG
 export const Icon = styled.img.attrs({ src: landmark })`
-  margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
-  height: 1.6rem;
+  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
+  height: ${selectByDevice({ m: 1, d: 1.8 })};
   /* ADD FOR IE */
   width: 1rem;
 `;

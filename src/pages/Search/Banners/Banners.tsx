@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ClinicInterface } from 'api/clinic';
-import { ShadowBox, TitleWithBar } from 'components/common';
+import { TitleWithBar } from 'components/common';
 import * as s from './Banners.styled';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Banner: React.SFC<ClinicInterface> = props => (
-  <ShadowBox space="3.5rem">
+  <s.ShadowBox>
     <Link to={{ pathname: `/clinic/${props.id}`, state: props }}>
       <s.BannerWrapper>
         <TitleWithBar title={props.name} margin="0" hideBar />
@@ -21,7 +21,7 @@ const Banner: React.SFC<ClinicInterface> = props => (
         </s.Footer>
       </s.BannerWrapper>
     </Link>
-  </ShadowBox>
+  </s.ShadowBox>
 );
 
 const Banners: React.SFC<Props> = ({ list }) => (
