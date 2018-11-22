@@ -25,7 +25,6 @@ const Sertif: React.SFC<SertifInterface> = ({ name, type, active }) => (
 );
 
 const SwitchLink: React.SFC<SwitchInterface> = ({ clinic, children }) => {
-  console.log(clinic.grade);
   if (clinic.grade > -1 || clinic.grade === undefined) {
     return (
       <Link to={{ pathname: `/clinic/${clinic.id}`, state: clinic }}>

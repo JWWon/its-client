@@ -5,8 +5,8 @@ const size = { m: 1.4, d: 2.6 };
 
 export const Dismiss = styled.div`
   margin-left: auto;
-  width: ${selectByDevice(size)}rem;
-  height: ${selectByDevice(size)}rem;
+  width: ${selectByDevice(size)};
+  height: ${selectByDevice(size)};
   background: no-repeat center url(${icClose});
   &:hover {
     cursor: pointer;
