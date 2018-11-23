@@ -31,7 +31,7 @@ export const PictogramWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const btnHeight: number = 2;
+const btnHeight: number = 3.2;
 export const More = styled(_Link).attrs({
   to: '/about',
 })`
@@ -48,7 +48,7 @@ export const More = styled(_Link).attrs({
   align-items: center;
   p {
     color: ${({ theme }) => theme.color.blueDark};
-    font-size: ${({ theme }) => theme.font.size.s}rem;
+    font-size: ${({ theme }) => theme.font.size.m}rem;
     font-weight: ${({ theme }) => theme.font.weight.regular};
   }
 `;
@@ -57,7 +57,7 @@ export const ArrowBlue = styled.img.attrs({
   src: arrowBlue,
 })`
   width: auto;
-  height: 0.8rem;
+  height: 1rem;
 `;
 
 export const Important = styled.span`
