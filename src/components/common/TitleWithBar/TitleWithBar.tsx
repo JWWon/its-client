@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import * as s from './TitleWithBar.styled';
 
 interface Props {
@@ -16,7 +17,7 @@ const TitleWithBar: React.SFC<Props> = ({
 }) => (
   <s.Wrapper margin={margin} vertical={vertical}>
     {!hideBar && <s.HrBar vertical={vertical} />}
-    <s.Title vertical={vertical}>{title}</s.Title>
+    <s.Title vertical={vertical}>{ReactHtmlParser(title)}</s.Title>
   </s.Wrapper>
 );
 

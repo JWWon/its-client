@@ -1,5 +1,6 @@
 import { Dismiss } from 'components/common';
 import React, { ReactNode } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import * as s from './Section.styled';
 
 interface Title {
@@ -26,7 +27,7 @@ const Header: React.SFC<Title> = ({
       <s.Header>
         <s.HalfRound />
         <s.Title massive={massive}>{title}</s.Title>
-        {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
+        {subtitle && <s.SubTitle>{ReactHtmlParser(subtitle)}</s.SubTitle>}
         {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
       </s.Header>
     </>

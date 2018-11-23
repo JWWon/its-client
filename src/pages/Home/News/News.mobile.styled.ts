@@ -30,3 +30,10 @@ export const Image = styled.img`
   box-shadow: -0.1rem 0.3rem 0.5rem rgba(0, 0, 0, 0.16);
   object-fit: cover;
 `;
+
+export const SubTitle = styled.h3`
+  color: ${({ theme }) => theme.color.grayDark};
+  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-weight: ${({ theme }) => theme.font.weight.demiLight};
+  margin-left: ${({ theme }) => (theme.mobile ? 1 : 3)}rem;
+`;

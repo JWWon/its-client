@@ -6,6 +6,7 @@ import { scroller } from 'react-scroll';
 
 import { AnnouncementInterface, getAnnouncement } from 'api/announcement';
 import { getHashFromURL } from 'lib/functions/url';
+import mobile from 'theme/mobile';
 import * as s from './Announcement.styled';
 import Content from './Content';
 
@@ -38,7 +39,9 @@ class Announcement extends Component<RouteComponentProps, State> {
     return (
       <Section
         title="잇츠교정의 선물"
-        subtitle="무분별한 허위/과대 광고는 지양합니다. 잇츠교정은 건강한 사회를 지향합니다."
+        subtitle={`무분별한 허위/과대 광고는 지양합니다.${
+          mobile ? '<br />' : ' '
+        }잇츠교정은 건강한 사회를 지향합니다.`}
         handleDismiss={this.handleDismiss}>
         <s.ShadowBox single>
           {Object.keys(contentObj).map(title => {
