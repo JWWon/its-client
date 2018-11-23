@@ -12,7 +12,7 @@ interface TitleInterface {
 const barHeight = { m: 0.3, d: 0.8 };
 
 export const HrBar = styled<Props & any>('div')`
-  width: ${selectByDevice({ m: 2, d: 6 })};
+  width: ${selectByDevice({ m: 1.6, d: 6 })};
   height: ${selectByDevice(barHeight)};
   margin-right: ${selectByDevice({ m: 0.6, d: 2 })};
   ${({ vertical }) =>

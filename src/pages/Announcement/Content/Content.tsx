@@ -23,7 +23,7 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
           handleClick(e, content.id)
         }>
-        <TitleWithBar title={content.title} margin="0" />
+        <TitleWithBar title={content.title} margin="0" oneline />
         <s.Date>{content.createdAt}</s.Date>
         <s.Toggle>
           <s.Arrow selected={selected} />

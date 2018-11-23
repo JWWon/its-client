@@ -19,7 +19,7 @@ export const Container = styled.div`
   margin: ${({ theme }) => theme.space.s}rem -${space}rem 0;
 `;
 
-const imgSize = 9;
+const imgSize = 10;
 export const Item = styled(Link)`
   flex-basis: ${imgSize}rem;
 `;
