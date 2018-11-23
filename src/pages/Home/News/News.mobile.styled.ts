@@ -34,6 +34,6 @@ export const Image = styled.img`
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.m}rem;
-  font-weight: ${({ theme }) => theme.font.weight.demiLight};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
   margin-left: ${({ theme }) => (theme.mobile ? 1 : 3)}rem;
 `;
