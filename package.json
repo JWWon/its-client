@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "env-cmd .env react-scripts-ts start",
-    "build": "env-cmd .env react-scripts-ts build",
+    "build": "rm -rf build && env-cmd .env react-scripts-ts build",
     "deploy": "npm run build && aws s3 sync build/ s3://www.xn--9d0b301chmar3r.com",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
@@ -53,13 +53,14 @@
     "@types/react-slick": "^0.23.2",
     "@types/redux-actions": "^2.3.1",
     "@types/styled-components": "^4.1.1",
+    "core-js": "^2.5.7",
     "jquery": "^3.3.1",
     "typescript": "^3.1.6"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 10",
+    "not ie <= 8",
     "not op_mini all"
   ]
 }

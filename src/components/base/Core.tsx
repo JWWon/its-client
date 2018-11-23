@@ -1,5 +1,7 @@
 import 'api/axios';
 import AWS from 'aws-sdk';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/promise';
 import { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 
