@@ -73,7 +73,9 @@ class Announcement extends Component<RouteComponentProps, State> {
   private handleToggleByURL = async (location: any) => {
     const pointer = getHashFromURL(location);
     await this.setState({ pointer });
-    scroller.scrollTo(pointer, { duration: 800, smooth: true, offset: -60 });
+    if (pointer) {
+      scroller.scrollTo(pointer, { duration: 800, smooth: true, offset: -60 });
+    }
   };
 
   private handleClick = async (

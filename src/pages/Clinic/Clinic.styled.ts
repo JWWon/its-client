@@ -86,3 +86,24 @@ export const PhoneIcon = styled.img.attrs({
   width: ${btnSize * 0.52}rem;
   height: ${btnSize * 0.52}rem;
 `;
+
+const linkHeight = { m: 2.4, d: 4.8 };
+export const Link = styled.div`
+  margin: 0 auto;
+  width: ${selectByDevice({ m: 10, d: 32 })};
+  box-sizing: border-box;
+  height: ${selectByDevice(linkHeight)};
+  border-radius: ${selectByDevice(linkHeight, 0.5)};
+  background: ${({ theme }) => theme.color.blueDark};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.color.white};
+  font-size: ${({ theme }) => theme.font.size.m}rem;
+  transition: all 0.2s ease-out;
+  &:hover {
+    background: ${({ theme }) => theme.color.white};
+    border: 2px solid ${({ theme }) => theme.color.blueDark};
+    color: ${({ theme }) => theme.color.blueDark};
+  }
+`;

@@ -1,7 +1,7 @@
 import produce from 'immer';
 import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { Element, scroller } from 'react-scroll';
+import { animateScroll as scroll, Element, scroller } from 'react-scroll';
 
 import {
   ClinicInterface,
@@ -168,7 +168,6 @@ class Search extends PureComponent<Props, State> {
         param = '';
     }
     await this.setState({ search: { type, banners, param, list } });
-    scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
   };
 
   // *** HANDLE EVENT
@@ -186,7 +185,8 @@ class Search extends PureComponent<Props, State> {
           })
         );
       }
-      this.getClinicsFromAPI(query);
+      await this.getClinicsFromAPI(query);
+      scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
     } else {
       await this.setState(state =>
         produce(state, draft => {
@@ -201,6 +201,7 @@ class Search extends PureComponent<Props, State> {
           }
         })
       );
+      scroll.scrollToTop();
     }
   };
 

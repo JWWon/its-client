@@ -151,6 +151,8 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
           </s.ShadowBox>
         )}
 
+        <s.Link onClick={this.handleDismiss}>목록으로 돌아가기</s.Link>
+
         <a href={`tel:${this.state.phone}`}>
           <s.PhoneButton>
             <s.PhoneIcon />
