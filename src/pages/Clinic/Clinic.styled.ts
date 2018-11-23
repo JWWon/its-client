@@ -52,26 +52,26 @@ export const TextWrapper = styled.div`
 
 export const Content = styled.p`
   font-size: ${({ theme }) => theme.font.size.xs}rem;
-  font-weight: ${({ theme }) => theme.font.weight.demiLight};
-  color: ${({ theme }) => theme.color.grayDark};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const Label = styled(Content)`
   flex-basis: ${selectByDevice({ m: 8, d: 20 })};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.color.blueDark};
   white-space: nowrap;
 `;
 
-const btnSize = 7.2;
-export const PhoneButton = styled.div`
+const btnSize = 6.4;
+export const PhoneButton = styled.a`
   position: fixed;
   z-index: 1000;
-  bottom: ${({ theme }) => theme.space.m}rem;
-  right: ${({ theme }) => theme.space.s}rem;
-  width: ${btnSize}rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
   height: ${btnSize}rem;
-  border-radius: ${btnSize / 2}rem;
   background: ${({ theme }) => theme.color.blue};
   box-shadow: -0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.16);
   display: ${selectByDevice({ m: 'flex', d: 'none' })};
@@ -83,8 +83,15 @@ export const PhoneIcon = styled.img.attrs({
   src: icPhone,
   alt: 'phone',
 })`
-  width: ${btnSize * 0.52}rem;
-  height: ${btnSize * 0.52}rem;
+  width: ${btnSize * 0.4}rem;
+  height: ${btnSize * 0.4}rem;
+`;
+
+export const PhoneText = styled.p`
+  color: ${({ theme }) => theme.color.white};
+  margin-left: 1.2rem;
+  font-size: 4.2rem;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
 const linkHeight = { m: 2.4, d: 4.8 };

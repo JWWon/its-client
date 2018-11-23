@@ -25,7 +25,7 @@ export const SubTitle = styled.h3`
 export const Context = styled.p`
   color: ${({ theme }) => theme.color.gray};
   font-size: ${({ theme }) => theme.font.size.m}rem;
-  font-weight: ${({ theme }) => theme.font.weight.demiLight};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: 4rem;
 `;
 

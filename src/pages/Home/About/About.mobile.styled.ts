@@ -17,7 +17,7 @@ export const Context = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.color.gray};
   font-size: ${({ theme }) => theme.font.size.m}rem;
-  font-weight: ${({ theme }) => theme.font.weight.demiLight};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 export const Container = styled.div`

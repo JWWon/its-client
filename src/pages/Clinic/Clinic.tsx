@@ -153,11 +153,10 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
 
         <s.Link onClick={this.handleDismiss}>목록으로 돌아가기</s.Link>
 
-        <a href={`tel:${this.state.phone}`}>
-          <s.PhoneButton>
-            <s.PhoneIcon />
-          </s.PhoneButton>
-        </a>
+        <s.PhoneButton href={`tel:${this.state.phone}`}>
+          <s.PhoneIcon />
+          <s.PhoneText>예약하기</s.PhoneText>
+        </s.PhoneButton>
       </Section>
     );
   }

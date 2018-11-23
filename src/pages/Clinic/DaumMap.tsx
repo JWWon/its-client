@@ -8,7 +8,7 @@ interface Props {
 const { daum } = window;
 const Map = styled.div`
   width: 100%;
-  height: ${selectByDevice({ m: '16rem', d: '100%' })};
+  height: ${selectByDevice({ m: '20rem', d: '100%' })};
   ${selectByDevice({ m: 'margin-top: 1.6rem', d: '' })};
 `;
 
