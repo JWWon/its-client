@@ -47,4 +47,8 @@ export default createGlobalStyle`
   nav:focus {
     outline: none;
   }
+
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
 `;
