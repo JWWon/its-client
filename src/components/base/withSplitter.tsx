@@ -17,15 +17,17 @@ const withSplitter = <P extends RouteComponentProps>(
   const Component = Loadable({ loader: loadComponent, loading: Spinner });
 
   const trackPage = (pathname: string) => {
-    ReactGA.set({ pathname, ...options });
-    ReactGA.pageview(pathname);
-    scroll.scrollToTop(scrollOptions);
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.set({ pathname, ...options });
+      ReactGA.pageview(pathname);
+    }
   };
 
   const HOC = class extends PureComponent<P> {
     public componentDidMount() {
       const { location } = this.props;
       trackPage(location.pathname);
+      scroll.scrollToTop(scrollOptions);
     }
 
     public componentDidUpdate(prevProps: P) {

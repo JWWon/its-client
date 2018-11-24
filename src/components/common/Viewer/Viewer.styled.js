@@ -2,11 +2,6 @@
 import styled from 'theme';
 import mobile from 'theme/mobile';
 
-const screenWidth =
-  window.innerWidth ||
-  document.documentElement.clientWidth ||
-  document.body.clientWidth;
-
 const convertToFlex = float => {
   switch (float) {
     case 'left':
