@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 export default createGlobalStyle`
-  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+  @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
   html {
     font-size: ${selectByDevice({ m: '25%', d: '62.5%' })};
