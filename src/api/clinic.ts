@@ -1,5 +1,10 @@
 import axios from 'axios';
+import { provinceCity } from 'lib/constant/address';
 import mobile from 'theme/mobile';
+
+export interface NameInterface {
+  [name: string]: { count?: number };
+}
 
 export interface ClinicInterface {
   id: string;
@@ -71,10 +76,18 @@ export const searchById = async (id: string) => {
   }
 };
 
-export const getCityList = async (province: string) => {
+export const getCityNames = async (province: string) => {
   try {
     const response = await axios.get('/clinics', { params: { province } });
-    const data: ClinicInterface[] = response.data;
+    const cityObject: { [name: string]: number } = {
+      ...provinceCity[province],
+      ...response.data,
+    };
+
+    const data: NameInterface = {};
+    for (const key in cityObject) {
+      if (key) data[key] = { count: cityObject[key] };
+    }
     return data;
   } catch (e) {
     throw e;

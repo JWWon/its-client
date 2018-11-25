@@ -1,9 +1,10 @@
+// tslint:disable:no-string-literal
 import React from 'react';
+import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
-import { Core, Footer, Navbar, Template, withSplitter } from 'components/base';
-import Search from 'pages/Search';
+import { Core, Template, withSplitter } from 'components/base';
 import { theme, ThemeProvider } from 'theme';
 
 declare global {
@@ -14,6 +15,20 @@ declare global {
     };
   }
 }
+
+const Navbar = Loadable({
+  loader: () => import('components/base/Navbar'),
+  loading: () => null,
+  modules: ['components/base/Navbar'],
+  webpack: () => [require['resolveWeak']('components/base/Navbar')],
+});
+
+const Footer = Loadable({
+  loader: () => import('components/base/Footer'),
+  loading: () => null,
+  modules: ['components/base/Footer'],
+  webpack: () => [require['resolveWeak']('components/base/Footer')],
+});
 
 const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>
@@ -28,7 +43,7 @@ const App: React.SFC<{}> = () => (
           component={withSplitter('pages/Registration')}
           exact
         />
-        <Route path="/search" component={Search} exact />
+        <Route path="/search" component={withSplitter('pages/Search')} exact />
         <Route
           path="/announcement"
           component={withSplitter('pages/Announcement')}

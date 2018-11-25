@@ -1,61 +1,34 @@
-import produce from 'immer';
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { animateScroll as scroll, Element, scroller } from 'react-scroll';
+import { Element, scroller } from 'react-scroll';
 
-import {
-  ClinicInterface,
-  getBanners,
-  getCityList,
-  searchByAddress,
-  searchByKeyword,
-} from 'api/clinic';
 import { Section } from 'components/common';
-import { provinceCity } from 'lib/constant/address';
 import { getSearchFromURL } from 'lib/functions/url';
+import { StoreState } from 'store/modules';
+import {
+  removeResults as removeResultsAPI,
+  searchClinic as searchClinicAPI,
+  SearchState,
+  selectCity as selectCityAPI,
+  selectProvince as selectProvinceAPI,
+} from 'store/modules/search';
 import Banners from './Banners';
 import CheckDistrict from './CheckDistrict';
 import Result from './Result';
 import * as s from './Search.styled';
 import SearchBar from './SearchBar';
 
-interface List {
-  [name: string]: { count?: number };
+interface Props extends RouteComponentProps<any> {
+  info: SearchState;
+  removeResults: () => void;
+  selectProvince: (province: string) => void;
+  selectCity: (city: string) => void;
+  searchClinic: (query: any) => void;
 }
 
-export interface District {
-  pointer: string | null; // DISTRICT NAME
-  list: List;
-}
-
-interface Props extends RouteComponentProps<any> {}
-
-interface State {
-  search: {
-    type: 'keyword' | 'address';
-    param: string;
-    banners: ClinicInterface[];
-    list: ClinicInterface[];
-  } | null;
-  provinces: District;
-  cities: District | null;
-}
-
-class Search extends PureComponent<Props, State> {
+class Search extends PureComponent<Props> {
   private unlisten: (location?: Location) => void;
-
-  constructor(props: Props) {
-    super(props);
-    let list: List = {};
-    for (const key in provinceCity) {
-      if (key) list = { ...list, [key]: {} };
-    }
-    this.state = {
-      provinces: { list, pointer: null },
-      search: null,
-      cities: null,
-    };
-  }
 
   public componentDidMount() {
     const { history, location } = this.props;
@@ -68,10 +41,10 @@ class Search extends PureComponent<Props, State> {
   }
 
   public render() {
-    const { search, provinces, cities } = this.state;
-    let option = {};
+    const { search, provinces, cities } = this.props.info;
+    const option: { [x: string]: any } = {};
     if (search && search.type === 'address') {
-      option = { ...option, handleDismiss: this.handleDismiss };
+      option.handleDismiss = this.handleDismiss;
     }
 
     return (
@@ -99,7 +72,7 @@ class Search extends PureComponent<Props, State> {
                 <CheckDistrict
                   isCity
                   title="시 / 군 / 구"
-                  district={cities && cities}
+                  district={cities}
                   handleClick={this.handleClickCity}
                 />
               </s.ShadowBox>
@@ -131,81 +104,31 @@ class Search extends PureComponent<Props, State> {
     );
   }
 
-  // *** NETWORK
-  private getCitiesFromAPI = async (province: string) => {
-    const updateCity = await getCityList(province);
-    const citiesObj = { ...provinceCity[province], ...updateCity };
-    let list: List = {};
-
-    for (const key in citiesObj) {
-      if (key) list = { ...list, [key]: { count: citiesObj[key] } };
-    }
-
-    this.setState({ cities: { list, pointer: null } });
-  };
-
-  private getClinicsFromAPI = async (query: any) => {
-    const { type } = query;
-    let list: ClinicInterface[];
-    let param: string;
-    let banners: ClinicInterface[];
-    switch (type) {
-      case 'keyword':
-        const keyword = query.q;
-        list = await searchByKeyword({ keyword });
-        banners = [];
-        param = keyword;
-        break;
-      case 'address':
-        const { province, city } = query;
-        list = await searchByAddress({ province, city });
-        banners = await getBanners({ province, city });
-        param = `${province} ${city}`;
-        break;
-      default:
-        list = [];
-        banners = [];
-        param = '';
-    }
-    await this.setState({ search: { type, banners, param, list } });
-  };
-
   // *** HANDLE EVENT
   private handleSearchByURL = async (location: any) => {
+    const {
+      info,
+      removeResults,
+      searchClinic,
+      selectCity,
+      selectProvince,
+    } = this.props;
+
     if (location.search) {
       const query = getSearchFromURL(location);
-      if (query.type === 'address' && !this.state.provinces.pointer) {
-        // Handle componentDidMount
-        await this.getCitiesFromAPI(query.province);
-        await this.setState(state =>
-          produce(state, draft => {
-            const { provinces, cities } = draft;
-            provinces.pointer = query.province;
-            if (cities) cities.pointer = query.city;
-          })
-        );
+      if (query.type === 'address' && !info.provinces.pointer) {
+        // Query has data, State has no data
+        await selectProvince(query.province);
+        await selectCity(query.city);
       }
-      await this.getClinicsFromAPI(query);
+      await searchClinic(query);
       scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
     } else {
-      await this.setState(state =>
-        produce(state, draft => {
-          const { provinces, cities } = draft;
-          draft.search = null;
-          if (!provinces.pointer) {
-            // Handle componentDidMount
-            provinces.pointer = Object.keys(provinces.list)[0];
-            this.getCitiesFromAPI(provinces.pointer);
-          } else if (cities) {
-            cities.pointer = null;
-          }
-        })
-      );
-      scroll.scrollToTop();
+      if (info.search) removeResults();
     }
   };
 
-  private handleSumbitKeyword = async (
+  private handleSumbitKeyword = (
     e: React.FormEvent<HTMLFormElement>,
     keyword: string
   ) => {
@@ -218,17 +141,11 @@ class Search extends PureComponent<Props, State> {
     e: React.FormEvent<HTMLDivElement>,
     name: string
   ) => {
-    if (this.state.provinces.pointer !== name) {
-      await this.setState(state =>
-        produce(state, (draft: State) => {
-          draft.search = null;
-          // UPDATE PROVINCES STATE
-          draft.provinces.pointer = name;
-        })
-      );
+    const { info, selectProvince, history } = this.props;
+    if (info.provinces.pointer !== name) {
+      await selectProvince(name);
       // UPDATE URL
-      this.props.history.replace('/search');
-      this.getCitiesFromAPI(name);
+      history.replace('/search');
     }
   };
 
@@ -236,17 +153,14 @@ class Search extends PureComponent<Props, State> {
     e: React.FormEvent<HTMLDivElement>,
     name: string
   ) => {
-    await this.setState(state =>
-      produce(state, (draft: State) => {
-        // UPDATE CITIES STATE
-        if (draft.cities) draft.cities.pointer = name;
-      })
-    );
-    // UPDATE URL
-    const { provinces } = this.state;
-    this.props.history.replace(
-      `/search?type=address&province=${provinces.pointer}&city=${name}`
-    );
+    const { info, history, selectCity } = this.props;
+    if (info.cities.pointer !== name) {
+      await selectCity(name);
+      // UPDATE URL
+      history.replace(
+        `/search?type=address&province=${info.provinces.pointer}&city=${name}`
+      );
+    }
   };
 
   private handleDismiss = () => {
@@ -256,4 +170,12 @@ class Search extends PureComponent<Props, State> {
   };
 }
 
-export default Search;
+export default connect(
+  ({ search }: StoreState) => ({ info: search }),
+  dispatch => ({
+    removeResults: () => removeResultsAPI(dispatch),
+    selectProvince: (province: string) => selectProvinceAPI(province)(dispatch),
+    selectCity: (city: string) => selectCityAPI(city)(dispatch),
+    searchClinic: (query: any) => searchClinicAPI(query)(dispatch),
+  })
+)(Search);

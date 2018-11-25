@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { hydrate, render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
 
+import configure from 'store/configure';
+import App from './App';
+
+const store = configure();
 const rootComponent = (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 const rootElement = document.getElementById('root') as HTMLElement;
 
@@ -16,4 +21,3 @@ if (rootElement.hasChildNodes()) {
 } else {
   render(rootComponent, rootElement);
 }
-// registerServiceWorker();

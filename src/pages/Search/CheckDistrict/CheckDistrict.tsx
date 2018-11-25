@@ -1,12 +1,12 @@
 /* tslint:disable:jsx-no-lambda */
 import React from 'react';
 
-import { District } from '../Search';
+import { DistrictInterface } from 'store/modules/search';
 import * as s from './CheckDistrict.styled';
 
 interface Props {
   title: string;
-  district: District | null;
+  district: DistrictInterface | null;
   handleClick: (e: React.FormEvent<HTMLDivElement>, name: string) => void;
   isCity?: boolean;
 }
@@ -23,21 +23,21 @@ const CheckDistrict: React.SFC<Props> = ({
     </s.TitleWrapper>
     <s.ListWrapper>
       {district &&
-        Object.keys(district.list).map(name => (
+        Object.keys(district.names).map(key => (
           <s.Data
             isCity={isCity}
-            key={name}
-            selected={name === district.pointer}
+            key={key}
+            selected={key === district.pointer}
             onClick={(e: React.FormEvent<HTMLDivElement>) =>
-              handleClick(e, name)
+              handleClick(e, key)
             }>
             {isCity ? (
-              <s.TextWrapper count={district.list[name].count}>
-                <s.Name>{name}</s.Name>
-                <s.Count>{district.list[name].count}</s.Count>
+              <s.TextWrapper count={district.names[key].count}>
+                <s.Name>{key}</s.Name>
+                <s.Count>{district.names[key].count}</s.Count>
               </s.TextWrapper>
             ) : (
-              <s.Name>{name}</s.Name>
+              <s.Name>{key}</s.Name>
             )}
           </s.Data>
         ))}
