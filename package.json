@@ -35,7 +35,10 @@
   "scripts": {
     "start": "env-cmd .env react-scripts-ts start",
     "build": "rm -rf build && env-cmd .env react-scripts-ts build",
-    "deploy": "npm run build && aws s3 sync build/ s3://client-xn--9d0b301chmar3r --delete",
+    "postbuild": "react-snap",
+    "upload": "aws s3 sync build/ s3://client-xn--9d0b301chmar3r --delete",
+    "reset-cache": "aws cloudfront create-invalidation --distribution-id EZH8Q4QTK5FQO --paths /*",
+    "deploy": "npm run build && npm run upload && npm run reset-cache",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
@@ -55,6 +58,7 @@
     "@types/styled-components": "^4.1.1",
     "core-js": "^2.5.7",
     "jquery": "^3.3.1",
+    "react-snap": "https://github.com/stereobooster/react-snap.git#crav2",
     "typescript": "^3.1.6"
   },
   "browserslist": [
