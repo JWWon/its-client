@@ -1,6 +1,5 @@
 import _Slider from 'react-slick';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 import { windowHalfSpace } from 'lib/functions/space';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
@@ -10,7 +9,7 @@ interface SliderInterface {
   single: boolean;
 }
 
-export const slideHeight: number = mobile ? 52 : 58;
+export const slideHeight = { m: 52, d: 58 };
 
 export const Slider = styled(_Slider).attrs<SliderInterface, any>({
   dots: true,
@@ -24,28 +23,28 @@ export const Slider = styled(_Slider).attrs<SliderInterface, any>({
   autoplaySpeed: 2000,
 })`
   display: flex;
-  flex-direction: ${mobile ? 'column' : 'row-reverse'};
+  flex-direction: ${selectByDevice({ m: 'column', d: 'row-reverse' })};
   margin-left: ${({ theme, single }) =>
-    !mobile && single && windowHalfSpace(theme)};
+    !theme.mobile && single && windowHalfSpace(theme)};
   .slick-list {
     flex: 1;
     margin-left: ${({ theme }) => theme.space.s}rem;
     box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
-    height: ${slideHeight}vh !important;
-    border-top-left-radius: ${slideHeight / 2}vh;
-    border-bottom-left-radius: ${slideHeight / 2}vh;
+    height: ${selectByDevice(slideHeight, 1, 'vh')} !important;
+    border-top-left-radius: ${selectByDevice(slideHeight, 0.5, 'vh')};
+    border-bottom-left-radius: ${selectByDevice(slideHeight, 0.5, 'vh')};
   }
 `;
 
-const arrowSize: number = mobile ? 1 : 2.2;
-
+const arrowSize = { m: 1, d: 2.2 };
 export const DotsWrapper = styled.div`
   position: relative;
   top: 0;
   bottom: 0;
-  flex-basis: ${({ theme }) => (mobile ? '4.8rem' : windowHalfSpace(theme))};
+  flex-basis: ${({ theme }) =>
+    theme.mobile ? '4.8rem' : windowHalfSpace(theme)};
   display: flex;
-  justify-content: ${mobile ? 'center' : 'flex-end'};
+  justify-content: ${selectByDevice({ m: 'center', d: 'flex-end' })};
   align-items: center;
   box-sizing: border-box;
   padding-left: ${({ theme }) => theme.space.s}rem;
@@ -56,13 +55,14 @@ export const DotsWrapper = styled.div`
 
   div {
     display: flex;
-    ${!mobile && `flex-direction: column; width: ${arrowSize}rem`};
+    ${({ theme }) =>
+      !theme.mobile && `flex-direction: column; width: ${arrowSize.d}rem`};
     align-items: center;
     ul {
-      margin: ${mobile ? '0 0.4rem' : '1.2rem 0'};
+      margin: ${selectByDevice({ m: '0 0.4rem', d: '1.2rem 0' })};
       padding: 0;
       li {
-        margin: ${mobile ? '0 0.4rem' : '1.2rem 0'};
+        margin: ${selectByDevice({ m: '0 0.4rem', d: '1.2rem 0' })};
       }
     }
   }
@@ -75,13 +75,13 @@ export const HideArrow = styled.div`
 export const ArrayGray = styled.img.attrs({
   src: arrowGray,
 })`
-  width: ${arrowSize}rem;
-  height: ${arrowSize}rem;
+  width: ${selectByDevice(arrowSize)};
+  height: ${selectByDevice(arrowSize)};
   object-fit: contain;
   &:first-of-type {
-    transform: rotate(${mobile ? 180 : -90}deg);
+    transform: rotate(${selectByDevice({ m: 180, d: -90 }, 1, 'deg')});
   }
   &:last-of-type {
-    transform: rotate(${mobile ? 0 : 90}deg);
+    transform: rotate(${selectByDevice({ m: 0, d: 90 }, 1, 'deg')});
   }
 `;

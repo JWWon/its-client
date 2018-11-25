@@ -1,11 +1,12 @@
 import { Section } from 'components/common';
-import produce from 'immer';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { scroller } from 'react-scroll';
 
 import { AnnouncementInterface, getAnnouncement } from 'api/announcement';
-import { getHashFromURL } from 'src/lib/functions/url';
+import { getHashFromURL } from 'lib/functions/url';
+import mobile from 'theme/mobile';
 import * as s from './Announcement.styled';
 import Content from './Content';
 
@@ -38,7 +39,9 @@ class Announcement extends Component<RouteComponentProps, State> {
     return (
       <Section
         title="잇츠교정의 선물"
-        subtitle="무분별한 허위/과대 광고는 지양합니다. 잇츠교정은 건강한 사회를 지향합니다."
+        subtitle={`무분별한 허위/과대 광고는 지양합니다.${
+          mobile ? '<br />' : ' '
+        }잇츠교정은 건강한 사회를 지향합니다.`}
         handleDismiss={this.handleDismiss}>
         <s.ShadowBox single>
           {Object.keys(contentObj).map(title => {
@@ -70,19 +73,21 @@ class Announcement extends Component<RouteComponentProps, State> {
   };
 
   // *** HANDLE EVENT
-  private handleToggleByURL = (location: any) => {
-    const { contentObj } = this.state;
-    const pointer = getHashFromURL(location) || Object.keys(contentObj)[0];
-    this.setState({ pointer });
+  private handleToggleByURL = async (location: any) => {
+    const pointer = getHashFromURL(location);
+    await this.setState({ pointer });
+    if (pointer) {
+      scroller.scrollTo(pointer, { duration: 800, smooth: true, offset: -60 });
+    }
   };
 
-  private handleClick = (e: React.MouseEvent<HTMLDivElement>, id: string) => {
-    this.setState(prevState =>
-      produce(prevState, (draft: State) => {
-        draft.pointer = id;
-      })
-    );
-    this.props.history.replace(`/announcement#${id}`);
+  private handleClick = async (
+    e: React.MouseEvent<HTMLDivElement>,
+    id: string
+  ) => {
+    const { history } = this.props;
+    const isSamePointer = this.state.pointer === id;
+    history.replace(`/announcement${isSamePointer ? '' : `#${id}`}`);
   };
 
   private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {

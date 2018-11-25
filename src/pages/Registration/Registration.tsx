@@ -118,7 +118,8 @@ class Apply extends Component<Props, State> {
 
     const nextState = this.state;
     delete nextState.file;
-    register(nextState);
+    await register(nextState);
+    this.props.history.goBack();
   };
 
   private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {

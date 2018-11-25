@@ -1,4 +1,4 @@
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
   margin-bottom: 4.8rem;
@@ -20,31 +20,31 @@ export const LeftContent = styled.div`
 `;
 
 export const HrContent = styled.div`
-  ${({ theme }) =>
-    theme.mobile
-      ? `&:first-of-type {
+  ${selectByDevice({
+    m: `&:first-of-type {
           display: flex;
           align-items: center;
-        }`
-      : `display: flex;
+        }`,
+    d: `display: flex;
         align-items: center;
-  `};
+        `,
+  })}
 `;
 
 export const SertifWrapper = styled.div`
-  width: ${({ theme }) => (theme.mobile ? 3.5 : 14)}rem;
+  width: ${selectByDevice({ m: 3.5, d: 14 })};
   display: flex;
   flex-direction: column;
   align-items: center;
-  ${({ theme }) => theme.mobile && 'justify-content: center'};
+  ${selectByDevice({ m: 'justify-content: center', d: '' })};
 `;
 
 // *** IMG
 export const Icon = styled.img.attrs({
   src: require('lib/icons/ic_landmark.svg'),
 })`
-  margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
-  height: ${({ theme }) => (theme.mobile ? 0.8 : 1.6)}rem;
+  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
+  height: ${selectByDevice({ m: 0.8, d: 1.6 })};
   /* ADD FOR IE */
   width: 1rem;
 `;
@@ -58,7 +58,7 @@ export const SertifIcon = styled.img.attrs<SertifInterface, any>({
   src: ({ type, active }: SertifInterface) =>
     require(`lib/icons/ic_${type}${active ? '_active' : ''}.svg`),
 })`
-  height: ${({ theme }) => (theme.mobile ? 2.5 : 6.4)}rem;
+  height: ${selectByDevice({ m: 2.5, d: 6.4 })};
 `;
 
 // *** TEXT
@@ -91,4 +91,5 @@ export const Address = styled(Phone)`
 export const Landmark = styled(Address)`
   margin: 0;
   font-weight: ${({ theme }) => theme.font.weight.light};
+  white-space: nowrap;
 `;

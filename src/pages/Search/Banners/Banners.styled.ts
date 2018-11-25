@@ -1,5 +1,10 @@
+import { ShadowBox as _ShadowBox } from 'components/common';
 import landmark from 'lib/icons/ic_landmark.svg';
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
+
+export const ShadowBox = styled(_ShadowBox).attrs({
+  space: selectByDevice({ m: 1.6, d: 3.5 }),
+})``;
 
 export const Container = styled.div`
   width: 100%;
@@ -34,20 +39,19 @@ export const Notice = styled.p`
   color: ${({ theme }) => theme.color.grayDark};
 `;
 
-const barHeight = (mobile: string | null) => (mobile ? 0.3 : 0.8);
-
+const barHeight = { m: 0.3, d: 0.8 };
 export const Bar = styled.div`
-  width: ${({ theme }) => (theme.mobile ? 2 : 6)}rem;
-  height: ${({ theme }) => barHeight(theme.mobile)}rem;
-  border-radius: ${({ theme }) => barHeight(theme.mobile) / 2}rem;
+  width: ${selectByDevice({ m: 2, d: 6 })};
+  height: ${selectByDevice(barHeight)};
+  border-radius: ${selectByDevice(barHeight, 0.5)};
   background-color: ${({ theme }) => theme.color.blueDark};
   margin-right: auto;
 `;
 
 // *** IMG
 export const Icon = styled.img.attrs({ src: landmark })`
-  margin: ${({ theme }) => `0 1rem 0 ${theme.space.s}rem`};
-  height: 1.6rem;
+  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
+  height: ${selectByDevice({ m: 1, d: 1.8 })};
   /* ADD FOR IE */
   width: 1rem;
 `;

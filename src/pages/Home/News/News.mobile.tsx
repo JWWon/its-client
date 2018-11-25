@@ -8,6 +8,11 @@ const Announcemnet: React.SFC<Props> = ({ list }) => (
   <Section>
     <s.ShadowBox single>
       <TitleWithBar title="잇츠교정의 선물" margin="1.2rem 0" vertical />
+      <s.SubTitle>
+        무분별한 허위/과대 광고는 지양합니다.
+        <br />
+        잇츠교정은 건강한 사회를 지향합니다.
+      </s.SubTitle>
       <s.Container>
         {list.map(item => (
           <s.Item to={`announcement#${item.href}`} key={item.id}>

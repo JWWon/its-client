@@ -18,12 +18,12 @@ interface Props {
 const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
   const selected = content.id === pointer;
   return (
-    <s.Content>
+    <s.Element name={content.id}>
       <s.TitleWrapper
         onClick={(e: React.MouseEvent<HTMLDivElement>) =>
           handleClick(e, content.id)
         }>
-        <TitleWithBar title={content.title} margin="0" />
+        <TitleWithBar title={content.title} margin="0" oneline />
         <s.Date>{content.createdAt}</s.Date>
         <s.Toggle>
           <s.Arrow selected={selected} />
@@ -32,7 +32,7 @@ const Content: React.SFC<Props> = ({ content, pointer, handleClick }) => {
       <s.ContentWrapper selected={selected}>
         <Viewer content={content.content} />
       </s.ContentWrapper>
-    </s.Content>
+    </s.Element>
   );
 };
 

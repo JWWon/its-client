@@ -3,41 +3,41 @@ import { Link as _Link } from 'react-router-dom';
 import facebook from 'lib/logos/logo_facebook.svg';
 import instagram from 'lib/logos/logo_instagram.svg';
 import twitter from 'lib/logos/logo_twitter.svg';
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
-  padding: ${({ theme }) => `${theme.mobile ? 3 : 9}rem ${theme.space.s}rem`};
+  padding: ${props =>
+    `${selectByDevice({ m: 3, d: 9 })(props)} ${props.theme.space.s}rem`};
   display: flex;
-  ${({ theme }) => theme.mobile && 'flex-direction: column'};
+  ${selectByDevice({ m: 'flex-direction: column', d: '' })};
 `;
 
 export const Right = styled.div`
   margin-left: auto;
   display: flex;
-  ${({ theme }) =>
-    theme.mobile
-      ? `justify-content: flex-end;
-        align-items: center`
-      : `flex-direction: column;
+  ${selectByDevice({
+    m: `justify-content: flex-end;
+        align-items: center`,
+    d: `flex-direction: column;
         justify-content: center;
-        align-items: flex-end`};
+        align-items: flex-end`,
+  })}
 `;
 
 export const Header = styled.div`
   display: flex;
-  ${({ theme }) =>
-    theme.mobile ? 'margin-right: 2rem' : 'margin-bottom: 2rem'};
+  ${selectByDevice({ m: 'margin-right: 2rem', d: 'margin-bottom: 2rem' })}
 `;
 
 export const TextWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 1.2rem 0;
-  margin-left: ${({ theme }) => -(theme.mobile ? 1 : 2)}rem;
+  margin-left: -${selectByDevice({ m: 1, d: 2 })};
   p,
   img {
-    margin-left: ${({ theme }) => (theme.mobile ? 1 : 2)}rem;
+    margin-left: ${selectByDevice({ m: 1, d: 2 })};
   }
   &:first-of-type {
     margin-top: 0;
@@ -47,7 +47,7 @@ export const TextWrapper = styled.div`
 export const Copyright = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-left: ${({ theme }) => (theme.mobile ? 0.8 : 2.4)}rem;
+  margin-left: ${selectByDevice({ m: 0.8, d: 2.4 })};
 `;
 
 export const InfoText = styled.p`
@@ -59,14 +59,14 @@ export const InfoText = styled.p`
   }
 `;
 
-const iconSize = (mobile: string | null) => (mobile ? 1.6 : 3.2);
+const iconSize = { m: 1.6, d: 3.2 };
 export const Link = styled.a`
-  width: ${({ theme }) => iconSize(theme.mobile)}rem;
-  height: ${({ theme }) => iconSize(theme.mobile)}rem;
+  width: ${selectByDevice(iconSize)};
+  height: ${selectByDevice(iconSize)};
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: ${({ theme }) => (theme.mobile ? 1.2 : 2)}rem;
+  margin-left: ${selectByDevice({ m: 1.2, d: 2 })};
   &:first-of-type {
     margin-left: 0;
   }
@@ -81,14 +81,14 @@ export const Facebook = styled(Icon).attrs({ src: facebook })``;
 export const Instagram = styled(Icon).attrs({ src: instagram })``;
 export const Twitter = styled(Icon).attrs({ src: twitter })``;
 
-const btnHeight = (mobile: string | null) => (mobile ? 1.8 : 3.8);
+const btnHeight = { m: 1.8, d: 3.8 };
 export const Button = styled(_Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ theme }) => (theme.mobile ? 12 : 20)}rem;
-  height: ${({ theme }) => btnHeight(theme.mobile)}rem;
-  border-radius: ${({ theme }) => btnHeight(theme.mobile) / 2}rem;
+  width: ${selectByDevice({ m: 12, d: 20 })};
+  height: ${selectByDevice(btnHeight)};
+  border-radius: ${selectByDevice(btnHeight, 0.5)};
   box-sizing: border-box;
   background: ${({ theme }) => theme.color.blueDark};
   p {

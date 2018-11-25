@@ -1,5 +1,6 @@
 import { Slide } from 'api/image';
 import React from 'react';
+import mobile from 'theme/mobile';
 import * as s from './Slide.styled';
 
 interface Props {
@@ -8,7 +9,10 @@ interface Props {
 
 const Slide: React.SFC<Props> = ({ image }) => (
   <a href={image.href}>
-    <s.Slide url={image.desktopSrc} alt={image.alt} />
+    <s.Slide
+      url={mobile ? image.mobileSrc : image.desktopSrc}
+      alt={image.alt}
+    />
   </a>
 );
 

@@ -3,7 +3,7 @@ import { moment } from 'lib/functions/moment';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { ClinicInterface } from 'api/clinic';
+import { ClinicInterface, searchById } from 'api/clinic';
 import { Section } from 'components/common';
 import * as s from './Clinic.styled';
 import DaumMap from './DaumMap';
@@ -31,7 +31,9 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
         <s.TextWrapper key={key}>
           <s.Label>{key}</s.Label>
           {key === '전화번호' || key === '홈페이지' ? (
-            <a href={`${key === '전화번호' ? 'tel:' : ''}${content}`}>
+            <a
+              href={`${key === '전화번호' ? 'tel:' : ''}${content}`}
+              target={key === '전화번호' ? '_self' : '_blank'}>
               <s.Content>{content}</s.Content>
             </a>
           ) : (
@@ -43,7 +45,7 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
   </>
 );
 
-class Clinic extends Component<RouteComponentProps, State> {
+class Clinic extends Component<RouteComponentProps<any>, State> {
   public state: State = {
     name: '',
     address: '',
@@ -56,7 +58,10 @@ class Clinic extends Component<RouteComponentProps, State> {
   };
 
   public async componentDidMount() {
-    const clinic: ClinicInterface = this.props.location.state;
+    const { location, match } = this.props;
+    const clinic: ClinicInterface =
+      location.state || (await searchById(match.params.id));
+
     const {
       name,
       phone,
@@ -107,7 +112,7 @@ class Clinic extends Component<RouteComponentProps, State> {
     } = this.state;
 
     return (
-      <Section title={name} handleDismiss={this.handleDismiss}>
+      <Section title={name} handleDismiss={this.handleDismiss} massive={true}>
         {specialist && (
           <s.ShadowBox>
             <s.TitleWithBar title="전문의 자격증" />
@@ -146,11 +151,12 @@ class Clinic extends Component<RouteComponentProps, State> {
           </s.ShadowBox>
         )}
 
-        <a href={`tel:${this.state.phone}`}>
-          <s.PhoneButton>
-            <s.PhoneIcon />
-          </s.PhoneButton>
-        </a>
+        <s.Link onClick={this.handleDismiss}>목록으로 돌아가기</s.Link>
+
+        <s.PhoneButton href={`tel:${this.state.phone}`}>
+          <s.PhoneIcon />
+          <s.PhoneText>예약하기</s.PhoneText>
+        </s.PhoneButton>
       </Section>
     );
   }

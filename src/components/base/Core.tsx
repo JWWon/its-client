@@ -1,5 +1,7 @@
 import 'api/axios';
 import AWS from 'aws-sdk';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/promise';
 import { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 
@@ -12,10 +14,12 @@ class Core extends PureComponent {
       secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
     });
     // SETTING GOOGLE ANALYTICS
-    ReactGA.initialize('UA-129416739-1', {
-      debug: process.env.NODE_ENV !== 'production',
-    });
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    const production = process.env.NODE_ENV === 'production';
+    const snap = navigator.userAgent !== 'ReactSnap';
+    if (production && snap) {
+      ReactGA.initialize('UA-129416739-1', { debug: false });
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
   }
 
   public render() {

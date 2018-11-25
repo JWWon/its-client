@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "*": ["*", "src/*"]
-    },
+    "baseUrl": "./src",
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
@@ -22,8 +19,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     // custom
-    "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./node_modules/@types", "./@types"]
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",

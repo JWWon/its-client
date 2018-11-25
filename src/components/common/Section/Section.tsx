@@ -1,10 +1,12 @@
 import { Dismiss } from 'components/common';
 import React, { ReactNode } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import * as s from './Section.styled';
 
 interface Title {
   title?: string;
   subtitle?: string | null;
+  massive?: boolean;
   handleDismiss?: (e: React.FormEvent<HTMLDivElement>) => void;
 }
 
@@ -13,14 +15,19 @@ interface Props extends Title {
   banner?: ReactNode;
 }
 
-const Header: React.SFC<Title> = ({ title, subtitle, handleDismiss }) =>
+const Header: React.SFC<Title> = ({
+  title,
+  subtitle,
+  handleDismiss,
+  massive,
+}) =>
   title ? (
     <>
       <s.Bar />
       <s.Header>
         <s.HalfRound />
-        <s.Title>{title}</s.Title>
-        {subtitle && <s.SubTitle>{subtitle}</s.SubTitle>}
+        <s.Title massive={massive}>{title}</s.Title>
+        {subtitle && <s.SubTitle>{ReactHtmlParser(subtitle)}</s.SubTitle>}
         {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
       </s.Header>
     </>
@@ -32,10 +39,16 @@ const Section: React.SFC<Props> = ({
   subtitle,
   banner,
   handleDismiss,
+  massive,
 }) => (
   <s.Section>
     <s.Container>
-      <Header title={title} subtitle={subtitle} handleDismiss={handleDismiss} />
+      <Header
+        title={title}
+        subtitle={subtitle}
+        handleDismiss={handleDismiss}
+        massive={massive}
+      />
       {banner && (
         <s.BannerArea>
           <s.BannerWrapper>

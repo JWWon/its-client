@@ -1,4 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import * as s from './TitleWithBar.styled';
 
 interface Props {
@@ -6,6 +8,7 @@ interface Props {
   margin?: string | null;
   hideBar?: boolean;
   vertical?: boolean;
+  oneline?: boolean;
 }
 
 const TitleWithBar: React.SFC<Props> = ({
@@ -13,12 +16,16 @@ const TitleWithBar: React.SFC<Props> = ({
   margin,
   hideBar,
   vertical,
-}) => (
-  <s.Wrapper margin={margin} vertical={vertical}>
-    {!hideBar && <s.HrBar vertical={vertical} />}
-    <s.Title>{title}</s.Title>
-  </s.Wrapper>
-);
+  oneline,
+}) => {
+  const renderTitle = oneline ? _.replace(title, '<br />', ' ') : title;
+  return (
+    <s.Wrapper margin={margin} vertical={vertical}>
+      {!hideBar && <s.HrBar vertical={vertical} />}
+      <s.Title vertical={vertical}>{ReactHtmlParser(renderTitle)}</s.Title>
+    </s.Wrapper>
+  );
+};
 
 TitleWithBar.defaultProps = {
   margin: null,

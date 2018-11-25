@@ -1,20 +1,19 @@
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
 export const Content = styled.div`
   margin-top: 3.2rem;
 `;
 
-const barSpace: number = mobile ? 2.6 : 8;
+const barSpace = { m: 2.6, d: 8 };
 export const InputWrapper = styled.div`
   margin-top: 2rem;
-  height: ${mobile ? 3.2 : 4.8}rem;
-  padding-left: ${barSpace}rem;
+  height: ${selectByDevice({ m: 3.2, d: 4.8 })};
+  padding-left: ${selectByDevice(barSpace)};
   display: flex;
 `;
 
 export const Short = styled.div`
-  ${({ theme }) => (theme.mobile ? 'flex: 1' : 'flex-basis: 65rem')};
+  ${selectByDevice({ m: 'flex: 1', d: 'flex-basis: 65rem' })};
   height: 100%;
   display: flex;
   align-items: center;
@@ -36,22 +35,23 @@ export const Input = styled.input.attrs({
   }
 `;
 
-const space = mobile ? 0.8 : 1.6;
+const space = { m: 0.8, d: 1.6 };
 
 export const DetailInput = styled(Input)`
-  margin-left: ${space}rem;
+  margin-left: ${selectByDevice(space)};
 `;
 
-const btnHeight: number = mobile ? 2.4 : 3.8;
+const btnHeight = { m: 2.4, d: 3.8 };
 
 export const Button = styled.button.attrs({
   type: 'button',
 })`
-  width: ${mobile ? 8 : 16}rem;
-  height: ${btnHeight}rem;
-  margin-left: ${space}rem;
-  border: ${mobile ? 1 : 2}px solid ${({ theme }) => theme.color.blueDark};
-  border-radius: ${btnHeight / 2}rem;
+  width: ${selectByDevice({ m: 8, d: 16 })};
+  height: ${selectByDevice(btnHeight)};
+  margin-left: ${selectByDevice(space)};
+  border: ${selectByDevice({ m: '1px', d: '2px' })} solid
+    ${({ theme }) => theme.color.blueDark};
+  border-radius: ${selectByDevice(btnHeight, 0.5)};
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.s}rem;
   background: transparent;

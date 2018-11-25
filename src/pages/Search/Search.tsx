@@ -1,6 +1,7 @@
 import produce from 'immer';
 import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { animateScroll as scroll, Element, scroller } from 'react-scroll';
 
 import {
   ClinicInterface,
@@ -11,7 +12,7 @@ import {
 } from 'api/clinic';
 import { Section } from 'components/common';
 import { provinceCity } from 'lib/constant/address';
-import { getSearchFromURL } from 'src/lib/functions/url';
+import { getSearchFromURL } from 'lib/functions/url';
 import Banners from './Banners';
 import CheckDistrict from './CheckDistrict';
 import Result from './Result';
@@ -106,23 +107,25 @@ class Search extends PureComponent<Props, State> {
           </Section>
         )}
         {search && (
-          <Section
-            title={`'${search.param}' 검색 결과`}
-            banner={
-              search.banners.length > 0 ? (
-                <Banners list={search.banners} />
-              ) : null
-            }>
-            <s.Notice>
-              {search.list.length > 0
-                ? `* 자격증은 왼쪽부터 1.치과교정과전문의, 2대한치과교정학과,
+          <Element name="result">
+            <Section
+              title={`'${search.param}' 검색 결과`}
+              banner={
+                search.banners.length > 0 ? (
+                  <Banners list={search.banners} />
+                ) : null
+              }>
+              <s.Notice>
+                {search.list.length > 0
+                  ? `* 자격증은 왼쪽부터 1.치과교정과전문의, 2대한치과교정학과,
               3.인비절라인인증의 입니다.`
-                : `* 검색 결과가 없습니다`}
-            </s.Notice>
-            {search.list.map(clinic => (
-              <Result key={clinic.id} clinic={clinic} />
-            ))}
-          </Section>
+                  : `* 검색 결과가 없습니다`}
+              </s.Notice>
+              {search.list.map(clinic => (
+                <Result key={clinic.id} clinic={clinic} />
+              ))}
+            </Section>
+          </Element>
         )}
       </>
     );
@@ -182,7 +185,8 @@ class Search extends PureComponent<Props, State> {
           })
         );
       }
-      this.getClinicsFromAPI(query);
+      await this.getClinicsFromAPI(query);
+      scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
     } else {
       await this.setState(state =>
         produce(state, draft => {
@@ -197,6 +201,7 @@ class Search extends PureComponent<Props, State> {
           }
         })
       );
+      scroll.scrollToTop();
     }
   };
 

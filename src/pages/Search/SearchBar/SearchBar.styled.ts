@@ -1,12 +1,11 @@
 import icSearch from 'lib/icons/ic_search.svg';
-import styled from 'theme';
-import mobile from 'theme/mobile';
+import styled, { selectByDevice } from 'theme';
 
-const barHeight = mobile ? 5.6 : 13;
+const barHeight = { m: 5.6, d: 13 };
 
 export const Container = styled.div`
   width: 100%;
-  height: ${barHeight}rem;
+  height: ${selectByDevice(barHeight)};
   background: ${({ theme }) => theme.color.whiteDark};
   display: flex;
   align-items: center;
@@ -15,17 +14,17 @@ export const Container = styled.div`
 
 export const FormBar = styled.form`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
-  height: ${barHeight * 0.5}rem;
+  height: ${selectByDevice(barHeight, 0.5)};
   padding: 0 ${({ theme }) => theme.space.s}rem;
   display: flex;
   align-items: center;
 `;
 
 export const IconCircle = styled.div`
-  width: ${barHeight * 0.5}rem;
-  height: ${barHeight * 0.5}rem;
-  border-radius: ${barHeight * 0.25}rem;
-  margin-right: ${mobile ? 1.2 : 2.6}rem;
+  width: ${selectByDevice(barHeight, 0.5)};
+  height: ${selectByDevice(barHeight, 0.5)};
+  border-radius: ${selectByDevice(barHeight, 0.25)};
+  margin-right: ${selectByDevice({ m: 1.2, d: 2.6 })};
   background: ${({ theme }) => theme.color.blueDark};
   display: flex;
   justify-content: center;
@@ -46,12 +45,12 @@ export const InputSearch = styled.input.attrs({
 })`
   flex: 1;
   height: 100%;
-  margin-right: ${mobile ? 1.4 : 6}rem;
-  padding: 0 ${barHeight * 0.25}rem;
+  margin-right: ${selectByDevice({ m: 1.4, d: 6 })};
+  padding: 0 ${selectByDevice(barHeight, 0.25)};
   background: transparent;
   box-sizing: border-box;
-  border-radius: ${barHeight * 0.25}rem;
-  border: ${mobile ? '1px' : '0.25rem'} solid
+  border-radius: ${selectByDevice(barHeight, 0.25)};
+  border: ${selectByDevice({ m: '1px', d: '0.25rem' })} solid
     ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme }) => theme.font.size.xl}rem;
 `;

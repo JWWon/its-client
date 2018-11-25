@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
-import { Core, Footer, Navbar, Template, withTracker } from 'components/base';
-import { About, Announcement, Clinic, Home, Registration, Search } from 'pages';
+import { Core, Footer, Navbar, Template, withSplitter } from 'components/base';
+import Search from 'pages/Search';
 import { theme, ThemeProvider } from 'theme';
 
 declare global {
@@ -17,22 +17,30 @@ declare global {
 
 const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <Template navbar={<Navbar />} footer={<Footer />}>
-        <Core />
-        <GlobalStyle />
-        <Route exact path="/" component={withTracker(Home)} />
-        <Route exact path="/about" component={withTracker(About)} />
+    <Template navbar={<Navbar />} footer={<Footer />}>
+      <Core />
+      <GlobalStyle />
+      <Switch>
+        <Route path="/" component={withSplitter('pages/Home')} exact />
+        <Route path="/about" component={withSplitter('pages/About')} exact />
         <Route
-          exact
           path="/registeration"
-          component={withTracker(Registration)}
+          component={withSplitter('pages/Registration')}
+          exact
         />
-        <Route path="/search" component={withTracker(Search)} />
-        <Route path="/announcement" component={withTracker(Announcement)} />
-        <Route path="/clinic/:id" component={withTracker(Clinic)} />
-      </Template>
-    </BrowserRouter>
+        <Route path="/search" component={Search} exact />
+        <Route
+          path="/announcement"
+          component={withSplitter('pages/Announcement')}
+          exact
+        />
+        <Route
+          path="/clinic/:id"
+          component={withSplitter('pages/Clinic')}
+          exact
+        />
+      </Switch>
+    </Template>
   </ThemeProvider>
 );
 
