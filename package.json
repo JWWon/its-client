@@ -35,7 +35,7 @@
   "scripts": {
     "start": "env-cmd .env react-scripts-ts start",
     "build": "rm -rf build && env-cmd .env react-scripts-ts build",
-    "deploy": "npm run build && aws s3 sync build/ s3://client-xn--9d0b301chmar3r --cache-control max-age=172800 --delete",
+    "deploy": "npm run build && aws s3 sync build/ s3://client-xn--9d0b301chmar3r --delete",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },

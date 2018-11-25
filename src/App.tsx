@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
 import { Core, Footer, Navbar, Template, withSplitter } from 'components/base';
@@ -21,33 +21,24 @@ const App: React.SFC<{}> = () => (
       <Core />
       <GlobalStyle />
       <Switch>
-        <Route
-          path="/"
-          component={withSplitter(() => import('pages/Home'))}
-          exact
-        />
-        <Route
-          path="/about"
-          component={withSplitter(() => import('pages/About'))}
-          exact
-        />
+        <Route path="/" component={withSplitter('pages/Home')} exact />
+        <Route path="/about" component={withSplitter('pages/About')} exact />
         <Route
           path="/registeration"
-          component={withSplitter(() => import('pages/Registration'))}
+          component={withSplitter('pages/Registration')}
           exact
         />
         <Route path="/search" component={Search} exact />
         <Route
           path="/announcement"
-          component={withSplitter(() => import('pages/Announcement'))}
+          component={withSplitter('pages/Announcement')}
           exact
         />
         <Route
           path="/clinic/:id"
-          component={withSplitter(() => import('pages/Clinic'))}
+          component={withSplitter('pages/Clinic')}
           exact
         />
-        <Redirect to="/" />
       </Switch>
     </Template>
   </ThemeProvider>

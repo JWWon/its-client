@@ -1,3 +1,4 @@
+// tslint:disable:no-string-literal
 import React, { PureComponent } from 'react';
 import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
@@ -11,10 +12,15 @@ const scrollOptions = {
 };
 
 const withSplitter = <P extends RouteComponentProps>(
-  loadComponent: () => Promise<any>,
+  path: string,
   options: object = {}
 ) => {
-  const Component = Loadable({ loader: loadComponent, loading: Spinner });
+  const Component = Loadable({
+    loader: () => import(`../../${path}`),
+    loading: Spinner,
+    modules: [`../../${path}`],
+    webpack: () => [require['resolveWeak'](`../../${path}`)],
+  });
 
   const trackPage = (pathname: string) => {
     if (process.env.NODE_ENV === 'production') {
