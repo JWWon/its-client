@@ -2,6 +2,10 @@
 import styled from 'theme';
 import { isMobile } from 'react-device-detect';
 
+export const Container = styled.div`
+  font-size: 1.6rem;
+`;
+
 const convertToFlex = float => {
   switch (float) {
     case 'left':
@@ -13,26 +17,17 @@ const convertToFlex = float => {
   }
 };
 
-const convertToStyle = object =>
-  Object.keys(object).map(key => {
-    if (key === 'width' && isMobile) {
-      return 'max-width: 100%';
-    }
-    return `${key}: ${object[key]};`;
-  });
-
-export const Container = styled.div`
-  font-size: 1.6rem;
-`;
-
 export const ImgContainer = styled.div`
   display: flex;
   justify-content: ${({ float }) => convertToFlex(float)};
 `;
 
+const convertToStyle = object =>
+  Object.keys(object).map(key => `${key}: ${object[key]};`);
+
 export const Image = styled.img.attrs({
   src: ({ src }) => src,
 })`
   ${({ styles }) => convertToStyle(styles)};
-  object-fit: contain;
+  /* object-fit: contain; */
 `;
