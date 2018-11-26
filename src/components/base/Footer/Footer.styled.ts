@@ -60,7 +60,9 @@ export const InfoText = styled.p`
 `;
 
 const iconSize = { m: 1.6, d: 3.2 };
-export const Link = styled.a`
+export const Link = styled.a.attrs({
+  target: '_blank',
+})`
   width: ${selectByDevice(iconSize)};
   height: ${selectByDevice(iconSize)};
   display: flex;
