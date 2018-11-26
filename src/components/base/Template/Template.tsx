@@ -9,16 +9,18 @@ interface Props {
 
 interface State {
   scrollY: number;
+  isMounted: boolean;
   isTop: boolean;
 }
 
 class Template extends Component<Props, State> {
-  public state: State = { scrollY: 0, isTop: true };
+  public state: State = { scrollY: 0, isTop: true, isMounted: false };
   private supportPageOffset: boolean;
 
   public componentDidMount() {
     this.supportPageOffset = window.pageXOffset !== undefined;
     window.addEventListener('scroll', this.getScrollY);
+    this.setState({ isMounted: true });
   }
 
   public componentWillUnmount() {
@@ -28,11 +30,13 @@ class Template extends Component<Props, State> {
   public render() {
     const { navbar, children, footer } = this.props;
     return (
-      <S.Container>
-        <S.Body>{children}</S.Body>
-        <S.Navbar isTop={this.state.isTop}>{navbar}</S.Navbar>
-        <S.Footer>{footer}</S.Footer>
-      </S.Container>
+      this.state.isMounted && (
+        <S.Container>
+          <S.Body>{children}</S.Body>
+          <S.Navbar isTop={this.state.isTop}>{navbar}</S.Navbar>
+          <S.Footer>{footer}</S.Footer>
+        </S.Container>
+      )
     );
   }
 

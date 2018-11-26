@@ -1,10 +1,16 @@
 // tslint:disable:no-string-literal
 import React from 'react';
-import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
-import { Core, Modal, Template, withSplitter } from 'components/base';
+import {
+  Core,
+  Footer,
+  Modal,
+  Navbar,
+  Template,
+  withSplitter,
+} from 'components/base';
 import Search from 'pages/Search';
 import { theme, ThemeProvider } from 'theme';
 
@@ -16,20 +22,6 @@ declare global {
     };
   }
 }
-
-const Navbar = Loadable({
-  loader: () => import('components/base/Navbar'),
-  loading: () => null,
-  modules: ['components/base/Navbar'],
-  webpack: () => [require['resolveWeak']('components/base/Navbar')],
-});
-
-const Footer = Loadable({
-  loader: () => import('components/base/Footer'),
-  loading: () => null,
-  modules: ['components/base/Footer'],
-  webpack: () => [require['resolveWeak']('components/base/Footer')],
-});
 
 const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>

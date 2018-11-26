@@ -29,12 +29,7 @@ interface Props extends RouteComponentProps<any> {
   searchClinic: (query: any) => void;
 }
 
-interface State {
-  isMounted: boolean;
-}
-
-class Search extends PureComponent<Props, State> {
-  public state: State = { isMounted: false };
+class Search extends PureComponent<Props> {
   private unlisten: (location?: Location) => void;
 
   public componentDidMount() {
@@ -56,7 +51,7 @@ class Search extends PureComponent<Props, State> {
       option.handleDismiss = this.handleDismiss;
     }
 
-    return this.state.isMounted ? (
+    return (
       <>
         {(!search || search.type === 'keyword') && (
           <SearchBar
@@ -110,7 +105,7 @@ class Search extends PureComponent<Props, State> {
           </Element>
         )}
       </>
-    ) : null;
+    );
   }
 
   // *** HANDLE EVENT
