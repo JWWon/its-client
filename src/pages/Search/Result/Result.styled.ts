@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  height: ${({ theme }) => theme.size.shadowBox}rem;
+  height: ${props => selectByDevice(props.theme.size.shadowBox)(props)};
   display: flex;
 `;
 

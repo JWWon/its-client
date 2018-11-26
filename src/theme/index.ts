@@ -4,13 +4,13 @@ import { ThemedStyledComponentsModule } from 'styled-components';
 
 import color from './color';
 import font, { FontInterface } from './font';
-import size from './size';
+import size, { SizeInterface } from './size';
 import space from './space';
 
 export interface ThemeInterface {
   color: { [key in keyof typeof color]: string };
   font: FontInterface;
-  size: { [key in keyof typeof size]: number };
+  size: SizeInterface;
   space: { [key in keyof typeof space]: number };
   mobile: typeof isMobile;
 }

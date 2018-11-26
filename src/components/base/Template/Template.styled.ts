@@ -1,4 +1,4 @@
-import styled from 'theme';
+import styled, { selectByDevice } from 'theme';
 
 interface Props {
   isTop: boolean;
@@ -25,7 +25,7 @@ export const Navbar = styled<Props & any>('nav')`
 
 export const Body = styled.div`
   width: 100%;
-  padding-top: ${({ theme }) => theme.size.navbar}rem;
+  padding-top: ${props => selectByDevice(props.theme.size.navbar)(props)};
 `;
 
 export const Footer = styled.footer`

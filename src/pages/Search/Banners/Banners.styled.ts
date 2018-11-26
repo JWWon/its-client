@@ -20,7 +20,9 @@ export const BannerSection = styled.div`
 `;
 
 export const BannerWrapper = styled.div`
-  height: ${({ theme }) => theme.size.shadowBox - 2}rem;
+  height: calc(
+    ${props => selectByDevice(props.theme.size.shadowBox)(props)} - 2rem
+  );
   display: flex;
   flex-direction: column;
 `;

@@ -4,7 +4,7 @@ import styled, { selectByDevice } from 'theme';
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
   padding: 0 ${({ theme }) => theme.space.s}rem;
-  height: ${({ theme }) => theme.size.navbar}rem;
+  height: ${props => selectByDevice(props.theme.size.navbar)(props)};
   display: flex;
   justify-content: space-between;
   align-items: center;
