@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ClinicInterface, searchById } from 'api/clinic';
+import withModal, { ShowModal } from 'components/base/withModal';
 import { Section } from 'components/common';
 import * as s from './Clinic.styled';
 import DaumMap from './DaumMap';
@@ -11,6 +12,8 @@ import DaumMap from './DaumMap';
 interface ObjectInterface {
   object: { [key: string]: string };
 }
+
+interface Props extends RouteComponentProps<any>, ShowModal {}
 
 interface State {
   readonly name: string;
@@ -45,7 +48,7 @@ const RenderObject: React.SFC<ObjectInterface> = ({ object }) => (
   </>
 );
 
-class Clinic extends Component<RouteComponentProps<any>, State> {
+class Clinic extends Component<Props, State> {
   public state: State = {
     name: '',
     address: '',
@@ -166,6 +169,12 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
 
   private handleClickImg = (e: React.FormEvent<HTMLDivElement>) => {
     e.preventDefault();
+    if (this.state.image) {
+      this.props.show({
+        label: '전문의 자격증',
+        component: <s.FullImage url={this.state.image} />,
+      });
+    }
   };
 
   private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {
@@ -173,4 +182,4 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
   };
 }
 
-export default Clinic;
+export default withModal(Clinic);

@@ -29,5 +29,4 @@ export const Image = styled.img.attrs({
   src: ({ src }) => src,
 })`
   ${({ styles }) => convertToStyle(styles)};
-  /* object-fit: contain; */
 `;

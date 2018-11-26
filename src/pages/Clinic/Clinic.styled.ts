@@ -66,7 +66,7 @@ export const Label = styled(Content)`
 const btnSize = 6.4;
 export const PhoneButton = styled.a`
   position: fixed;
-  z-index: 1000;
+  z-index: 99;
   left: 0;
   right: 0;
   bottom: 0;
@@ -113,4 +113,13 @@ export const Link = styled.div`
     border: 2px solid ${({ theme }) => theme.color.blueDark};
     color: ${({ theme }) => theme.color.blueDark};
   }
+`;
+
+export const FullImage = styled<ImageInterface & any>('div')`
+  width: 100%;
+  height: 100%;
+  background-image: url(${({ url }) => url});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 `;

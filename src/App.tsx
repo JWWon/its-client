@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
-import { Core, Template, withSplitter } from 'components/base';
+import { Core, Modal, Template, withSplitter } from 'components/base';
 import Search from 'pages/Search';
 import { theme, ThemeProvider } from 'theme';
 
@@ -34,8 +34,9 @@ const Footer = Loadable({
 const App: React.SFC<{}> = () => (
   <ThemeProvider theme={theme}>
     <Template navbar={<Navbar />} footer={<Footer />}>
-      <Core />
       <GlobalStyle />
+      <Core />
+      <Modal />
       <Switch>
         <Route path="/" component={withSplitter('pages/Home')} exact />
         <Route path="/about" component={withSplitter('pages/About')} exact />
