@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Footer as FooterInterface, getFooter } from 'api/meta';
 import { Logo } from 'components/common';
-import mobile from 'theme/mobile';
+import { isMobile } from 'react-device-detect';
 import * as s from './Footer.styled';
 
 interface TextInterface {
@@ -48,7 +48,7 @@ class Footer extends Component<{}, FooterInterface> {
               <s.InfoText>© 2018 잇츠교정</s.InfoText>
             </s.Copyright>
           </s.Header>
-          {mobile ? (
+          {isMobile ? (
             this.TextBundle({
               대표: president,
               관리자: manager,

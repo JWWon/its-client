@@ -13,6 +13,7 @@ import {
   selectCity as selectCityAPI,
   selectProvince as selectProvinceAPI,
 } from 'store/modules/search';
+
 import Banners from './Banners';
 import CheckDistrict from './CheckDistrict';
 import Result from './Result';
@@ -22,18 +23,24 @@ import SearchBar from './SearchBar';
 interface Props extends RouteComponentProps<any> {
   info: SearchState;
   removeResults: () => void;
-  selectProvince: (province: string) => void;
+  selectProvince: (province?: string) => void;
   selectCity: (city: string) => void;
   searchClinic: (query: any) => void;
 }
 
-class Search extends PureComponent<Props> {
+interface State {
+  isMounted: boolean;
+}
+
+class Search extends PureComponent<Props, State> {
+  public state: State = { isMounted: false };
   private unlisten: (location?: Location) => void;
 
   public componentDidMount() {
     const { history, location } = this.props;
     this.handleSearchByURL(location);
     this.unlisten = history.listen(this.handleSearchByURL);
+    this.setState({ isMounted: true });
   }
 
   public componentWillUnmount() {
@@ -47,7 +54,7 @@ class Search extends PureComponent<Props> {
       option.handleDismiss = this.handleDismiss;
     }
 
-    return (
+    return this.state.isMounted ? (
       <>
         {(!search || search.type === 'keyword') && (
           <SearchBar
@@ -101,7 +108,7 @@ class Search extends PureComponent<Props> {
           </Element>
         )}
       </>
-    );
+    ) : null;
   }
 
   // *** HANDLE EVENT
@@ -119,11 +126,12 @@ class Search extends PureComponent<Props> {
       if (query.type === 'address' && !info.provinces.pointer) {
         // Query has data, State has no data
         await selectProvince(query.province);
-        await selectCity(query.city);
       }
+      await selectCity(query.city);
       await searchClinic(query);
       scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
     } else {
+      if (!info.provinces.pointer) selectProvince();
       if (info.search) removeResults();
     }
   };
@@ -153,9 +161,8 @@ class Search extends PureComponent<Props> {
     e: React.FormEvent<HTMLDivElement>,
     name: string
   ) => {
-    const { info, history, selectCity } = this.props;
+    const { info, history } = this.props;
     if (info.cities.pointer !== name) {
-      await selectCity(name);
       // UPDATE URL
       history.replace(
         `/search?type=address&province=${info.provinces.pointer}&city=${name}`
@@ -174,7 +181,8 @@ export default connect(
   ({ search }: StoreState) => ({ info: search }),
   dispatch => ({
     removeResults: () => removeResultsAPI(dispatch),
-    selectProvince: (province: string) => selectProvinceAPI(province)(dispatch),
+    selectProvince: (province?: string) =>
+      selectProvinceAPI(province)(dispatch),
     selectCity: (city: string) => selectCityAPI(city)(dispatch),
     searchClinic: (query: any) => searchClinicAPI(query)(dispatch),
   })

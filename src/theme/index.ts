@@ -1,9 +1,9 @@
+import { isMobile } from 'react-device-detect';
 import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 
 import color from './color';
 import font, { FontInterface } from './font';
-import mobile from './mobile';
 import size from './size';
 import space from './space';
 
@@ -12,7 +12,7 @@ export interface ThemeInterface {
   font: FontInterface;
   size: { [key in keyof typeof size]: number };
   space: { [key in keyof typeof space]: number };
-  mobile: string | null;
+  mobile: typeof isMobile;
 }
 
 const {
@@ -21,8 +21,10 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
+  withTheme,
 } = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
+const mobile = isMobile;
 export const theme: ThemeInterface = { color, font, size, space, mobile };
 
 const selectByDevice = (
@@ -41,4 +43,11 @@ const selectByDevice = (
 };
 
 export default styled;
-export { css, createGlobalStyle, keyframes, ThemeProvider, selectByDevice };
+export {
+  css,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  withTheme,
+  selectByDevice,
+};

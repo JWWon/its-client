@@ -1,6 +1,6 @@
 // tslint:disable:no-console
 import styled from 'theme';
-import mobile from 'theme/mobile';
+import { isMobile } from 'react-device-detect';
 
 const convertToFlex = float => {
   switch (float) {
@@ -15,7 +15,7 @@ const convertToFlex = float => {
 
 const convertToStyle = object =>
   Object.keys(object).map(key => {
-    if (key === 'width' && mobile) {
+    if (key === 'width' && isMobile) {
       return 'max-width: 100%';
     }
     return `${key}: ${object[key]};`;

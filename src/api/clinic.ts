@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { provinceCity } from 'lib/constant/address';
-import mobile from 'theme/mobile';
+import { isMobile } from 'react-device-detect';
 
 export interface NameInterface {
   [name: string]: { count?: number };
@@ -110,7 +110,7 @@ export const getBanners = async (_params: Address) => {
     const params = { ..._params, banner: true };
     const response = await axios.get('/clinics', { params });
     const data: ClinicInterface[] = response.data;
-    return mobile ? data.slice(0, 2) : data;
+    return isMobile ? data.slice(0, 2) : data;
   } catch (e) {
     throw e;
   }

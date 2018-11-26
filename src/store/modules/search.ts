@@ -90,16 +90,10 @@ const setInitState = () => {
   for (const key in provinceCity) {
     if (key) names[key] = {};
   }
-  const pointer: string = Object.keys(names)[0];
-  // cities
-  const cityNames: NameInterface = {};
-  for (const key in provinceCity[pointer]) {
-    if (key) cityNames[key] = { count: 0 };
-  }
 
   return {
-    provinces: { names, pointer },
-    cities: { names: cityNames, pointer: null },
+    provinces: { names, pointer: null },
+    cities: { names: {}, pointer: null },
     search: null,
   } as SearchState;
 };

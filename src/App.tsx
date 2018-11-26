@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from 'App.styled';
 import { Core, Template, withSplitter } from 'components/base';
+import Search from 'pages/Search';
 import { theme, ThemeProvider } from 'theme';
 
 declare global {
@@ -43,7 +44,7 @@ const App: React.SFC<{}> = () => (
           component={withSplitter('pages/Registration')}
           exact
         />
-        <Route path="/search" component={withSplitter('pages/Search')} exact />
+        <Route path="/search" component={Search} exact />
         <Route
           path="/announcement"
           component={withSplitter('pages/Announcement')}

@@ -1,4 +1,4 @@
-import mobile from 'theme/mobile';
+import { isMobile } from 'react-device-detect';
 
 import { News as NewsInterface } from 'api/image';
 import Desktop from './News.desktop';
@@ -8,6 +8,6 @@ export interface Props {
   list: NewsInterface[];
 }
 
-const Component = () => (mobile ? Mobile : Desktop);
+const Component = () => (isMobile ? Mobile : Desktop);
 
 export default Component();

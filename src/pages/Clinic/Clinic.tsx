@@ -117,7 +117,10 @@ class Clinic extends Component<RouteComponentProps<any>, State> {
           <s.ShadowBox>
             <s.TitleWithBar title="전문의 자격증" />
             <s.SepcialistWrapper>
-              {image && <s.Image url={image} onClick={this.handleClickImg} />}
+              <s.Image
+                url={image || require('lib/icons/img_specialist_default.png')}
+                onClick={this.handleClickImg}
+              />
               <s.FlexOne>
                 <RenderObject object={specialist} />
               </s.FlexOne>
