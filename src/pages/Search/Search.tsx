@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
+import { isMobile } from 'react-device-detect';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { Element, scroller } from 'react-scroll';
+import { animateScroll as scroll, Element, scroller } from 'react-scroll';
 
 import { Section } from 'components/common';
 import { getSearchFromURL } from 'lib/functions/url';
@@ -38,9 +39,10 @@ class Search extends PureComponent<Props, State> {
 
   public componentDidMount() {
     const { history, location } = this.props;
+    this.setState({ isMounted: true });
+
     this.handleSearchByURL(location);
     this.unlisten = history.listen(this.handleSearchByURL);
-    this.setState({ isMounted: true });
   }
 
   public componentWillUnmount() {
@@ -124,15 +126,22 @@ class Search extends PureComponent<Props, State> {
     if (location.search) {
       const query = getSearchFromURL(location);
       if (query.type === 'address' && !info.provinces.pointer) {
-        // Query has data, State has no data
+        // Query has data, Store has no data
         await selectProvince(query.province);
       }
       await selectCity(query.city);
       await searchClinic(query);
-      scroller.scrollTo('result', { duration: 800, smooth: true, offset: -40 });
+      scroller.scrollTo('result', {
+        duration: 720,
+        smooth: true,
+        offset: isMobile ? -80 : -120,
+      });
     } else {
-      if (!info.provinces.pointer) selectProvince();
-      if (info.search) removeResults();
+      // Store has no data
+      if (!info.provinces.pointer) await selectProvince();
+      // Remove search data
+      if (info.search) await removeResults();
+      scroll.scrollToTop({ duration: 720 });
     }
   };
 
@@ -153,7 +162,7 @@ class Search extends PureComponent<Props, State> {
     if (info.provinces.pointer !== name) {
       await selectProvince(name);
       // UPDATE URL
-      history.replace('/search');
+      if (info.search) history.replace('/search');
     }
   };
 

@@ -11,7 +11,7 @@ export const BoxWrapper = styled.div`
 `;
 
 export const ShadowBox = styled(_ShadowBox).attrs({
-  single: ({ theme }: any) => theme.mobile !== null,
+  single: ({ theme }: any) => theme.mobile,
   style: (props: any) => ({
     margin: selectByDevice({ m: `${space} 0`, d: '' })(props),
   }),
