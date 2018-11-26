@@ -1,3 +1,4 @@
+import { Link as _Link } from 'react-router-dom';
 import styled, { selectByDevice } from 'theme';
 
 const space = { m: 3, d: 10 };
@@ -87,4 +88,9 @@ export const SubTitle = styled.h3`
   font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   margin-left: ${({ theme }) => (theme.mobile ? 1 : 3)}rem;
+`;
+
+export const Link = styled(_Link)`
+  display: flex;
+  align-items: center;
 `;

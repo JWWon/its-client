@@ -1,12 +1,14 @@
-import { Dismiss } from 'components/common';
 import React, { ReactNode } from 'react';
 import ReactHtmlParser from 'react-html-parser';
+
+import { Dismiss } from 'components/common';
 import * as s from './Section.styled';
 
 interface Title {
   title?: string;
   subtitle?: string | null;
   massive?: boolean;
+  linkTo?: string;
   handleDismiss?: (e: React.FormEvent<HTMLDivElement>) => void;
 }
 
@@ -19,6 +21,7 @@ const Header: React.SFC<Title> = ({
   title,
   subtitle,
   handleDismiss,
+  linkTo,
   massive,
 }) =>
   title ? (
@@ -26,8 +29,17 @@ const Header: React.SFC<Title> = ({
       <s.Bar />
       <s.Header>
         <s.HalfRound />
-        <s.Title massive={massive}>{title}</s.Title>
-        {subtitle && <s.SubTitle>{ReactHtmlParser(subtitle)}</s.SubTitle>}
+        {linkTo ? (
+          <s.Link to={linkTo}>
+            <s.Title massive={massive}>{title}</s.Title>
+            {subtitle && <s.SubTitle>{ReactHtmlParser(subtitle)}</s.SubTitle>}
+          </s.Link>
+        ) : (
+          <>
+            <s.Title massive={massive}>{title}</s.Title>
+            {subtitle && <s.SubTitle>{ReactHtmlParser(subtitle)}</s.SubTitle>}
+          </>
+        )}
         {handleDismiss && <Dismiss handleDismiss={handleDismiss} />}
       </s.Header>
     </>
@@ -38,6 +50,7 @@ const Section: React.SFC<Props> = ({
   title,
   subtitle,
   banner,
+  linkTo,
   handleDismiss,
   massive,
 }) => (
@@ -47,6 +60,7 @@ const Section: React.SFC<Props> = ({
         title={title}
         subtitle={subtitle}
         handleDismiss={handleDismiss}
+        linkTo={linkTo}
         massive={massive}
       />
       {banner && (
@@ -64,6 +78,7 @@ const Section: React.SFC<Props> = ({
 Section.defaultProps = {
   subtitle: null,
   banner: null,
+  linkTo: '',
 };
 
 export default Section;

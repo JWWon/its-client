@@ -20,7 +20,7 @@ export const Slider = styled(_Slider).attrs<SliderInterface, any>({
   swipeToSlide: false,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 4000,
 })`
   display: flex;
   flex-direction: ${selectByDevice({ m: 'column', d: 'row-reverse' })};
