@@ -11,7 +11,6 @@ import {
   removeResults as removeResultsAPI,
   searchClinic as searchClinicAPI,
   SearchState,
-  selectCity as selectCityAPI,
   selectProvince as selectProvinceAPI,
 } from 'store/modules/search';
 
@@ -25,7 +24,6 @@ interface Props extends RouteComponentProps<any> {
   info: SearchState;
   removeResults: () => void;
   selectProvince: (province?: string) => void;
-  selectCity: (city: string) => void;
   searchClinic: (query: any) => void;
 }
 
@@ -110,13 +108,7 @@ class Search extends PureComponent<Props> {
 
   // *** HANDLE EVENT
   private handleSearchByURL = async (location: any) => {
-    const {
-      info,
-      removeResults,
-      searchClinic,
-      selectCity,
-      selectProvince,
-    } = this.props;
+    const { info, removeResults, searchClinic, selectProvince } = this.props;
 
     if (location.search) {
       const query = getSearchFromURL(location);
@@ -124,7 +116,6 @@ class Search extends PureComponent<Props> {
         // Query has data, Store has no data
         await selectProvince(query.province);
       }
-      await selectCity(query.city);
       await searchClinic(query);
       scroller.scrollTo('result', {
         duration: 720,
@@ -132,8 +123,10 @@ class Search extends PureComponent<Props> {
         offset: isMobile ? -80 : -120,
       });
     } else {
-      // Store has no data
-      if (!info.provinces.pointer) await selectProvince();
+      // Store has no data, Query is empty
+      if (!info.provinces.pointer || info.cities.pointer) {
+        await selectProvince();
+      }
       // Remove search data
       if (info.search) await removeResults();
       scroll.scrollToTop({ duration: 720 });
@@ -187,7 +180,6 @@ export default connect(
     removeResults: () => removeResultsAPI(dispatch),
     selectProvince: (province?: string) =>
       selectProvinceAPI(province)(dispatch),
-    selectCity: (city: string) => selectCityAPI(city)(dispatch),
     searchClinic: (query: any) => searchClinicAPI(query)(dispatch),
   })
 )(Search);

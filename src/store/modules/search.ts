@@ -14,26 +14,20 @@ import { provinceCity } from 'lib/constant/address';
 
 // *** ACTION TYPE
 const SET_PROVINCE = 'search/SET_PROVINCE';
-const SET_CITY = 'search/SET_CITY';
 const SEARCH_CLINIC = 'search/SEARCH_CLINIC';
 const REMOVE_RESULTS = 'search/REMOVE_RESULTS';
 
 // *** ACTION FUNCTION
-export const selectProvince = (province?: string) => async (
+export const selectProvince = (province?: string, city?: string) => async (
   dispatch: Dispatch
 ) => {
   const pointer = province || Object.keys(provinceCity)[0];
   const cityNames = await getCityNames(pointer);
   const payload = {
     pointer,
-    cities: { names: cityNames, pointer: null },
+    cities: { names: cityNames, pointer: city || null },
   };
   dispatch({ type: SET_PROVINCE, payload });
-};
-
-export const selectCity = (city: string) => async (dispatch: Dispatch) => {
-  const payload = { pointer: city };
-  dispatch({ type: SET_CITY, payload });
 };
 
 export const searchClinic = (query: any) => async (dispatch: Dispatch) => {
@@ -50,6 +44,7 @@ export const searchClinic = (query: any) => async (dispatch: Dispatch) => {
       break;
     case 'address':
       const { province, city } = query;
+      await selectProvince(province, city)(dispatch);
       list = await searchByAddress({ province, city });
       banners = await getBanners({ province, city });
       param = `${province} ${city}`;
@@ -59,7 +54,7 @@ export const searchClinic = (query: any) => async (dispatch: Dispatch) => {
       banners = [];
       param = '';
   }
-  const payload = { type, param, banners, list };
+  const payload = { search: { type, param, banners, list } };
   dispatch({ type: SEARCH_CLINIC, payload });
 };
 
@@ -106,13 +101,9 @@ export default handleActions<SearchState, any>(
         draft.provinces.pointer = action.payload.pointer;
         draft.cities = action.payload.cities;
       }),
-    [SET_CITY]: (state, action) =>
-      produce(state, draft => {
-        draft.cities.pointer = action.payload.pointer;
-      }),
     [SEARCH_CLINIC]: (state, action) =>
       produce(state, draft => {
-        draft.search = action.payload;
+        draft.search = action.payload.search;
       }),
     [REMOVE_RESULTS]: state =>
       produce(state, draft => {
