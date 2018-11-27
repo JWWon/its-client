@@ -178,7 +178,9 @@ class Clinic extends Component<Props, State> {
   };
 
   private handleDismiss = (e: React.FormEvent<HTMLDivElement>) => {
-    this.props.history.goBack();
+    const { history } = this.props;
+    if (history.length > 2) history.goBack();
+    else history.push(`/search?type=keyword&q=${this.state.name}`);
   };
 }
 
