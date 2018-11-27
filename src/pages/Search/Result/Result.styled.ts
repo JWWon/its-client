@@ -1,10 +1,20 @@
 import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
+  position: relative;
   margin-bottom: 4.8rem;
   &:last-of-type {
     margin-bottom: 0;
   }
+`;
+
+export const Filter = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(256, 256, 256, 0.82);
 `;
 
 export const Wrapper = styled.div`

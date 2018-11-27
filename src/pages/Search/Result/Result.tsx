@@ -32,7 +32,12 @@ const SwitchLink: React.SFC<SwitchInterface> = ({ clinic, children }) => {
       </Link>
     );
   }
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <s.Filter />
+    </>
+  );
 };
 
 class Result extends Component<Props> {
