@@ -31,14 +31,12 @@ export const SepcialistWrapper = styled.div`
 interface ImageInterface {
   url: string;
 }
-const imgWidth = { m: 6, d: 21 };
+const labelSpace = { m: 8, d: 20 };
 export const Image = styled<ImageInterface & any>('div')`
-  width: ${selectByDevice(imgWidth)};
-  height: ${selectByDevice(imgWidth, 1.41)};
-  margin-right: ${selectByDevice({ m: 2.4, d: 4.8 })};
+  flex-basis: ${selectByDevice(labelSpace)};
   background-image: url(${({ url }) => url});
   background-size: contain;
-  background-position: center;
+  background-position: center left;
   background-repeat: no-repeat;
 `;
 
@@ -57,7 +55,7 @@ export const Content = styled.p`
 `;
 
 export const Label = styled(Content)`
-  flex-basis: ${selectByDevice({ m: 8, d: 20 })};
+  flex-basis: ${selectByDevice(labelSpace)};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.color.blueDark};
   white-space: nowrap;
