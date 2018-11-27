@@ -49,6 +49,6 @@ export default createGlobalStyle`
   }
 
   img {
-    -ms-interpolation-mode: bicubic;
+    -ms-interpolation-mode: bicubic !important;
   }
 `;

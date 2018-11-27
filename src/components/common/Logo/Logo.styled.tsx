@@ -1,6 +1,6 @@
 import styled, { selectByDevice } from 'theme';
 
-import logo from 'lib/logos/logo_its_kyojeong.svg';
+import logo from 'lib/logos/logo_its_kyojeong.png';
 
 export const Logo = styled.img.attrs({
   src: logo,
