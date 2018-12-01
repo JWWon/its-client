@@ -1,8 +1,8 @@
 import { Link as _Link } from 'react-router-dom';
 
+import blog from 'lib/logos/logo_blog.svg';
 import facebook from 'lib/logos/logo_facebook.svg';
 import instagram from 'lib/logos/logo_instagram.svg';
-import twitter from 'lib/logos/logo_twitter.svg';
 import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
@@ -81,7 +81,7 @@ const Icon = styled.img`
 `;
 export const Facebook = styled(Icon).attrs({ src: facebook })``;
 export const Instagram = styled(Icon).attrs({ src: instagram })``;
-export const Twitter = styled(Icon).attrs({ src: twitter })``;
+export const Blog = styled(Icon).attrs({ src: blog })``;
 
 const btnHeight = { m: 1.8, d: 3.8 };
 export const Button = styled(_Link)`

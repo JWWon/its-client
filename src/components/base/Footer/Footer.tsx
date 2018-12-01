@@ -78,7 +78,7 @@ class Footer extends Component<{}, FooterInterface> {
               <s.Instagram />
             </s.Link>
             <s.Link href={social.blog}>
-              <s.Twitter />
+              <s.Blog />
             </s.Link>
           </s.Header>
           <s.Button to="/registeration">
