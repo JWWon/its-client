@@ -36,7 +36,7 @@
     "start": "env-cmd .env react-scripts-ts start",
     "build": "rm -rf build && env-cmd .env react-scripts-ts build",
     "postbuild": "react-snap",
-    "upload": "aws s3 sync build/ s3://client-xn--9d0b301chmar3r --delete",
+    "upload": "aws s3 sync build/ s3://client-xn--9d0b301chmar3r --delete --profile itso-o",
     "reset-cache": "aws cloudfront create-invalidation --distribution-id EZH8Q4QTK5FQO --paths /*",
     "deploy": "npm run build && npm run upload",
     "test": "react-scripts-ts test --env=jsdom",

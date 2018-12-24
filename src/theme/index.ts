@@ -24,7 +24,7 @@ const {
   withTheme,
 } = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
-const mobile = isMobile;
+const mobile = isMobile ? true : window.innerHeight > window.innerWidth * 1.7; // 16 : 9
 export const theme: ThemeInterface = { color, font, size, space, mobile };
 
 const selectByDevice = (
