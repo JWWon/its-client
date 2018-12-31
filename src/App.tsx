@@ -11,7 +11,6 @@ import {
   Template,
   withSplitter,
 } from 'components/base';
-import Search from 'pages/Search';
 import { theme, ThemeProvider } from 'theme';
 
 declare global {
@@ -31,23 +30,17 @@ const App: React.SFC<{}> = () => (
       <Modal />
       <Switch>
         <Route path="/" component={withSplitter('pages/Home')} exact />
-        <Route path="/about" component={withSplitter('pages/About')} exact />
+        <Route path="/about" component={withSplitter('pages/About')} />
         <Route
           path="/registeration"
           component={withSplitter('pages/Registration')}
-          exact
         />
-        <Route path="/search" component={Search} exact />
+        <Route path="/search" component={withSplitter('pages/Search')} />
         <Route
           path="/announcement"
           component={withSplitter('pages/Announcement')}
-          exact
         />
-        <Route
-          path="/clinic/:id"
-          component={withSplitter('pages/Clinic')}
-          exact
-        />
+        <Route path="/clinic/:id" component={withSplitter('pages/Clinic')} />
       </Switch>
     </Template>
   </ThemeProvider>

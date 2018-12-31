@@ -1,8 +1,6 @@
-import { Link as _Link } from 'react-router-dom';
-
 import styled from 'theme';
 
-export const Link = styled(_Link)`
+export const Link = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +13,7 @@ export const Container = styled.div`
   margin: ${({ theme }) => theme.space.s}rem 0;
 `;
 
-export const Item = styled(_Link)`
+export const Item = styled.a`
   width: 31%;
 `;
 

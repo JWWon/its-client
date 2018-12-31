@@ -1,5 +1,5 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import { Link as _Link } from 'react-router-dom';
+import baseURL from 'lib/constant/baseURL';
 import styled from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
@@ -32,8 +32,8 @@ export const PictogramWrapper = styled.div`
 `;
 
 const btnHeight: number = 3.2;
-export const More = styled(_Link).attrs({
-  to: '/about',
+export const More = styled.a.attrs({
+  href: `${baseURL}/about`,
 })`
   width: 100%;
   height: ${btnHeight}rem;

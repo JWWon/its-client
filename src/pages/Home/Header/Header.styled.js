@@ -1,6 +1,8 @@
 import countUp from 'react-countup';
 import { Link } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 import styled, { selectByDevice } from 'theme';
+import baseURL from 'lib/constant/baseURL';
 
 export const Background = styled.div`
   margin-top: ${selectByDevice({ m: 4.8, d: 16 })};
@@ -55,7 +57,8 @@ export const BarPosition = styled.div`
   white-space: nowrap;
 `;
 
-export const BarLink = styled(Link).attrs({
+// *** BARLINK COMPONENT
+const BarLinkDesktop = styled(Link).attrs({
   to: '/search',
 })`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
@@ -64,9 +67,7 @@ export const BarLink = styled(Link).attrs({
   box-sizing: border-box;
   border-radius: ${selectByDevice(barHeight, 0.5)};
   background: ${({ theme }) => theme.color.blueDark};
-  box-shadow: ${({ theme }) =>
-      theme.mobile ? '-0.1rem 0.3rem 0.5rem' : '-1.5rem 2rem 2.5rem'}
-    rgba(0, 0, 0, 0.16);
+  box-shadow: '-1.5rem 2rem 2.5rem' rgba(0, 0, 0, 0.16);
   display: flex;
   align-items: center;
   padding-left: ${selectByDevice(barHeight, 0.5)};
@@ -78,6 +79,31 @@ export const BarLink = styled(Link).attrs({
     box-shadow: -2rem 1.9rem 5.2rem rgba(0, 0, 0, 0.32);
   }
 `;
+
+const BarLinkMobile = styled.a.attrs({
+  href: `${baseURL}/search`,
+})`
+  flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}rem;
+  height: ${selectByDevice(barHeight)};
+  margin: 0 ${({ theme }) => theme.space.s}rem;
+  box-sizing: border-box;
+  border-radius: ${selectByDevice(barHeight, 0.5)};
+  background: ${({ theme }) => theme.color.blueDark};
+  box-shadow: '-0.1rem 0.3rem 0.5rem' rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  padding-left: ${selectByDevice(barHeight, 0.5)};
+  color: ${({ theme }) => theme.color.white};
+  transition: all 0.2s ease-out;
+  &:hover {
+    margin-top: -0.8rem;
+    margin-bottom: 0.8rem;
+    box-shadow: -2rem 1.9rem 5.2rem rgba(0, 0, 0, 0.32);
+  }
+`;
+
+export const BarLink = isMobile ? BarLinkMobile : BarLinkDesktop;
+// *** BARLINK COMPONENT END
 
 export const SearchIcon = styled.img.attrs({
   src: require('lib/icons/ic_search.svg'),
