@@ -34,7 +34,7 @@ const selectByDevice = (
 ) => (props: any) => {
   if (typeof obj.m === 'number' && typeof obj.d === 'number') {
     const result: number = props.theme.mobile ? obj.m : obj.d;
-    return `${result * (multiply || 1)}${unit || 'rem'}`;
+    return `${result * 10 * (multiply || 1)}${unit || 'px'}`;
   } else if (typeof obj.m === 'string' && typeof obj.d === 'string') {
     const result: string = props.theme.mobile ? obj.m : obj.d;
     return result;

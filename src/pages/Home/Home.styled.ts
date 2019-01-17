@@ -9,7 +9,7 @@ interface SliderInterface {
   single: boolean;
 }
 
-export const slideHeight = { m: 52, d: 58 };
+export const slideHeight = { m: 5.2, d: 5.8 };
 
 export const Slider = styled(_Slider).attrs<SliderInterface, any>({
   dots: true,
