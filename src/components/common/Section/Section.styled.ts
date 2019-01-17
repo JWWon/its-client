@@ -1,7 +1,7 @@
 import { Link as _Link } from 'react-router-dom';
 import styled, { selectByDevice } from 'theme';
 
-const space = { m: 3, d: 10 };
+const space = { m: 30, d: 100 };
 export const Section = styled.section`
   position: relative;
   display: flex;
@@ -16,16 +16,16 @@ export const Container = styled.div`
   ${({ theme }) =>
     theme.mobile
       ? `flex: 1`
-      : `flex-basis: ${theme.size.container + 2 * theme.space.s}rem`};
-  padding: 0 ${({ theme }) => theme.space.s}rem;
+      : `flex-basis: ${theme.size.container + 2 * theme.space.s}px`};
+  padding: 0 ${({ theme }) => theme.space.s}px;
 `;
 
-const roundHeight = 8;
+const roundHeight = 80;
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  ${selectByDevice({ m: '', d: `height: ${roundHeight}rem` })};
-  margin-bottom: ${selectByDevice({ m: 2.8, d: 9.6 })};
+  ${selectByDevice({ m: '', d: `height: ${roundHeight}px` })};
+  margin-bottom: ${selectByDevice({ m: 28, d: 96 })};
   /* ADD FOR IE */
   max-height: 100%;
   box-sizing: border-box;
@@ -33,20 +33,20 @@ export const Header = styled.div`
 
 export const HalfRound = styled.div`
   position: absolute;
-  width: 14rem;
-  height: ${roundHeight}rem;
+  width: 140px;
+  height: ${roundHeight}px;
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.color.blueDark};
-  border-top-right-radius: ${roundHeight / 2}rem;
-  border-bottom-right-radius: ${roundHeight / 2}rem;
-  box-shadow: 0.9rem 1.5rem 2.5rem rgba(0, 0, 0, 0.16);
+  border-top-right-radius: ${roundHeight / 2}px;
+  border-bottom-right-radius: ${roundHeight / 2}px;
+  box-shadow: 9px 15px 25px rgba(0, 0, 0, 0.16);
   @media screen and (max-width: 1540px) {
     display: none;
   }
 `;
 
-const bannerHeight = { m: 16, d: 28 };
+const bannerHeight = { m: 160, d: 280 };
 export const BannerArea = styled.div`
   height: ${selectByDevice(bannerHeight)};
 `;
@@ -61,14 +61,14 @@ export const BannerWrapper = styled.div`
   justify-content: center;
 `;
 
-const barHeight: number = 0.3;
+const barHeight: number = 3;
 export const Bar = styled.div`
   ${selectByDevice({ m: '', d: 'display: none' })};
-  width: 3.6rem;
-  height: ${barHeight}rem;
-  border-radius: ${barHeight / 2}rem;
+  width: 36px;
+  height: ${barHeight}px;
+  border-radius: ${barHeight / 2}px;
   background-color: ${({ theme }) => theme.color.blueDark};
-  margin-bottom: ${({ theme }) => theme.space.s}rem;
+  margin-bottom: ${({ theme }) => theme.space.s}px;
 `;
 
 interface TitleInterface {
@@ -87,7 +87,7 @@ export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
-  margin-left: ${({ theme }) => (theme.mobile ? 1 : 3)}rem;
+  margin-left: ${selectByDevice({ m: 10, d: 30 })};
 `;
 
 export const Link = styled(_Link)`

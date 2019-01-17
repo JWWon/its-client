@@ -2,7 +2,7 @@ import icClose from 'lib/icons/ic_close.svg';
 import icCloseWhite from 'lib/icons/ic_close_white.svg';
 import styled, { selectByDevice } from 'theme';
 
-const size = { m: 1.4, d: 2.6 };
+const size = { m: 14, d: 26 };
 
 interface Props {
   white?: boolean;

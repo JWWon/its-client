@@ -9,9 +9,9 @@ export const Container = styled.div`
 `;
 
 export const PictogramWrapper = styled(Container)`
-  margin-left: ${({ theme }) => theme.space.m}rem;
+  margin-left: ${({ theme }) => theme.space.m}px;
   flex-shrink: 1;
-  flex-basis: 60rem;
+  flex-basis: 600px;
   align-items: center;
 `;
 
@@ -19,30 +19,30 @@ export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
   font-size: ${({ theme }) => theme.font.size.l}rem;
   font-weight: ${({ theme }) => theme.font.weight.bold};
-  margin-bottom: 4.8rem;
+  margin-bottom: 48px;
 `;
 
 export const Context = styled.p`
   color: ${({ theme }) => theme.color.gray};
   font-size: ${({ theme }) => theme.font.size.m}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  line-height: 4rem;
+  line-height: 40px;
 `;
 
-const moreHeight = 5;
+const moreHeight = 50;
 export const MoreButton = styled(_Link).attrs({
   to: '/about',
 })`
   display: flex;
-  width: 16rem;
-  height: ${moreHeight}rem;
-  border-radius: ${moreHeight / 2}rem;
+  width: 160px;
+  height: ${moreHeight}px;
+  border-radius: ${moreHeight / 2}px;
   border: 3px solid ${({ theme }) => theme.color.blueDark};
   box-sizing: border-box;
-  margin-top: 4.8rem;
+  margin-top: 48px;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.8rem;
+  padding: 0 18px;
   p {
     color: ${({ theme }) => theme.color.blueDark};
     font-size: ${({ theme }) => theme.font.size.s}rem;
@@ -54,7 +54,7 @@ export const ArrowBlue = styled.img.attrs({
   src: arrowBlue,
 })`
   width: auto;
-  height: 1.6rem;
+  height: 16px;
 `;
 
 export const Important = styled.span`

@@ -1,6 +1,6 @@
 const space = {
-  m: 3.2,
-  s: 1.6,
+  m: 32,
+  s: 16,
 };
 
 export default space;

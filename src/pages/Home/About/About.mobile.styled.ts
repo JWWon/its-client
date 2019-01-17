@@ -26,22 +26,22 @@ export const Container = styled.div`
 
 export const PictogramWrapper = styled.div`
   width: 100%;
-  margin: 2rem 0;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
 `;
 
-const btnHeight: number = 3.2;
+const btnHeight: number = 32;
 export const More = styled.a.attrs({
   href: `${baseURL}/about`,
 })`
   width: 100%;
-  height: ${btnHeight}rem;
+  height: ${btnHeight}px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.color.blueDark};
-  padding: 0 1.8rem;
-  margin-bottom: ${({ theme }) => theme.space.s}rem;
-  border-radius: ${btnHeight / 2}rem;
+  padding: 0 18px;
+  margin-bottom: ${({ theme }) => theme.space.s}px;
+  border-radius: ${btnHeight / 2}px;
   background: transparent;
   display: flex;
   justify-content: space-between;
@@ -57,7 +57,7 @@ export const ArrowBlue = styled.img.attrs({
   src: arrowBlue,
 })`
   width: auto;
-  height: 1rem;
+  height: 10px;
 `;
 
 export const Important = styled.span`

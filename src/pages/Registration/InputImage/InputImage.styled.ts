@@ -12,13 +12,13 @@ export const Input = styled.input.attrs({
   opacity: 0;
 `;
 
-const barSpace = { m: 2.6, d: 8 };
-const imageWidth = { m: 8, d: 24 };
+const barSpace = { m: 26, d: 80 };
+const imageWidth = { m: 80, d: 240 };
 export const ImageWrapper = styled.div`
   position: relative;
   width: ${selectByDevice(imageWidth)};
   height: ${selectByDevice(imageWidth, 1.61)};
-  margin: 2rem 0 0 ${selectByDevice(barSpace)};
+  margin: 20px 0 0 ${selectByDevice(barSpace)};
 `;
 
 export const Label = styled.label`
@@ -40,21 +40,21 @@ export const Preview = styled.img`
   object-fit: contain;
 `;
 
-const iconSize = { m: 1, d: 4 };
+const iconSize = { m: 10, d: 40 };
 export const AddIcon = styled.img.attrs({ src: icAdd })`
   width: ${selectByDevice(iconSize)};
   height: ${selectByDevice(iconSize)};
   object-fit: contain;
 `;
 
-const deleteSize = { m: 3, d: 4 };
+const deleteSize = { m: 30, d: 40 };
 export const Delete = styled.div`
   position: absolute;
   top: ${selectByDevice(imageWidth, 0.02)};
   right: ${selectByDevice(imageWidth, 0.02)};
   width: ${selectByDevice(deleteSize)};
   height: ${selectByDevice(deleteSize)};
-  border-radius: 0.4rem;
+  border-radius: ${selectByDevice(deleteSize, 0.1)};
   background-color: ${({ theme }) => theme.color.grayDark};
   background-image: url(${icDelete});
   background-size: ${selectByDevice(deleteSize, 0.4)};

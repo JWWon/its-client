@@ -2,7 +2,7 @@ import { ShadowBox as _ShadowBox } from 'components/common';
 import styled, { selectByDevice } from 'theme';
 
 export const registrationWidth = (theme: any) =>
-  `calc(${window.innerWidth}px - ${2 * theme.space.s}rem)`;
+  `calc(${window.innerWidth}px - ${2 * theme.space.s}px)`;
 
 export const Form = styled.form`
   flex: 1;
@@ -12,7 +12,7 @@ export const Form = styled.form`
 export const ShadowBox = styled(_ShadowBox).attrs({
   single: true,
   style: (props: any) => ({
-    marginBottom: selectByDevice({ m: 3, d: 6 })(props),
+    marginBottom: selectByDevice({ m: 30, d: 60 })(props),
   }),
 })``;
 
@@ -21,11 +21,11 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const btnHeight = { m: 2.4, d: 3.8 };
+const btnHeight = { m: 24, d: 38 };
 export const Submit = styled.button`
-  width: ${selectByDevice({ m: 14, d: 24 })};
-  height: ${btnHeight}rem;
-  border: ${selectByDevice({ m: '1px', d: '2px' })} solid
+  width: ${selectByDevice({ m: 140, d: 240 })};
+  height: ${selectByDevice(btnHeight)};
+  border: ${selectByDevice({ m: 1, d: 2 })} solid
     ${({ theme }) => theme.color.blueDark};
   border-radius: ${selectByDevice(btnHeight, 0.5)};
   color: ${({ theme }) => theme.color.blueDark};

@@ -3,19 +3,19 @@ import { Link as _Link } from 'react-router-dom';
 import styled, { selectByDevice } from 'theme';
 
 export const Container = styled.div`
-  margin-bottom: ${selectByDevice({ m: 2.4, d: 6 })};
+  margin-bottom: ${selectByDevice({ m: 24, d: 60 })};
 `;
 
 export const TitleWithBar = styled(_TitleWithBar).attrs({
-  margin: selectByDevice({ m: '0.8rem 0', d: '0.8rem 0 4rem' }),
+  margin: selectByDevice({ m: '8px 0', d: '8px 0 40px' }),
 })``;
 
-const linkHeight = { m: 2.4, d: 4.8 };
+const linkHeight = { m: 24, d: 48 };
 export const Link = styled(_Link).attrs({
   to: '/search',
 })`
   margin: 0 auto;
-  width: ${selectByDevice({ m: 10, d: 32 })};
+  width: ${selectByDevice({ m: 100, d: 320 })};
   box-sizing: border-box;
   height: ${selectByDevice(linkHeight)};
   border-radius: ${selectByDevice(linkHeight, 0.5)};

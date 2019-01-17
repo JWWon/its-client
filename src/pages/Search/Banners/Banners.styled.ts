@@ -21,7 +21,7 @@ export const BannerSection = styled.div`
 
 export const BannerWrapper = styled.div`
   height: calc(
-    ${props => selectByDevice(props.theme.size.shadowBox)(props)} - 2rem
+    ${props => selectByDevice(props.theme.size.shadowBox)(props)} - 20px
   );
   display: flex;
   flex-direction: column;
@@ -34,16 +34,16 @@ export const Footer = styled.div`
 `;
 
 export const Notice = styled.p`
-  margin: 1.6rem 0 0;
+  margin: 16px 0 0;
   text-align: right;
   font-size: ${({ theme }) => theme.font.size.xs}rem;
   font-weight: ${({ theme }) => theme.font.weight.light};
   color: ${({ theme }) => theme.color.grayDark};
 `;
 
-const barHeight = { m: 0.3, d: 0.8 };
+const barHeight = { m: 3, d: 8 };
 export const Bar = styled.div`
-  width: ${selectByDevice({ m: 2, d: 6 })};
+  width: ${selectByDevice({ m: 20, d: 60 })};
   height: ${selectByDevice(barHeight)};
   border-radius: ${selectByDevice(barHeight, 0.5)};
   background-color: ${({ theme }) => theme.color.blueDark};
@@ -52,10 +52,10 @@ export const Bar = styled.div`
 
 // *** IMG
 export const Icon = styled.img.attrs({ src: landmark })`
-  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
-  height: ${selectByDevice({ m: 1, d: 1.8 })};
+  margin: ${selectByDevice({ m: '0 4px 0 8px', d: '0 10px 0 16px' })};
+  height: ${selectByDevice({ m: 10, d: 18 })};
   /* ADD FOR IE */
-  width: 1rem;
+  width: 10px;
 `;
 
 export const Landmark = styled.p`

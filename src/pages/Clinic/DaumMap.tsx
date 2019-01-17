@@ -8,8 +8,8 @@ interface Props {
 const { daum } = window;
 const Map = styled.div`
   width: 100%;
-  height: ${selectByDevice({ m: '20rem', d: '100%' })};
-  ${selectByDevice({ m: 'margin-top: 1.6rem', d: '' })};
+  height: ${selectByDevice({ m: '200px', d: '100%' })};
+  ${selectByDevice({ m: 'margin-top: 16px', d: '' })};
 `;
 
 class DamuMap extends Component<Props> {
