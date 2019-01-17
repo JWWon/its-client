@@ -26,11 +26,7 @@ export const HrBar = styled<Props & any>('div')`
 export const Title = styled<TitleInterface & any>('h3')`
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme, vertical }) =>
-    theme.mobile
-      ? vertical
-        ? 4.4
-        : theme.font.size.xxl
-      : theme.font.size.l}rem;
+    theme.mobile ? (vertical ? 4.4 : 2.6) : 2}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 

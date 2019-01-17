@@ -1,5 +1,5 @@
 import icSearch from 'lib/icons/ic_search.svg';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 const barHeight = { m: 56, d: 130 };
 
@@ -52,5 +52,5 @@ export const InputSearch = styled.input.attrs({
   border-radius: ${selectByDevice(barHeight, 0.25)};
   border: ${selectByDevice({ m: 1, d: 2.5 })} solid
     ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.xl}rem;
+  font-size: ${fontSizeByDevice('xl')};
 `;

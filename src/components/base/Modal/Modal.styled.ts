@@ -24,7 +24,7 @@ export const Header = styled.div`
 
 export const Label = styled.h3`
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => (theme.mobile ? 3.6 : theme.font.size.xl)}rem;
+  font-size: ${selectByDevice({ m: '3.6rem', d: '2.2rem' })};
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 

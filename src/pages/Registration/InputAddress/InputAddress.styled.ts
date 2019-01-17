@@ -1,4 +1,4 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Content = styled.div`
   margin-top: 32px;
@@ -27,7 +27,7 @@ export const Input = styled.input.attrs({
   padding: 0 20px;
   background: ${({ theme }) => theme.color.whiteDark};
   color: ${({ theme }) => theme.color.black};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
@@ -53,7 +53,7 @@ export const Button = styled.button.attrs({
     ${({ theme }) => theme.color.blueDark};
   border-radius: ${selectByDevice(btnHeight, 0.5)};
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   background: transparent;
   ${({ theme }) =>
     !theme.mobile &&

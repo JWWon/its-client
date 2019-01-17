@@ -1,6 +1,6 @@
 import { TitleWithBar as _TitleWithBar } from 'components/common';
 import { Link as _Link } from 'react-router-dom';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Container = styled.div`
   margin-bottom: ${selectByDevice({ m: 24, d: 60 })};
@@ -24,7 +24,7 @@ export const Link = styled(_Link).attrs({
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   transition: all 0.2s ease-out;
   &:hover {
     background: ${({ theme }) => theme.color.white};

@@ -1,5 +1,5 @@
 import { Element as _Element } from 'react-scroll';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
@@ -24,7 +24,7 @@ export const TitleWrapper = styled.div`
 export const Date = styled.p`
   margin-left: auto;
   margin-right: ${({ theme }) => theme.space.s}px;
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   color: ${({ theme }) => theme.color.grayDark};
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;

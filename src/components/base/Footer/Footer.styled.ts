@@ -3,7 +3,7 @@ import { Link as _Link } from 'react-router-dom';
 import blog from 'lib/logos/logo_blog.svg';
 import facebook from 'lib/logos/logo_facebook.svg';
 import instagram from 'lib/logos/logo_instagram.svg';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Container = styled.div`
   flex-basis: ${({ theme }) => theme.size.container + 2 * theme.space.s}px;
@@ -27,7 +27,7 @@ export const Right = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  ${selectByDevice({ m: 'margin-right: 20px', d: 'margin-bottom: 2rem' })}
+  ${selectByDevice({ m: 'margin-right: 20px', d: 'margin-bottom: 20px' })}
 `;
 
 export const TextWrapper = styled.div`
@@ -51,7 +51,7 @@ export const Copyright = styled.div`
 `;
 
 export const InfoText = styled.p`
-  font-size: ${({ theme }) => (theme.mobile ? 1.2 : theme.font.size.xs)}rem;
+  font-size: ${selectByDevice({ m: '1.2rem', d: '1.4rem' })};
   font-weight: ${({ theme }) => theme.font.weight.regular};
   color: ${({ theme }) => theme.color.grayDark};
   span {
@@ -94,7 +94,7 @@ export const Button = styled(_Link)`
   box-sizing: border-box;
   background: ${({ theme }) => theme.color.blueDark};
   p {
-    font-size: ${({ theme }) => theme.font.size.s}rem;
+    font-size: ${fontSizeByDevice('s')};
     font-weight: ${({ theme }) => theme.font.weight.demiLight};
     color: ${({ theme }) => theme.color.white};
   }

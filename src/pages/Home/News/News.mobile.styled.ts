@@ -1,4 +1,4 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Link = styled.a`
   display: flex;
@@ -26,7 +26,7 @@ export const Image = styled.img`
 
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   margin-left: ${selectByDevice({ m: 10, d: 30 })};
 `;

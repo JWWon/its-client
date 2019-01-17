@@ -1,7 +1,7 @@
 import countUp from 'react-countup';
 import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 import baseURL from 'lib/constant/baseURL';
 
 export const Background = styled.div`
@@ -22,7 +22,7 @@ export const CountUpWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: ${selectByDevice(barHeight, 0.33)};
-  font-size: ${({ theme }) => theme.font.size.xl}rem;
+  font-size: ${fontSizeByDevice('xl')};
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ theme }) => theme.color.blueDark};
   div {
@@ -115,7 +115,7 @@ export const SearchIcon = styled.img.attrs({
 `;
 
 export const Context = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xxl}rem;
+  font-size: ${fontSizeByDevice('xxl')};
   font-weight: ${({ theme }) => theme.font.weight.black};
 `;
 
@@ -123,7 +123,7 @@ export const SearchText = styled.p`
   ${({ theme }) => theme.mobile && 'visibility: hidden'};
   margin-left: auto;
   margin-right: 32px;
-  font-size: ${({ theme }) => theme.font.size.xl}rem;
+  font-size: ${fontSizeByDevice('xl')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 

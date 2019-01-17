@@ -1,5 +1,5 @@
 import { Link as _Link } from 'react-router-dom';
-import styled from 'theme';
+import styled, { fontSizeByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 
@@ -17,14 +17,14 @@ export const PictogramWrapper = styled(Container)`
 
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
-  font-size: ${({ theme }) => theme.font.size.l}rem;
+  font-size: ${fontSizeByDevice('l')};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   margin-bottom: 48px;
 `;
 
 export const Context = styled.p`
   color: ${({ theme }) => theme.color.gray};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: 40px;
 `;
@@ -45,7 +45,7 @@ export const MoreButton = styled(_Link).attrs({
   padding: 0 18px;
   p {
     color: ${({ theme }) => theme.color.blueDark};
-    font-size: ${({ theme }) => theme.font.size.s}rem;
+    font-size: ${fontSizeByDevice('s')};
     font-weight: ${({ theme }) => theme.font.weight.medium};
   }
 `;

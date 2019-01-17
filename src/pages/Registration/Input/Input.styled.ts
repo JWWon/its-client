@@ -1,4 +1,4 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Content = styled.div`
   margin-top: 32px;
@@ -27,7 +27,7 @@ export const Input = styled.input`
   padding: 0 20px;
   background: ${({ theme }) => theme.color.whiteDark};
   color: ${({ theme }) => theme.color.black};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
@@ -39,6 +39,6 @@ export const At = styled.p`
   width: 20px;
   text-align: center;
   color: ${({ theme }) => theme.color.black};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
 `;

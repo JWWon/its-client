@@ -1,4 +1,4 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Container = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme }) => theme.color.grayDark};
 `;
@@ -77,7 +77,7 @@ export const TextWrapper = styled<TextInterface & any>('div')`
 
 export const Name = styled.p`
   color: ${({ theme }) => theme.color.black};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 

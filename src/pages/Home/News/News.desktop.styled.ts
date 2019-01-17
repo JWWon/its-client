@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'theme';
+import styled, { fontSizeByDevice } from 'theme';
 
 const space = 20;
 export const Container = styled.div`
@@ -30,6 +30,6 @@ export const Image = styled.img`
 
 export const Content = styled.p`
   color: ${({ theme }) => theme.color.grayDark};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;

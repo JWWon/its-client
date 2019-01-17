@@ -2,7 +2,7 @@ import {
   ShadowBox as _ShadowBox,
   TitleWithBar as _TitleWithBar,
 } from 'components/common';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 import icPhone from 'lib/icons/ic_phone.svg';
 
@@ -49,7 +49,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const Content = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme }) => theme.color.black};
 `;
@@ -104,7 +104,7 @@ export const Link = styled.div`
   justify-content: center;
   align-items: center;
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   transition: all 0.2s ease-out;
   &:hover {
     background: ${({ theme }) => theme.color.white};

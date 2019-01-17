@@ -1,6 +1,6 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
 import landmark from 'lib/icons/ic_landmark.svg';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const ShadowBox = styled(_ShadowBox).attrs({
   space: selectByDevice({ m: 16, d: 35 }),
@@ -36,7 +36,7 @@ export const Footer = styled.div`
 export const Notice = styled.p`
   margin: 16px 0 0;
   text-align: right;
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.light};
   color: ${({ theme }) => theme.color.grayDark};
 `;
@@ -59,7 +59,7 @@ export const Icon = styled.img.attrs({ src: landmark })`
 `;
 
 export const Landmark = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.light};
   color: ${({ theme }) => theme.color.grayDark};
 `;

@@ -1,5 +1,5 @@
 import { Link as _Link } from 'react-router-dom';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 const space = { m: 30, d: 100 };
 export const Section = styled.section`
@@ -77,15 +77,14 @@ interface TitleInterface {
 
 export const Title = styled<TitleInterface & any>('h1')`
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme, massive }) =>
-    massive ? 3.6 : theme.font.size.xxl}rem;
+  font-size: ${({ massive }) => (massive ? 3.6 : 2.6)}rem;
   font-weight: ${({ theme }) => theme.font.weight.black};
   white-space: nowrap;
 `;
 
 export const SubTitle = styled.h3`
   color: ${({ theme }) => theme.color.grayDark};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   margin-left: ${selectByDevice({ m: 10, d: 30 })};
 `;

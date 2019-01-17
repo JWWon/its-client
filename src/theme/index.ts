@@ -3,7 +3,7 @@ import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 
 import color from './color';
-import font, { FontInterface } from './font';
+import font, { FontInterface, SizeType } from './font';
 import size, { SizeInterface } from './size';
 import space from './space';
 
@@ -42,6 +42,9 @@ const selectByDevice = (
   return '';
 };
 
+const fontSizeByDevice = (type: SizeType) => (props: any) =>
+  props.theme.font.size[type][props.theme.mobile ? 'm' : 'd'];
+
 export default styled;
 export {
   css,
@@ -50,4 +53,5 @@ export {
   ThemeProvider,
   withTheme,
   selectByDevice,
+  fontSizeByDevice,
 };

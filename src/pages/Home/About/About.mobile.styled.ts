@@ -1,6 +1,6 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
 import baseURL from 'lib/constant/baseURL';
-import styled from 'theme';
+import styled, { fontSizeByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 
@@ -16,7 +16,7 @@ export const Context = styled.div`
   width: 78%;
   text-align: center;
   color: ${({ theme }) => theme.color.gray};
-  font-size: ${({ theme }) => theme.font.size.m}rem;
+  font-size: ${fontSizeByDevice('m')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
@@ -48,7 +48,7 @@ export const More = styled.a.attrs({
   align-items: center;
   p {
     color: ${({ theme }) => theme.color.blueDark};
-    font-size: ${({ theme }) => theme.font.size.m}rem;
+    font-size: ${fontSizeByDevice('m')};
     font-weight: ${({ theme }) => theme.font.weight.regular};
   }
 `;

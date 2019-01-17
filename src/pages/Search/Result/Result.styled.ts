@@ -1,4 +1,4 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Container = styled.div`
   position: relative;
@@ -79,14 +79,14 @@ interface SertifTextInterface {
 export const SertifText = styled<SertifTextInterface & any>('p')`
   ${({ theme }) => theme.mobile && 'display: none'};
   margin-top: auto;
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ active, theme }) =>
     theme.color[active ? 'blueDark' : 'grayLight']};
 `;
 
 export const Phone = styled.p`
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.color.grayDark};
 `;
@@ -94,7 +94,7 @@ export const Phone = styled.p`
 export const Address = styled(Phone)`
   ${({ theme }) =>
     theme.mobile ? 'margin-top: 4px' : `margin-left: ${theme.space.m}px`};
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
 `;
 

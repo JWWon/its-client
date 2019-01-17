@@ -1,5 +1,5 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const ShadowBox = styled(_ShadowBox).attrs({
   space: '5%',
@@ -22,6 +22,6 @@ export const Icon = styled.img.attrs({
 
 export const Title = styled.p`
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;

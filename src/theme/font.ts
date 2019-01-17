@@ -1,11 +1,18 @@
+interface SelectByDevice {
+  m: string;
+  d: string;
+}
+
+export type SizeType = 'xxl' | 'xl' | 'l' | 'm' | 's' | 'xs';
+
 export interface FontInterface {
   size: {
-    xxl: number;
-    xl: number;
-    l: number;
-    m: number;
-    s: number;
-    xs: number;
+    xxl: SelectByDevice;
+    xl: SelectByDevice;
+    l: SelectByDevice;
+    m: SelectByDevice;
+    s: SelectByDevice;
+    xs: SelectByDevice;
   };
   weight: {
     light: number;
@@ -19,12 +26,12 @@ export interface FontInterface {
 
 const font: FontInterface = {
   size: {
-    xxl: 2.6,
-    xl: 2.2,
-    l: 2,
-    m: 1.8,
-    s: 1.6,
-    xs: 1.4,
+    xxl: { m: '2.6rem', d: '2.6rem' },
+    xl: { m: '2.2rem', d: '2.2rem' },
+    l: { m: '2rem', d: '2rem' },
+    m: { m: '1.8rem', d: '1.8rem' },
+    s: { m: '1.6rem', d: '1.6rem' },
+    xs: { m: '1.4rem', d: '1.4rem' },
   },
   weight: {
     light: 200,

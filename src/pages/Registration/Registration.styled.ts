@@ -1,5 +1,5 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const registrationWidth = (theme: any) =>
   `calc(${window.innerWidth}px - ${2 * theme.space.s}px)`;
@@ -29,7 +29,7 @@ export const Submit = styled.button`
     ${({ theme }) => theme.color.blueDark};
   border-radius: ${selectByDevice(btnHeight, 0.5)};
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   background: transparent;
   ${({ theme }) =>
     !theme.mobile &&
