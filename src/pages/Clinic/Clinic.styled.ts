@@ -88,7 +88,7 @@ export const PhoneIcon = styled.img.attrs({
 export const PhoneText = styled.p`
   color: ${({ theme }) => theme.color.white};
   margin-left: 12px;
-  font-size: 4.2rem;
+  font-size: ${selectByDevice({ m: '2.4rem', d: '4.2rem' })};
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 

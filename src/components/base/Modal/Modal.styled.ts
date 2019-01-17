@@ -24,7 +24,7 @@ export const Header = styled.div`
 
 export const Label = styled.h3`
   color: ${({ theme }) => theme.color.white};
-  font-size: ${selectByDevice({ m: '3.6rem', d: '2.2rem' })};
+  font-size: ${selectByDevice({ m: '1.4rem', d: '2.2rem' })};
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 

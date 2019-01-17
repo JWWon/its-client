@@ -77,7 +77,10 @@ interface TitleInterface {
 
 export const Title = styled<TitleInterface & any>('h1')`
   color: ${({ theme }) => theme.color.blueDark};
-  font-size: ${({ massive }) => (massive ? 3.6 : 2.6)}rem;
+  font-size: ${props =>
+    props.massive
+      ? fontSizeByDevice('xxxl')(props)
+      : fontSizeByDevice('xxl')(props)};
   font-weight: ${({ theme }) => theme.font.weight.black};
   white-space: nowrap;
 `;

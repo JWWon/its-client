@@ -51,7 +51,7 @@ export const Copyright = styled.div`
 `;
 
 export const InfoText = styled.p`
-  font-size: ${selectByDevice({ m: '1.2rem', d: '1.4rem' })};
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
   color: ${({ theme }) => theme.color.grayDark};
   span {
