@@ -17,7 +17,7 @@ const Banner: React.SFC<ClinicInterface> = props => (
         <s.Footer>
           <s.Bar />
           <s.Icon />
-          <s.Landmark>{props.landmark || '2호선 삼성역'}</s.Landmark>
+          <s.Landmark>{props.landmark}</s.Landmark>
         </s.Footer>
       </s.BannerWrapper>
     </Link>

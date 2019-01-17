@@ -3,7 +3,7 @@ import landmark from 'lib/icons/ic_landmark.svg';
 import styled, { selectByDevice } from 'theme';
 
 export const ShadowBox = styled(_ShadowBox).attrs({
-  space: selectByDevice({ m: 1.6, d: 3.5 }),
+  space: selectByDevice({ m: 16, d: 35 }),
 })``;
 
 export const Container = styled.div`
