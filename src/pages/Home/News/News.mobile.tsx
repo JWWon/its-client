@@ -10,7 +10,7 @@ const Announcemnet: React.SFC<Props> = ({ list }) => (
   <Section>
     <ShadowBox single>
       <s.Link href={`${baseURL}/annoumcement`}>
-        <TitleWithBar title="잇츠교정의 선물" margin="1.2rem 0" vertical />
+        <TitleWithBar title="잇츠교정의 선물" margin="12px 0" vertical />
         <s.SubTitle>
           무분별한 허위/과대 광고는 지양합니다.
           <br />
@@ -21,7 +21,7 @@ const Announcemnet: React.SFC<Props> = ({ list }) => (
         {list.map(item => (
           <s.Item href={`${baseURL}/announcement#${item.href}`} key={item.id}>
             <s.Image src={item.mobileSrc} className="newsImage" />
-            <TitleWithBar title={item.title} margin="1.2rem 0 0" />
+            <TitleWithBar title={item.title} margin="12px 0 0" />
           </s.Item>
         ))}
       </s.Container>

@@ -10,9 +10,9 @@ export interface SizeInterface {
 }
 
 const size = {
-  container: 120,
-  shadowBox: { m: 5.6, d: 12 },
-  navbar: { m: 5.6, d: 8 },
+  container: 1200,
+  shadowBox: { m: 56, d: 120 },
+  navbar: { m: 56, d: 80 },
 };
 
 export default size;

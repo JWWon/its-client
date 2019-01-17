@@ -1,8 +1,8 @@
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 export const Container = styled.div`
   position: relative;
-  margin-bottom: 4.8rem;
+  margin-bottom: 48px;
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -42,7 +42,7 @@ export const HrContent = styled.div`
 `;
 
 export const SertifWrapper = styled.div`
-  width: ${selectByDevice({ m: 3.5, d: 14 })};
+  width: ${selectByDevice({ m: 35, d: 140 })};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,10 +53,10 @@ export const SertifWrapper = styled.div`
 export const Icon = styled.img.attrs({
   src: require('lib/icons/ic_landmark.svg'),
 })`
-  margin: ${selectByDevice({ m: '0 0.4rem 0 0.8rem', d: '0 1rem 0 1.6rem' })};
-  height: ${selectByDevice({ m: 0.8, d: 1.6 })};
+  margin: ${selectByDevice({ m: '0 4px 0 8px', d: '0 10px 0 16px' })};
+  height: ${selectByDevice({ m: 8, d: 16 })};
   /* ADD FOR IE */
-  width: 1rem;
+  width: 10px;
 `;
 
 export interface SertifInterface {
@@ -68,7 +68,7 @@ export const SertifIcon = styled.img.attrs<SertifInterface, any>({
   src: ({ type, active }: SertifInterface) =>
     require(`lib/icons/ic_${type}${active ? '_active' : ''}.svg`),
 })`
-  height: ${selectByDevice({ m: 2.5, d: 6.4 })};
+  height: ${selectByDevice({ m: 25, d: 64 })};
 `;
 
 // *** TEXT
@@ -79,22 +79,22 @@ interface SertifTextInterface {
 export const SertifText = styled<SertifTextInterface & any>('p')`
   ${({ theme }) => theme.mobile && 'display: none'};
   margin-top: auto;
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.demiLight};
   color: ${({ active, theme }) =>
     theme.color[active ? 'blueDark' : 'grayLight']};
 `;
 
 export const Phone = styled.p`
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  font-size: ${fontSizeByDevice('s')};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   color: ${({ theme }) => theme.color.grayDark};
 `;
 
 export const Address = styled(Phone)`
   ${({ theme }) =>
-    theme.mobile ? 'margin-top: 0.4rem' : `margin-left: ${theme.space.m}rem`};
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+    theme.mobile ? 'margin-top: 4px' : `margin-left: ${theme.space.m}px`};
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.regular};
 `;
 

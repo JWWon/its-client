@@ -1,5 +1,5 @@
 import { Element as _Element } from 'react-scroll';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
 import arrowBlue from 'lib/icons/ic_arrow_blue.svg';
 import arrowGray from 'lib/icons/ic_arrow_gray.svg';
@@ -11,25 +11,25 @@ interface ContentProps {
 export const Element = styled(_Element)`
   width: 100%;
   &:last-of-type {
-    padding-bottom: ${({ theme }) => theme.space.s}rem;
+    padding-bottom: ${({ theme }) => theme.space.s}px;
   }
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
-  height: ${selectByDevice({ m: 4, d: 8 })};
+  height: ${selectByDevice({ m: 40, d: 80 })};
   align-items: center;
 `;
 
 export const Date = styled.p`
   margin-left: auto;
-  margin-right: ${({ theme }) => theme.space.s}rem;
-  font-size: ${({ theme }) => theme.font.size.s}rem;
+  margin-right: ${({ theme }) => theme.space.s}px;
+  font-size: ${fontSizeByDevice('s')};
   color: ${({ theme }) => theme.color.grayDark};
   font-weight: ${({ theme }) => theme.font.weight.light};
 `;
 
-const toggleSize = { m: 1.2, d: 3 };
+const toggleSize = { m: 12, d: 30 };
 export const Toggle = styled.div`
   width: ${selectByDevice(toggleSize)};
   height: ${selectByDevice(toggleSize)};
@@ -49,6 +49,6 @@ export const Arrow = styled<ContentProps & any>('img').attrs({
 
 export const ContentWrapper = styled<ContentProps & any>('div')`
   background-color: ${({ theme }) => theme.color.whiteDim};
-  padding: ${({ theme }) => (theme.mobile ? 1 : theme.space.s)}rem;
+  padding: ${({ theme }) => (theme.mobile ? 1 : theme.space.s)}px;
   ${({ selected }) => !selected && 'display: none'};
 `;

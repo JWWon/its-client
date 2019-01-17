@@ -1,4 +1,4 @@
-import { createGlobalStyle, selectByDevice } from 'theme';
+import { createGlobalStyle } from 'theme';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -7,7 +7,7 @@ export default createGlobalStyle`
   @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
   html {
-    font-size: ${selectByDevice({ m: '25%', d: '62.5%' })};
+    font-size: 62.5%;
   }
 
   body {
@@ -31,7 +31,7 @@ export default createGlobalStyle`
   }
 
   h1 {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
   }
 
   a {

@@ -8,7 +8,7 @@ export const Logo = styled.img.attrs({
   src: isIE ? logoIE : logo,
   alt: '잇츠 교정 logo',
 })`
-  width: ${selectByDevice({ m: 10, d: 14 })};
-  height: ${selectByDevice({ m: 3.8, d: 5.7 })};
+  width: ${selectByDevice({ m: 100, d: 140 })};
+  height: ${selectByDevice({ m: 38, d: 57 })};
   object-fit: contain;
 `;

@@ -9,16 +9,16 @@ interface TitleInterface {
   vertical: boolean;
 }
 
-const barHeight = { m: 0.3, d: 0.8 };
+const barHeight = { m: 3, d: 8 };
 
 export const HrBar = styled<Props & any>('div')`
-  width: ${selectByDevice({ m: 1.6, d: 6 })};
+  width: ${selectByDevice({ m: 16, d: 60 })};
   height: ${selectByDevice(barHeight)};
-  margin-right: ${selectByDevice({ m: 0.6, d: 2 })};
+  margin-right: ${selectByDevice({ m: 6, d: 20 })};
   ${({ vertical }) =>
     vertical &&
-    `width: 3.6rem;
-    margin: 1.4rem 0 0`};
+    `width: 36px;
+    margin: 14px 0 0`};
   border-radius: ${selectByDevice(barHeight, 0.5)};
   background-color: ${({ theme }) => theme.color.blueDark};
 `;
@@ -26,17 +26,13 @@ export const HrBar = styled<Props & any>('div')`
 export const Title = styled<TitleInterface & any>('h3')`
   color: ${({ theme }) => theme.color.blueDark};
   font-size: ${({ theme, vertical }) =>
-    theme.mobile
-      ? vertical
-        ? 4.4
-        : theme.font.size.xxl
-      : theme.font.size.l}rem;
+    theme.mobile ? (vertical ? 2.4 : 1.2) : 2}rem;
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 export const Wrapper = styled<Props & any>('div')`
   display: flex;
   align-items: center;
-  margin: ${({ margin }) => margin || '4rem 0'};
+  margin: ${({ margin }) => margin || '40px 0'};
   ${({ vertical }) => vertical && 'flex-direction: column-reverse'};
 `;

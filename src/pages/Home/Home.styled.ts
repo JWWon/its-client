@@ -28,41 +28,41 @@ export const Slider = styled(_Slider).attrs<SliderInterface, any>({
     !theme.mobile && single && windowHalfSpace(theme)};
   .slick-list {
     flex: 1;
-    margin-left: ${({ theme }) => theme.space.s}rem;
-    box-shadow: -0.4rem 0.8rem 2rem rgba(0, 0, 0, 0.16);
+    margin-left: ${({ theme }) => theme.space.s}px;
+    box-shadow: -4px 8px 20px rgba(0, 0, 0, 0.16);
     height: ${selectByDevice(slideHeight, 1, 'vh')} !important;
     border-top-left-radius: ${selectByDevice(slideHeight, 0.5, 'vh')};
     border-bottom-left-radius: ${selectByDevice(slideHeight, 0.5, 'vh')};
   }
 `;
 
-const arrowSize = { m: 1, d: 2.2 };
+const arrowSize = { m: 10, d: 22 };
 export const DotsWrapper = styled.div`
   position: relative;
   top: 0;
   bottom: 0;
   flex-basis: ${({ theme }) =>
-    theme.mobile ? '4.8rem' : windowHalfSpace(theme)};
+    theme.mobile ? '48px' : windowHalfSpace(theme)};
   display: flex;
   justify-content: ${selectByDevice({ m: 'center', d: 'flex-end' })};
   align-items: center;
   box-sizing: border-box;
-  padding-left: ${({ theme }) => theme.space.s}rem;
-  padding-right: 6.4rem;
+  padding-left: ${({ theme }) => theme.space.s}px;
+  padding-right: 64px;
   @media screen and (max-width: 1400px) {
-    padding-right: ${({ theme }) => theme.space.s}rem;
+    padding-right: ${({ theme }) => theme.space.s}px;
   }
 
   div {
     display: flex;
     ${({ theme }) =>
-      !theme.mobile && `flex-direction: column; width: ${arrowSize.d}rem`};
+      !theme.mobile && `flex-direction: column; width: ${arrowSize.d}px`};
     align-items: center;
     ul {
-      margin: ${selectByDevice({ m: '0 0.4rem', d: '1.2rem 0' })};
+      margin: ${selectByDevice({ m: '0 4px', d: '12px 0' })};
       padding: 0;
       li {
-        margin: ${selectByDevice({ m: '0 0.4rem', d: '1.2rem 0' })};
+        margin: ${selectByDevice({ m: '0 4px', d: '12px 0' })};
       }
     }
   }

@@ -12,11 +12,11 @@ export const Background = styled.div`
   flex-direction: column;
 `;
 
-const headerHeight = { m: 4, d: 8 };
+const headerHeight = { m: 40, d: 80 };
 export const Header = styled.div`
   position: relative;
   height: ${selectByDevice(headerHeight)};
-  margin: ${({ theme }) => theme.space.s}rem;
+  margin: ${({ theme }) => theme.space.s}px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@ export const Header = styled.div`
 
 export const Label = styled.h3`
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => (theme.mobile ? 3.6 : theme.font.size.xl)}rem;
+  font-size: ${selectByDevice({ m: '1.4rem', d: '2.2rem' })};
   font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
@@ -39,5 +39,5 @@ export const DismissContainer = styled.div`
 
 export const Wrapper = styled.div`
   flex: 1;
-  padding: 0 0 ${({ theme }) => theme.space.s}rem;
+  padding: 0 0 ${({ theme }) => theme.space.s}px;
 `;

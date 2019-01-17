@@ -1,12 +1,12 @@
 import { ShadowBox as _ShadowBox } from 'components/common';
-import styled, { selectByDevice } from 'theme';
+import styled, { fontSizeByDevice, selectByDevice } from 'theme';
 
-const space = '1.4rem';
+const space = '14px';
 export const BoxWrapper = styled.div`
   display: flex;
   ${selectByDevice({ m: 'flex-direction: column', d: '' })};
   width: 100%;
-  min-height: 64rem;
+  min-height: 640px;
   margin: -${space} 0;
 `;
 
@@ -18,9 +18,9 @@ export const ShadowBox = styled(_ShadowBox).attrs({
 })``;
 
 export const Notice = styled.p`
-  margin: 1.6rem 0;
+  margin: 16px 0;
   text-align: right;
-  font-size: ${({ theme }) => theme.font.size.xs}rem;
+  font-size: ${fontSizeByDevice('xs')};
   font-weight: ${({ theme }) => theme.font.weight.light};
   color: ${({ theme }) => theme.color.grayDark};
 `;
